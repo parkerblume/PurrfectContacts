@@ -11,7 +11,7 @@ Website link (if still being paid for): https://fakewhitepages.com
 - [Rachel Vitaliano](https://github.com/rachelv026)
 - Ximena Ramirez
 ### API
-- Giovanni Velez
+- Giovanni Maldonado
 - Wilson Gil
 
 ## Notes
