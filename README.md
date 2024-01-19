@@ -1,4 +1,4 @@
-# Contact Manager (Fake White Pages)
+# Contact Manager (Purrfect Contacts)
 
 A contact manager full-stack application made for COP 4331 (POOSD)
 
