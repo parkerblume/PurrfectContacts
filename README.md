@@ -8,7 +8,7 @@ Website link (if still being paid for): https://fakewhitepages.com
 ### Project Manager / Database
 - [Parker Blume](https://github.com/parkerblume)
 ### Front End
-- Rachel Vitaliano
+- [Rachel Vitaliano](https://github.com/rachelv026)
 - Ximena Ramirez
 ### API
 - Giovanni Velez
