@@ -13,3 +13,6 @@ Website link (if still being paid for): https://fakewhitepages.com
 ### API
 - Giovanni Velez
 - Wilson Gil
+
+## Notes
+- To Team Members: If you are wanting to see changes make sure `git fetch` to stay in sync with any changes, then `git checkout dev` then `git pull` while connected in the server inside the html folder. This will put the server on the dev branch so you can see any changes that you had pushed/merged from/into dev! :)
