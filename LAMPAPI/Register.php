@@ -1,11 +1,14 @@
 <?php
 	$inData = getRequestInfo();
 	
+	$dateCreated = $inData["dateCreated"];
+	$lastLoginDate = $inData["lastLoginDate"];
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
 	$email = $inData["email"];
 	$username = $inData["username"];
-	$password = $inData["password"]
+	$password = $inData["password"];
+	$profilePicPath = $inData["picturePath"]
 
 	// Check if the email is valid.
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -28,8 +31,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Email,Login,Password) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("sssss", $firstName,$lastName,$email,$username,$password);
+		$stmt = $conn->prepare("INSERT into USERS (DateCreated,DateLastLoggedIn,FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?,?,?)");
+		$stmt->bind_param("sssssss", $dateCreated,$lastLoginDate,$firstName,$lastName,$email,$username,$password,$profilePicPath);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();

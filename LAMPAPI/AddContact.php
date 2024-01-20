@@ -4,6 +4,7 @@
 	$name = $inData["name"];
 	$phone = $inData["phone"];
 	$email = $inData["email"];
+	$contactImagePath = $inData["contactImagePath"];
 
 	// Check if the email is valid.
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -19,8 +20,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (Name,Phone,Email) VALUES(?,?,?)");
-		$stmt->bind_param("sss", $name, $phone, $email);
+		$stmt = $conn->prepare("INSERT into Contacts (Name,Phone,Email,ContactImagePath) VALUES(?,?,?,?)");
+		$stmt->bind_param("ssss", $name, $phone, $email, $contactImagePath);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
