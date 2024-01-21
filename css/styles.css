@@ -175,8 +175,8 @@
     left: -140px;
     position: relative;
     top: -80px;
-    opacity: 0%;
-    transition: 10s ease-in-out;
+    opacity: 1;
+    transition: 0.5s ease-in-out;
   }
   
 
