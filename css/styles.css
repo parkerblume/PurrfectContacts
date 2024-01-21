@@ -71,15 +71,21 @@
 
   .body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     background-color: #f0e6f2; /* Light pastel pink background color */
   }
 
   .box-container {
-    position: relative;
+    display: flex; 
+    flex-direction: column; 
+    flex: 1 0 33%
+  }
+
+  .form-container {
     max-width: 350px;
     margin: 0 auto 100px;
     text-align: center;
@@ -96,6 +102,21 @@
     transition: 0.5s ease-in-out;
   }
 
+  .input-form button {
+    width: 100%;
+    padding: 2%;
+    margin-top: 2%;
+    background-color: #ff69b4; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .input-form p {
+    margin:0px;
+  }
+
   .input-field {
     width: 100%;
     padding: 5%;
@@ -103,6 +124,55 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+  .image-box
+  {
+    flex: 1 0 33%;
+    align-items: start;
+  }
+
+  .bubble-container {
+    display: none;
+    position: relative;
+    top:10px;
+  }
+
+  .valid {
+    color: #009345;
+   }
+
+   .valid:before {
+     position: relative;
+     left: -35px;
+    }
+
+  .invalid {
+    color: red;
+   }
+
+   .invalid:before {
+     position: relative;
+     left: -35px;
+   }
+
+  #kitty {
+    width:30%; 
+    height:30%;
+    left: -70px;
+    position: relative;
+    top: 70px;
+  }
+
+  #bubble {
+    width:50%; 
+    height:30%;
+    left: -140px;
+    position: relative;
+    top: -80px;
+    opacity: 100%;
+    transition: 10s ease-in-out;
+  }
+  
 
   #loginForm {
     position: relative;
@@ -118,22 +188,7 @@
   #signupForm {
     position: relative;
     left: 400px;
-    top: -200px;
-  }
-
-  .input-form button {
-    width: 100%;
-    padding: 2%;
-    margin-top: 2%;
-    background-color: #ff69b4; 
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .input-form p {
-    margin:0px;
+    top: -235px;
   }
 
   .links {
