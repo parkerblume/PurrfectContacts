@@ -14,33 +14,36 @@
         <h1 id="title">Purrfect Contacts</h1>
       </div>
       
-      <div class="row" style="height:100%; display: flex;">
-        <div class="" style="display: flex; justify-content: center; align-items: center;">
-          <div style="flex: 1 0 33%">
+      <div class="row" style="height:100%; display: flex; width: 100%;">
+        <div class="" style="display: flex; justify-content: center; align-items: center; width:100%;">
+          <div style="display: flex; justify-content: center; align-items: center; width: 100%; border: 1px solid purple; flex: 1 0 60%;">
+            <div style="flex: 1 0 50%; border: 1px solid green;">
             
-          </div>
-          <div class="box-container">
-            <div id="fieldContainer" class="form-container">
-              <form id="loginForm" class="input-form">
-                <span id="inner-title">Log in to your purrrfect account</span>
-                <input type="text" class="input-field" id="loginName" placeholder="Username" name="username" required="">
-                <input type="password" class="input-field" id="loginPassword" placeholder="Password" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}">
-                <button type="button" id="loginButton" onclick="doLogin();"> Log In! </button>
-                <span id="loginResult"></span>
-                <p>Don't have an account? <a class="links" onclick="showSignup()">Sign up!</a></p>
-              </form>
-  
-              <form id="signupForm" class="input-form">
-                <input type="text" class="input-field" id="firstName" placeholder="First Name" name="firstName" required />
-                <input type="text" class="input-field" id="lastName" placeholder="Last Name" name="lastName" required />
-                <input type="text" class="input-field" id="username" placeholder="Username" name="login" required
-                  pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}"
-                  title="Must be between 3-13 characters and must contain at least one letter" />
-                <input type="password" class="input-field" id="password" placeholder="password" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
-                      required pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}"
-                      title="Must be between 8-32 characters and must contain at least one number and one special character" />
-                <button type="button" id="loginButton" onclick="doRegister();"> Register! </button>
-                <p>Already have an account? <a class="links" onclick="showLogin()">Log in!</a></p>
+            </div>
+            <div class="box-container">
+              <div id="fieldContainer" class="form-container">
+                <form id="loginForm" class="input-form">
+                  <span id="inner-title">Log in to your purrrfect account</span>
+                  <input type="text" class="input-field" id="loginName" placeholder="Username" name="username" required="">
+                  <input type="password" class="input-field" id="loginPassword" placeholder="Password" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}">
+                  <button type="button" id="loginButton" onclick="doLogin();"> Log In! </button>
+                  <span id="loginResult"></span>
+                  <p>Don't have an account? <a class="links" onclick="showSignup()">Sign up!</a></p>
+                </form>
+    
+                <form id="signupForm" class="input-form">
+                  <input type="text" class="input-field" id="firstName" placeholder="First Name" name="firstName" required />
+                  <input type="text" class="input-field" id="lastName" placeholder="Last Name" name="lastName" required />
+                  <input type="text" class="input-field" id="username" placeholder="Username" name="login" required
+                    pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}"
+                    title="Must be between 3-13 characters and must contain at least one letter" />
+                  <input type="password" class="input-field" id="password" placeholder="password" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
+                        required pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}"
+                        title="Must be between 8-32 characters and must contain at least one number and one special character" />
+                  <button type="button" id="loginButton" onclick="doRegister();"> Register! </button>
+                  <p>Already have an account? <a class="links" onclick="showLogin()">Log in!</a></p>
+                </form>
+              </div>
             </div>
           </div>
           <div id="imageDisplay" class="image-box" >

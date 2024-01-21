@@ -80,9 +80,10 @@
   }
 
   .box-container {
+    border: 1px solid blue;
     display: flex; 
     flex-direction: column; 
-    flex: 1 0 33%
+    /* flex: 1 0 50% */
   }
 
   .form-container {
@@ -127,8 +128,9 @@
 
   .image-box
   {
-    flex: 1 0 33%;
-    align-items: start;
+    border: 1px solid red;
+    flex: 1 0 35%;
+    margin-top:5%;
   }
 
   .bubble-container {
@@ -155,12 +157,16 @@
      left: -35px;
    }
 
+   .fade-in-image { animation: fadeIn 5s; }
+   @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
   #kitty {
     width:30%; 
     height:30%;
-    left: -70px;
     position: relative;
-    top: 70px;
   }
 
   #bubble {
@@ -169,7 +175,7 @@
     left: -140px;
     position: relative;
     top: -80px;
-    opacity: 100%;
+    opacity: 0%;
     transition: 10s ease-in-out;
   }
   

@@ -61,11 +61,12 @@ function doLogin()
 function showRequiredField()
 {
   document.getElementById("requirements").style.display = "contents";
+  document.getElementById("requirements").classList.add("fade-in-image");
 }
-
 function hideRequiredField()
 {
   document.getElementById("requirements").style.display = "none";
+  document.getElementById("requirements").classList.remove("fade-in-image");
 }
 
 function showSignup()
