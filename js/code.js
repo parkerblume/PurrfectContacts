@@ -58,6 +58,35 @@ function doLogin()
 
 }
 
+function showRequiredField()
+{
+  document.getElementById("requirements").style.display = "contents";
+}
+
+function hideRequiredField()
+{
+  document.getElementById("requirements").style.display = "none";
+}
+
+function showSignup()
+{
+  const loginFields = document.getElementById("loginForm");
+  const signUpFields = document.getElementById("signupForm");
+  const container = document.getElementById("fieldContainer");
+  
+  loginFields.style.left = "-400px";
+  signUpFields.style.left = "0px";
+}
+
+function showLogin()
+{
+  const loginFields = document.getElementById("loginForm");
+  const signUpFields = document.getElementById("signupForm");
+
+  loginFields.style.left = "0px";
+  signUpFields.style.left = "400px";
+}
+
 /* function saveCookie()
 {
 	let minutes = 20;
