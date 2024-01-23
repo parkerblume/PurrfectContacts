@@ -1,9 +1,12 @@
-const urlBase = 'http://fakewhitepages.com/LAMPAPI';
+const urlBase = 'https://fakewhitepages.com/LAMPAPI';
 const extension = 'php';
+const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
 
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let email = "";
+let profileImage = "";
 
 function doLogin()
 {
@@ -13,13 +16,17 @@ function doLogin()
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
+    var hash = md5( password );
 	
+    if (!validLoginForm(login, password))
+    {
+        document.getElementById("loginResult").innerHTML = "Invalid username or password!";
+        return;
+    }
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
-	let jsonPayload = JSON.stringify( tmp );
+	var tmp = {login:login,password:hash};
+	let jsonPayload = JSON.stringify(tmp);
 	
 	let url = urlBase + '/Login.' + extension;
 
@@ -43,6 +50,9 @@ function doLogin()
 		
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
+                email = jsonObject.email;
+                profileImage = jsonObject.profilePicPath;
+
 
 				saveCookie();
 	
@@ -61,12 +71,13 @@ function doLogin()
 function doRegister() {
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
+    email = document.getElementById("email").value;
 
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
-    if (!validSignUpForm(firstName, lastName, username, password)) {
-        document.getElementById("signupResult").innerHTML = "invalid signup";
+    if (!validSignUpForm(firstName, lastName, email, username, password)) {
+        document.getElementById("signupResult").innerHTML = "Invalid signup!";
         return;
     }
 
@@ -74,16 +85,20 @@ function doRegister() {
 
     document.getElementById("signupResult").innerHTML = "";
 
+    // Gather random default profile image
+    let imagePath = baseImagePath + getRandomImage();
     let tmp = {
         firstName: firstName,
         lastName: lastName,
-        login: username,
-        password: hash
+        email: email,
+        username: username,
+        password: hash,
+        profilePicPath: imagePath
     };
 
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/SignUp.' + extension;
+    let url = urlBase + '/Register.' + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -91,6 +106,8 @@ function doRegister() {
 
     try {
         xhr.onreadystatechange = function () {
+            console.log("Ready state:", xhr.readyState);
+            console.log("Status:", xhr.status);
 
             if (this.readyState != 4) {
                 return;
@@ -108,6 +125,9 @@ function doRegister() {
                 document.getElementById("signupResult").innerHTML = "User added";
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
+                email = jsonObject.email;
+                profileImage = jsonObject.profilePicPath;
+              
                 saveCookie();
             }
         };
@@ -116,6 +136,14 @@ function doRegister() {
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
     }
+    // fix this later.
+    //showLogin();
+}
+
+function getRandomImage()
+{
+    let randNum = Math.floor(Math.random() * (3) + 1)
+    return "defaultCat" + randNum + ".png";
 }
 
 function showRequiredField()
@@ -137,15 +165,20 @@ function showSignup()
   
   loginFields.style.left = "-400px";
   signUpFields.style.left = "0px";
+  container.style.height="425px";
+  document.getElementById("kitty").style.left="0px";
 }
 
 function showLogin()
 {
   const loginFields = document.getElementById("loginForm");
   const signUpFields = document.getElementById("signupForm");
+  const container = document.getElementById("fieldContainer");
 
   loginFields.style.left = "0px";
   signUpFields.style.left = "400px";
+  container.style.height="350px";
+  document.getElementById("kitty").style.left="-75px";
 }
 
 function saveCookie()
@@ -495,9 +528,9 @@ function validLoginForm(logName, logPass) {
 
 }
 
-function validSignUpForm(fName, lName, user, pass) {
+function validSignUpForm(fName, lName, email, user, pass) {
 
-    var fNameErr = lNameErr = userErr = passErr = true;
+    var fNameErr = lNameErr = emailErr = userErr = passErr = true;
 
     if (fName == "") {
         console.log("FIRST NAME IS BLANK");
@@ -513,6 +546,25 @@ function validSignUpForm(fName, lName, user, pass) {
     else {
         console.log("LAST name IS VALID");
         lNameErr = false;
+    }
+
+    if (email == "")
+    {
+        console.log("EMAIL IS BLANK");
+    }
+    else
+    {
+        var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (!regex.test(email)) 
+        {
+            console.log("EMAIL IS NOT VALID");
+        }
+        else
+        {
+            console.log("EMAIL IS VALID");
+            emailErr = false;
+        }
     }
 
     if (user == "") {
@@ -549,118 +601,10 @@ function validSignUpForm(fName, lName, user, pass) {
         }
     }
 
-    if ((fNameErr || lNameErr || userErr || passErr) == true) {
+    if ((fNameErr || lNameErr || emailErr || userErr || passErr) == true) {
         return false;
 
     }
 
     return true;
 }
-
-function validAddContact(firstName, lastName, phone, email) {
-
-    var fNameErr = lNameErr = phoneErr = emailErr = true;
-
-    if (firstName == "") {
-        console.log("FIRST NAME IS BLANK");
-    }
-    else {
-        console.log("First name IS VALID");
-        fNameErr = false;
-    }
-
-    if (lastName == "") {
-        console.log("LAST NAME IS BLANK");
-    }
-    else {
-        console.log("Last name IS VALID");
-        lNameErr = false;
-    }
-
-    if (phone == "") {
-        console.log("PHONE IS BLANK");
-    }
-    else {
-        var regex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
-
-        if (regex.test(phone) == false) {
-            console.log("PHONE INVALID");
-        }
-
-        else {
-
-            console.log("PHONE IS VALID");
-            phoneErr = false;
-        }
-    }
-
-    if (email == "") {
-        console.log("EMAIL IS BLANK");
-    }
-    else {
-        var regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-
-        if (regex.test(email) == false) {
-            console.log("EMAIL INVALID");
-        }
-
-        else {
-
-            console.log("EMAIL IS VALID");
-            emailErr = false;
-        }
-    }
-
-    if ((phoneErr || emailErr || fNameErr || lNameErr) == true) {
-        return false;
-
-    }
-
-    return true;
-
-}
-
-//function searchColor()
-//{
-//	let srch = document.getElementById("searchText").value;
-//	document.getElementById("colorSearchResult").innerHTML = "";
-	
-//	let colorList = "";
-
-//	let tmp = {search:srch,userId:userId};
-//	let jsonPayload = JSON.stringify( tmp );
-
-//	let url = urlBase + '/SearchColors.' + extension;
-	
-//	let xhr = new XMLHttpRequest();
-//	xhr.open("POST", url, true);
-//	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-//	try
-//	{
-//		xhr.onreadystatechange = function() 
-//		{
-//			if (this.readyState == 4 && this.status == 200) 
-//			{
-//				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-//				let jsonObject = JSON.parse( xhr.responseText );
-//				
-//				for( let i=0; i<jsonObject.results.length; i++ )
-//				{
-//					colorList += jsonObject.results[i];
-//					if( i < jsonObject.results.length - 1 )
-//					{
-//						colorList += "<br />\r\n";
-//					}
-//				}
-//				
-//				document.getElementsByTagName("p")[0].innerHTML = colorList;
-//			}
-//		};
-		xhr.send(jsonPayload);
-//	}
-//	catch(err)
-//	{
-//		document.getElementById("colorSearchResult").innerHTML = err.message;
-//	}
-	
-//}
