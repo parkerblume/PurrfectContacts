@@ -29,7 +29,7 @@
 		if ($rows == 0)
 		{
 			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
-			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password);
+			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password,$profilePicPath);
 			$stmt->execute();
 			$id = $conn->insert_id;
 			$stmt->close();
