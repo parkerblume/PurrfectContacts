@@ -21,9 +21,16 @@
 	{
 		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
 		$stmt->bind_param("ssssss", $firstName,$lastName,$email,$username,$password,$profilePicPath);	
-		$stmt->close();
-		$conn->close();			
-		returnWithError("Execute failed: " . $stmt->error);
+		if($stmt->execute())
+        {       
+            $stmt->close();
+            $conn->close();            
+            returnWithError("");
+        }
+        else
+        {
+            returnWithError("Execute failed: " . $stmt->error);
+        }
 	}
 
 	function getRequestInfo()
