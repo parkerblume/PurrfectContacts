@@ -136,7 +136,8 @@ function doRegister() {
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
     }
-    showLogin();
+    // fix this later.
+    //showLogin();
 }
 
 function getRandomImage()
