@@ -8,7 +8,7 @@
 	$email = $inData["email"];
 	$username = $inData["username"];
 	$password = $inData["password"];
-	$profilePicPath = $inData["picturePath"]
+	$profilePicPath = $inData["profilePicPath"]
 
 	// Check if the email is valid.
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL))

@@ -25,7 +25,7 @@
                 <form id="loginForm" class="input-form">
                   <span id="inner-title">Log in to your purrrfect account</span>
                   <input type="text" class="input-field" id="loginName" placeholder="Username" name="username" required="">
-                  <input type="password" class="input-field" id="loginPassword" placeholder="Password" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}">
+                  <input type="password" class="input-field" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}">
                   <button type="button" id="loginButton" onclick="doLogin();"> Log In! </button>
                   <span id="loginResult"></span>
                   <p>Don't have an account? <a class="links" onclick="showSignup()">Sign up!</a></p>
@@ -34,13 +34,16 @@
                 <form id="signupForm" class="input-form">
                   <input type="text" class="input-field" id="firstName" placeholder="First Name" name="firstName" required />
                   <input type="text" class="input-field" id="lastName" placeholder="Last Name" name="lastName" required />
+                  <input type="text" class="input-field" id="email" placeholder="Email" name="email" 
+                    pattern="^/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required />
                   <input type="text" class="input-field" id="username" placeholder="Username" name="login" required
                     pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}"
                     title="Must be between 3-13 characters and must contain at least one letter" />
-                  <input type="password" class="input-field" id="password" placeholder="password" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
-                        required pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}"
+                  <input type="password" class="input-field" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
+                        pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
                         title="Must be between 8-32 characters and must contain at least one number and one special character" />
                   <button type="button" id="loginButton" onclick="doRegister();"> Register! </button>
+                  <span id="signupResult"></span>
                   <p>Already have an account? <a class="links" onclick="showLogin()">Log in!</a></p>
                 </form>
               </div>

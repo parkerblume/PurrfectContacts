@@ -97,6 +97,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    transition: 0.5s ease-in-out;
   }
 
   .input-form {
@@ -131,6 +132,8 @@
     border: 1px solid red;
     flex: 1 0 35%;
     margin-top:5%;
+    height:400px;
+    overflow:hidden;
   }
 
   .bubble-container {
@@ -164,17 +167,20 @@
   }
 
   #kitty {
-    width:30%; 
-    height:30%;
+    width:125px; 
+    height:125px;
     position: relative;
+    top:175px;
+    left:-75px;
+    transition: 0.5s ease-in-out;
   }
 
   #bubble {
-    width:50%; 
-    height:30%;
-    left: -140px;
+    width:300px; 
+    height:200px;
+    left: -70px;
     position: relative;
-    top: -80px;
+    top: 50px;
     opacity: 1;
     transition: 0.5s ease-in-out;
   }

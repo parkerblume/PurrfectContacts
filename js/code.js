@@ -1,9 +1,12 @@
 const urlBase = 'http://fakewhitepages.com/LAMPAPI';
 const extension = 'php';
+const baseImagePath = 'http://fakewhitepages.com/Images/User%20Images/';
 
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let email = "";
+let profileImage = "";
 
 function doLogin()
 {
@@ -13,13 +16,17 @@ function doLogin()
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
+    var hash = md5( password );
 	
+    if (!validLoginForm(login, password))
+    {
+        document.getElementById("loginResult").innerHTML = "Invalid username or password!";
+        return;
+    }
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
-	let jsonPayload = JSON.stringify( tmp );
+	var tmp = {login:login,password:hash};
+	let jsonPayload = JSON.stringify(tmp);
 	
 	let url = urlBase + '/Login.' + extension;
 
@@ -43,10 +50,13 @@ function doLogin()
 		
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
+                email = jsonObject.email;
+                profileImage = jsonObject.profilePicPath;
+
 
 				saveCookie();
 	
-				window.location.href = "color.html";
+				window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -61,12 +71,13 @@ function doLogin()
 function doRegister() {
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
+    email = document.getElementById("email").value;
 
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
-    if (!validSignUpForm(firstName, lastName, username, password)) {
-        document.getElementById("signupResult").innerHTML = "invalid signup";
+    if (!validSignUpForm(firstName, lastName, email, username, password)) {
+        document.getElementById("signupResult").innerHTML = "Invalid signup!";
         return;
     }
 
@@ -74,11 +85,15 @@ function doRegister() {
 
     document.getElementById("signupResult").innerHTML = "";
 
+    // Gather random default profile image
+    let imagePath = baseImagePath + getRandomImage();
     let tmp = {
         firstName: firstName,
         lastName: lastName,
+        email: email,
         login: username,
-        password: hash
+        password: hash,
+        profilePicPath: imagePath
     };
 
     let jsonPayload = JSON.stringify(tmp);
@@ -108,6 +123,9 @@ function doRegister() {
                 document.getElementById("signupResult").innerHTML = "User added";
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
+                email = jsonObject.email;
+                profileImage = jsonObject.profilePicPath;
+
                 saveCookie();
             }
         };
@@ -116,6 +134,12 @@ function doRegister() {
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
     }
+}
+
+function getRandomImage()
+{
+    let randNum = Math.floor(Math.random() * (3) + 1)
+    return "defaultCat" + randNum + ".png";
 }
 
 function showRequiredField()
@@ -137,15 +161,20 @@ function showSignup()
   
   loginFields.style.left = "-400px";
   signUpFields.style.left = "0px";
+  container.style.height="425px";
+  document.getElementById("kitty").style.left="0px";
 }
 
 function showLogin()
 {
   const loginFields = document.getElementById("loginForm");
   const signUpFields = document.getElementById("signupForm");
+  const container = document.getElementById("fieldContainer");
 
   loginFields.style.left = "0px";
   signUpFields.style.left = "400px";
+  container.style.height="350px";
+  document.getElementById("kitty").style.left="-75px";
 }
 
 function saveCookie()
@@ -246,7 +275,9 @@ function addContact()
         console.log(err.message);
     }
 	
-}function loadContacts() {
+}
+
+function loadContacts() {
     let tmp = {
         search: "",
         userId: userId
@@ -427,28 +458,6 @@ function searchContacts() {
     }
 }
 
-function clickLogin() {
-    var log = document.getElementById("login");
-    var reg = document.getElementById("signup");
-    var but = document.getElementById("btn");
-
-    log.style.left = "-400px";
-    reg.style.left = "0px";
-    but.style.left = "130px";
-}
-
-function clickRegister() {
-
-    var log = document.getElementById("login");
-    var reg = document.getElementById("signup");
-    var but = document.getElementById("btn");
-
-    reg.style.left = "-400px";
-    log.style.left = "0px";
-    but.style.left = "0px";
-
-}
-
 function validLoginForm(logName, logPass) {
 
     var logNameErr = logPassErr = true;
@@ -495,9 +504,9 @@ function validLoginForm(logName, logPass) {
 
 }
 
-function validSignUpForm(fName, lName, user, pass) {
+function validSignUpForm(fName, lName, email, user, pass) {
 
-    var fNameErr = lNameErr = userErr = passErr = true;
+    var fNameErr = lNameErr = emailErr = userErr = passErr = true;
 
     if (fName == "") {
         console.log("FIRST NAME IS BLANK");
@@ -513,6 +522,25 @@ function validSignUpForm(fName, lName, user, pass) {
     else {
         console.log("LAST name IS VALID");
         lNameErr = false;
+    }
+
+    if (email == "")
+    {
+        console.log("EMAIL IS BLANK");
+    }
+    else
+    {
+        var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (!regex.test(email)) 
+        {
+            console.log("EMAIL IS NOT VALID");
+        }
+        else
+        {
+            console.log("EMAIL IS VALID");
+            emailErr = false;
+        }
     }
 
     if (user == "") {
@@ -549,7 +577,7 @@ function validSignUpForm(fName, lName, user, pass) {
         }
     }
 
-    if ((fNameErr || lNameErr || userErr || passErr) == true) {
+    if ((fNameErr || lNameErr || emailErr || userErr || passErr) == true) {
         return false;
 
     }
@@ -656,7 +684,7 @@ function validAddContact(firstName, lastName, phone, email) {
 //				document.getElementsByTagName("p")[0].innerHTML = colorList;
 //			}
 //		};
-		xhr.send(jsonPayload);
+		//xhr.send(jsonPayload);
 //	}
 //	catch(err)
 //	{
