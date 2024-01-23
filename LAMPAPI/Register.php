@@ -20,16 +20,10 @@
 	else
 	{
 		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $firstName,$lastName,$email,$username,$password,$profilePicPath);
-		if($stmt->execute())
-		{		
-			$stmt->close();
-			$conn->close();
-		}
-		else
-		{
-			returnWithError("Execute failed: " . $stmt->error);
-		}
+		$stmt->bind_param("ssssss", $firstName,$lastName,$email,$username,$password,$profilePicPath);	
+		$stmt->close();
+		$conn->close();			
+		returnWithError("Execute failed: " . $stmt->error);
 	}
 
 	function getRequestInfo()
