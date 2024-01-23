@@ -94,7 +94,7 @@ function doRegister() {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        login: username,
+        username: username,
         password: hash,
         profilePicPath: imagePath
     };
@@ -110,6 +110,8 @@ function doRegister() {
     try {
         xhr.onreadystatechange = function () {
 
+            console.log("Ready state:", xhr.readyState);
+            console.log("Status:", xhr.status);
             if (this.readyState != 4) {
                 return;
             }
@@ -117,11 +119,6 @@ function doRegister() {
             if (this.status == 409) {
                 document.getElementById("signupResult").innerHTML = "User already exists";
                 return;
-            }
-
-            if (this.status == 500)
-            {
-                console.log(this.response);
             }
 
             if (this.status == 200) {

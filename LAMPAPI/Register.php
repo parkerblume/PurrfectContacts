@@ -20,16 +20,17 @@
 	} 
 	else
 	{
-		$sql = "SELECT * FROM Users WHERE Login=?";
+		$sql = "SELECT ID FROM Users WHERE Login=?";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
+		$stmt->
 		$rows = mysqli_num_rows($result);
 		if ($rows == 0)
 		{
-			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
-			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password,$profilePicPath);
+			$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Email, Login, Password, ProfileImagePath) VALUES(?,?,?,?,?,?)");
+			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password, $profilePicPath);
 			$stmt->execute();
 			$id = $conn->insert_id;
 			$stmt->close();
