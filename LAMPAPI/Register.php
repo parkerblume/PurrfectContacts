@@ -1,8 +1,6 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$dateCreated = $inData["dateCreated"];
-	$lastLoginDate = $inData["dateLastLoggedIn"];
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
 	$email = $inData["email"];
@@ -20,7 +18,8 @@
 	} 
 	else
 	{
-		$sql = "SELECT * FROM Users WHERE Login=?";
+		// Check for duplicate User
+		$sql = "SELECT ID FROM Users WHERE Login=?";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
@@ -28,16 +27,15 @@
 		$rows = mysqli_num_rows($result);
 		if ($rows == 0)
 		{
-			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
-			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password,$profilePicPath);
+			// if no duplicate, add user to table.
+			$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Email, Login, Password, ProfileImagePath) VALUES(?,?,?,?,?,?)");
+			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password, $profilePicPath);
 			$stmt->execute();
 			$id = $conn->insert_id;
 			$stmt->close();
 			$conn->close();
 			http_response_code(200);
-			$searchResults .= '{'.'"id": "'.$id.''.'"}';
 
-			returnWithInfo($searchResults);
 		} else {
 			http_response_code(409);
 			returnWithError("Username taken");
@@ -60,10 +58,4 @@
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	function returnWithInfo( $searchResults )
-	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
-
 ?>

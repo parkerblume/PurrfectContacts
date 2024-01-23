@@ -1,6 +1,6 @@
-const urlBase = 'http://fakewhitepages.com/LAMPAPI';
+const urlBase = 'https://fakewhitepages.com/LAMPAPI';
 const extension = 'php';
-const baseImagePath = 'http://fakewhitepages.com/images/User%20Images/';
+const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
 
 let userId = 0;
 let firstName = "";
@@ -87,14 +87,11 @@ function doRegister() {
 
     // Gather random default profile image
     let imagePath = baseImagePath + getRandomImage();
-    let date = new Date()
     let tmp = {
-        dateCreated: date.toISOString(),
-        dateLastLoggedIn: date.toISOString(),
         firstName: firstName,
         lastName: lastName,
         email: email,
-        login: username,
+        username: username,
         password: hash,
         profilePicPath: imagePath
     };
@@ -109,6 +106,8 @@ function doRegister() {
 
     try {
         xhr.onreadystatechange = function () {
+            console.log("Ready state:", xhr.readyState);
+            console.log("Status:", xhr.status);
 
             if (this.readyState != 4) {
                 return;
@@ -117,11 +116,6 @@ function doRegister() {
             if (this.status == 409) {
                 document.getElementById("signupResult").innerHTML = "User already exists";
                 return;
-            }
-
-            if (this.status == 500)
-            {
-                console.log(this.response);
             }
 
             if (this.status == 200) {
@@ -133,7 +127,7 @@ function doRegister() {
                 lastName = jsonObject.lastName;
                 email = jsonObject.email;
                 profileImage = jsonObject.profilePicPath;
-
+              
                 saveCookie();
             }
         };
@@ -142,6 +136,8 @@ function doRegister() {
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
     }
+    // fix this later.
+    //showLogin();
 }
 
 function getRandomImage()
@@ -283,9 +279,7 @@ function addContact()
         console.log(err.message);
     }
 	
-}
-
-function loadContacts() {
+}function loadContacts() {
     let tmp = {
         search: "",
         userId: userId
@@ -466,6 +460,28 @@ function searchContacts() {
     }
 }
 
+function clickLogin() {
+    var log = document.getElementById("login");
+    var reg = document.getElementById("signup");
+    var but = document.getElementById("btn");
+
+    log.style.left = "-400px";
+    reg.style.left = "0px";
+    but.style.left = "130px";
+}
+
+function clickRegister() {
+
+    var log = document.getElementById("login");
+    var reg = document.getElementById("signup");
+    var but = document.getElementById("btn");
+
+    reg.style.left = "-400px";
+    log.style.left = "0px";
+    but.style.left = "0px";
+
+}
+
 function validLoginForm(logName, logPass) {
 
     var logNameErr = logPassErr = true;
@@ -592,111 +608,3 @@ function validSignUpForm(fName, lName, email, user, pass) {
 
     return true;
 }
-
-function validAddContact(firstName, lastName, phone, email) {
-
-    var fNameErr = lNameErr = phoneErr = emailErr = true;
-
-    if (firstName == "") {
-        console.log("FIRST NAME IS BLANK");
-    }
-    else {
-        console.log("First name IS VALID");
-        fNameErr = false;
-    }
-
-    if (lastName == "") {
-        console.log("LAST NAME IS BLANK");
-    }
-    else {
-        console.log("Last name IS VALID");
-        lNameErr = false;
-    }
-
-    if (phone == "") {
-        console.log("PHONE IS BLANK");
-    }
-    else {
-        var regex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
-
-        if (regex.test(phone) == false) {
-            console.log("PHONE INVALID");
-        }
-
-        else {
-
-            console.log("PHONE IS VALID");
-            phoneErr = false;
-        }
-    }
-
-    if (email == "") {
-        console.log("EMAIL IS BLANK");
-    }
-    else {
-        var regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-
-        if (regex.test(email) == false) {
-            console.log("EMAIL INVALID");
-        }
-
-        else {
-
-            console.log("EMAIL IS VALID");
-            emailErr = false;
-        }
-    }
-
-    if ((phoneErr || emailErr || fNameErr || lNameErr) == true) {
-        return false;
-
-    }
-
-    return true;
-
-}
-
-//function searchColor()
-//{
-//	let srch = document.getElementById("searchText").value;
-//	document.getElementById("colorSearchResult").innerHTML = "";
-	
-//	let colorList = "";
-
-//	let tmp = {search:srch,userId:userId};
-//	let jsonPayload = JSON.stringify( tmp );
-
-//	let url = urlBase + '/SearchColors.' + extension;
-	
-//	let xhr = new XMLHttpRequest();
-//	xhr.open("POST", url, true);
-//	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-//	try
-//	{
-//		xhr.onreadystatechange = function() 
-//		{
-//			if (this.readyState == 4 && this.status == 200) 
-//			{
-//				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-//				let jsonObject = JSON.parse( xhr.responseText );
-//				
-//				for( let i=0; i<jsonObject.results.length; i++ )
-//				{
-//					colorList += jsonObject.results[i];
-//					if( i < jsonObject.results.length - 1 )
-//					{
-//						colorList += "<br />\r\n";
-//					}
-//				}
-//				
-//				document.getElementsByTagName("p")[0].innerHTML = colorList;
-//			}
-//		};
-		//xhr.send(jsonPayload);
-//	}
-//	catch(err)
-//	{
-//		document.getElementById("colorSearchResult").innerHTML = err.message;
-//	}
-	
-//}
