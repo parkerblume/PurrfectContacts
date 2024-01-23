@@ -19,7 +19,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
+		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
 		$stmt->bind_param("ssssss", $firstName,$lastName,$email,$username,$password,$profilePicPath);	
 		$stmt->close();
 		$conn->close();			
