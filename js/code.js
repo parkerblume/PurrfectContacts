@@ -139,6 +139,7 @@ function doRegister() {
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
     }
+    showLogin();
 }
 
 function getRandomImage()
