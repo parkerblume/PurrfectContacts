@@ -10,14 +10,7 @@
 	$password = $inData["password"];
 	$profilePicPath = $inData["profilePicPath"];
 
-	// Check if the email is valid.
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-	{
-		returnWithError("Invalid email format");
-		exit();
-	}
-
-	// Password has been checked and hashed on client side -> therefore, no need to check here (for this anyways).
+	// Password and Email has been checked and hashed on client side -> therefore, no need to check here (for this anyways).
 
 		$conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
 	if ($conn->connect_error) 
