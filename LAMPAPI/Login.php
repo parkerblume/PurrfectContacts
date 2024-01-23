@@ -22,7 +22,7 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ProfileImagePath'] $row['ID'] );
+			returnWithInfo( $row['firstName'], $row['lastName'], $row['email'], $row['ProfileImagePath'] $row['ID'] );
 		}
 		else
 		{
@@ -50,7 +50,7 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $firstName, $lastName, $profilePicPath, $id )
+	function returnWithInfo( $firstName, $lastName, $email, $profilePicPath, $id )
 	{
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","email":"' . $email . '","profilePicPath":"' . $profilePicPath . '","error":""}';
 		sendResultInfoAsJson( $retValue );

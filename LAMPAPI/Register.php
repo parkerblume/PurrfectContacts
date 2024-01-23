@@ -8,7 +8,7 @@
 	$email = $inData["email"];
 	$username = $inData["username"];
 	$password = $inData["password"];
-	$profilePicPath = $inData["profilePicPath"]
+	$profilePicPath = $inData["profilePicPath"];
 
 	// Check if the email is valid.
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -17,12 +17,7 @@
 		exit();
 	}
 
-	// Check if the password meet the requirements.
-	if (strlen($password) < 6 || !(preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/[0-9]/', $password) && preg_match('/[A-Za-z]/', $password) && preg_match('/[^\w]/', $password)))
-	{
-		returnWithError("Password must be at leat 8 characters, contain uppercase letter, number, and a special characters");
-		exit();
-	}
+	// Password has been checked and hashed on client side -> therefore, no need to check here (for this anyways).
 
 		$conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
 	if ($conn->connect_error) 
