@@ -19,8 +19,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into USERS (DateCreated,DateLastLoggedIn,FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?,?,?)");
-		$stmt->bind_param("sssssss", $dateCreated,$lastLoginDate,$firstName,$lastName,$email,$username,$password,$profilePicPath);
+		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
+		$stmt->bind_param("ssssss", $firstName,$lastName,$email,$username,$password,$profilePicPath);
 		if($stmt->execute())
 		{		
 			$stmt->close();
