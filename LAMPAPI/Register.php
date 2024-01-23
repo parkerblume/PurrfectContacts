@@ -27,11 +27,16 @@
 	else
 	{
 		$stmt = $conn->prepare("INSERT into USERS (DateCreated,DateLastLoggedIn,FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?,?,?)");
-		$stmt->bind_param("sssssss", $dateCreated,$dateLastLoggedIn,$firstName,$lastName,$email,$username,$password,$profilePicPath);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		$stmt->bind_param("sssssss", $dateCreated,$lastLoginDate,$firstName,$lastName,$email,$username,$password,$profilePicPath);
+		if($stmt->execute())
+		{		
+			$stmt->close();
+			$conn->close();
+		}
+		else
+		{
+			returnWithError("Execute failed: " . $stmt->error);
+		}
 	}
 
 	function getRequestInfo()
