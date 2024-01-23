@@ -18,7 +18,7 @@
 	}
 
 	// Check if the password meet the requirements.
-	if (strlen($password) < 6 || !(preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/[0-9]/', $password) && preg_match('/[A-Za-z]/', $password) && preg_match('/[^\w]/', $password))
+	if (strlen($password) < 6 || !(preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/[0-9]/', $password) && preg_match('/[A-Za-z]/', $password) && preg_match('/[^\w]/', $password)))
 	{
 		returnWithError("Password must be at leat 8 characters, contain uppercase letter, number, and a special characters");
 		exit();
