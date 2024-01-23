@@ -119,6 +119,11 @@ function doRegister() {
                 return;
             }
 
+            if (this.status == 500)
+            {
+                console.log(this.response);
+            }
+
             if (this.status == 200) {
 
                 let jsonObject = JSON.parse(xhr.responseText);

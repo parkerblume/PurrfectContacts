@@ -12,7 +12,7 @@
 
 	// Password and Email has been checked and hashed on client side -> therefore, no need to check here (for this anyways).
 
-		$conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
+	$conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
@@ -21,7 +21,7 @@
 	{
 		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
 		$stmt->bind_param("ssssss", $firstName,$lastName,$email,$username,$password,$profilePicPath);
-		if($stmt->execute())
+		$stmt->execute()
 		{		
 			$stmt->close();
 			$conn->close();
