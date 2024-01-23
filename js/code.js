@@ -87,10 +87,7 @@ function doRegister() {
 
     // Gather random default profile image
     let imagePath = baseImagePath + getRandomImage();
-    let date = new Date()
     let tmp = {
-        dateCreated: date.toISOString(),
-        dateLastLoggedIn: date.toISOString(),
         firstName: firstName,
         lastName: lastName,
         email: email,
