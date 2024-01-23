@@ -89,8 +89,8 @@ function doRegister() {
     let imagePath = baseImagePath + getRandomImage();
     let date = new Date()
     let tmp = {
-        dateCreated: date,
-        dateLastLoggedIn: date,
+        dateCreated: date.toISOString(),
+        dateLastLoggedIn: date.toISOString(),
         firstName: firstName,
         lastName: lastName,
         email: email,
