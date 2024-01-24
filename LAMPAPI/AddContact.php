@@ -4,24 +4,18 @@
 	$name = $inData["name"];
 	$phone = $inData["phone"];
 	$email = $inData["email"];
+	$userId = $inData["userId"];
 	$contactImagePath = $inData["contactImagePath"];
 
-	// Check if the email is valid.
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-	{
-		returnWithError("Invalid email format");
-		exit();
-	}
-
-		$conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
+  $conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (Name,Phone,Email,ContactImagePath) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $name, $phone, $email, $contactImagePath);
+		$stmt = $conn->prepare("INSERT into Contacts (Name,Phone,Email,UserID,ContactImagePath) VALUES(?,?,?,?,?)");
+		$stmt->bind_param("sssis", $name, $phone, $email, $userId, $contactImagePath);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
