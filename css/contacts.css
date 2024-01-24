@@ -1,7 +1,7 @@
 /* contact styles */
-body {
+.body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ffe5ec;
+    background-color: #f0e6f2; 
     
 }
 
@@ -29,7 +29,7 @@ body {
   
   /* Add a color to the active/current link */
   .topnav a.active {
-    background-color: ;
+    background-color: #9381ff;
     color: white;
   }
 

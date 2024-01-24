@@ -5,7 +5,8 @@
 
 /* body formatting */
 body {
-    background-color: #F3B02E;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0e6f2;
     background-image: url('../images/pileofCatsCartoon.png');
     background-position: center center;
     background-repeat: no-repeat;
@@ -15,13 +16,6 @@ body {
     overflow:hidden;
 }
 
-
-/* contact styles */
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #ffe5ec;
-    
-}
 
 /* Add a black background color to the top navigation */
 .topnav {
@@ -47,7 +41,7 @@ body {
   
   /* Add a color to the active/current link */
   .topnav a.active {
-    background-color: ;
+    background-color: #9381ff;
     color: white;
   }
 
