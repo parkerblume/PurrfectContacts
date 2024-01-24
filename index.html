@@ -42,6 +42,7 @@
                   <input type="password" class="input-field" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
                         pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
                         title="Must be between 8-32 characters and must contain at least one number and one special character" />
+                        <input type="checkbox" onclick="passVisibility()">Show Password
                   <button type="button" id="loginButton" onclick="doRegister();"> Register! </button>
                   <span id="signupResult"></span>
                   <p>Already have an account? <a class="links" onclick="showLogin()">Log in!</a></p>

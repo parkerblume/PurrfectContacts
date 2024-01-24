@@ -231,6 +231,19 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
+//Password visbility feature
+function passVisibility() {
+	var x = document.getElementById("myInput");
+	if (x.type === "password") 
+	{
+	  x.type = "text";
+	} 
+	else {
+	  x.type = "password";
+	}
+  }
+
+//Add date record created 
 function addContact()
 {
 	
