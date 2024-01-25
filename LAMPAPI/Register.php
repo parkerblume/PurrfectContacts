@@ -1,42 +1,45 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$dateCreated = $inData["dateCreated"];
-	$lastLoginDate = $inData["lastLoginDate"];
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
 	$email = $inData["email"];
 	$username = $inData["username"];
 	$password = $inData["password"];
-	$profilePicPath = $inData["picturePath"]
+	$profilePicPath = $inData["profilePicPath"];
 
-	// Check if the email is valid.
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-	{
-		returnWithError("Invalid email format");
-		exit();
-	}
 
-	// Check if the password meet the requirements.
-	if (strlen($password) < 6 || !(preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/[0-9]/', $password) && preg_match('/[A-Za-z]/', $password) && preg_match('/[^\w]/', $password)))
-	{
-		returnWithError("Password must be at leat 8 characters, contain uppercase letter, number, and a special characters");
-		exit();
-	}
+	// Password and Email has been checked and hashed on client side -> therefore, no need to check here (for this anyways).
 
-		$conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
+	$conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into USERS (DateCreated,DateLastLoggedIn,FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?,?,?)");
-		$stmt->bind_param("sssssss", $dateCreated,$lastLoginDate,$firstName,$lastName,$email,$username,$password,$profilePicPath);
+		// Check for duplicate User
+		$sql = "SELECT ID FROM Users WHERE Login=?";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("s", $username);
 		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		$result = $stmt->get_result();
+		$rows = mysqli_num_rows($result);
+		if ($rows == 0)
+		{
+			// if no duplicate, add user to table.
+			$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Email, Login, Password, ProfileImagePath) VALUES(?,?,?,?,?,?)");
+			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password, $profilePicPath);
+			$stmt->execute();
+			$id = $conn->insert_id;
+			$stmt->close();
+			$conn->close();
+			http_response_code(200);
+
+		} else {
+			http_response_code(409);
+			returnWithError("Username taken");
+		}
 	}
 
 	function getRequestInfo()
@@ -55,5 +58,4 @@
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
 ?>
