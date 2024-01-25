@@ -4,6 +4,7 @@
       <link href="css/styles.css" rel="stylesheet">
       <link href="images/" rel="images">
       <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	<meta charset="UTF-8">
 	<meta name="viewport"
 		content="width=device-width, 
@@ -11,55 +12,57 @@
 </head>
 
 <body>
-	<header>
-		<h1 class="heading">Purrfect Contacts</h1>
-		<h3 class="title">Welcome to Purrrfect Contacts!</h3>
-	</header>
+    <nav id="navbar" class="navbar"></nav>
 
-	<!-- container div -->
-	<div class="container">
+    <div class="content">
+      <header>
+        <h1 class="heading">Welcome to Purrfect Contacts!</h1>
+      </header>  
+      <h3 class="title">Keep track of your purrfect cats.</h3>
+      <!-- container div -->
+      <div id="field-container" class="container">
 
-		<!-- upper button section to select
-			the login or signup form -->
-		<div class="slider"></div>
-		<div class="btn">
-			<button class="login">Login</button>
-			<button class="register">Register</button>
-		</div>
-    
+        <!-- upper button section to select
+          the login or signup form -->
+        <div class="slider"></div>
+        <div class="btn">
+          <button class="login">Login</button>
+          <button class="register">Register</button>
+        </div>
+        
 
-		<!-- Form section that contains the
-			login and the signup form -->
-		<div class="form-section">
+        <!-- Form section that contains the
+          login and the signup form -->
+        <div class="form-section">
 
-			<!-- login form -->
-			<div class="login-box">
-				<input type="text" class="email ele" id="loginName" placeholder="Username OR Email" name="username" required="">
-				<input type="password" class="password ele" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}" >
-				<button class="clkbtn" id="loginButton" onclick="doLogin();"> Login</button>
-                  <span id="loginResult"></span>
-			</div>
-			<!-- signup form -->
-			<div class="register-box">
-        <input type="text" class="name ele" id="firstName" placeholder="First Name" name="firstName" required />
-        <input type="text" class="name ele" id="lastName" placeholder="Last Name" name="lastName" required />
-        <input type="text" class="email ele" id="email" placeholder="Email" name="email" required />
-        <input type="text" class="user ele" id="username" placeholder="Username" name="login" required
-          pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}"
-          title="Must be between 3-13 characters and must contain at least one letter" />
-        <input type="password" class="password ele" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
-              pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
-              title="Must be between 8-32 characters and must contain at least one number and one special character" />
-              <input type="checkbox" onclick="passVisibility()">Show Password
-              <button class="clkbtn" id="loginButton" onclick="doRegister();"> Register! </button>
-                  <span id="signupResult"></span>
-			</div>
-		</div>
-	</div>
-  <script type="text/javascript" src="js/md5.js"></script>
-  <script type="text/javascript" src="js/code.js"></script>
+          <!-- login form -->
+          <form id="loginForm" class="login-box">
+            <input type="text" class="email ele" id="loginName" placeholder="Username OR Email" name="username" required="">
+            <input type="password" class="password ele" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}" >
+            <i class="toggle-password-login far fa-eye" onclick="togglePasswordVisibility('login')"></i>
+            <button class="clkbtn" id="loginButton" onclick="doLogin();"> Login</button>
+                      <span id="loginResult"></span>
+          </form>
+          <!-- signup form -->
+          <form id="signupForm" class="register-box">
+            <input type="text" class="name ele" id="firstName" placeholder="First Name" name="firstName" required />
+            <input type="text" class="name ele" id="lastName" placeholder="Last Name" name="lastName" required />
+            <input type="text" class="email ele" id="email" placeholder="Email" name="email" required />
+            <input type="text" class="user ele" id="username" placeholder="Username" name="login" required
+              pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}"
+              title="Must be between 3-13 characters and must contain at least one letter" />
+            <input type="password" class="password ele" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
+                  pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
+                  title="Must be between 8-32 characters and must contain at least one number and one special character" />
+            <i class="toggle-password-register far fa-eye" onclick="togglePasswordVisibility('register')"></i>
+            <button class="clkbtn" id="loginButton" onclick="doRegister();"> Register! </button>
+            <span id="signupResult"></span>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
 </body>
 </html>
-
-
-
