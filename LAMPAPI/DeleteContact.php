@@ -1,7 +1,7 @@
 <?php
     $inData = getRequestInfo();
 
-    $userId = $inData["userId"]
+    $userId = $inData["userId"];
     $id = $inData["id"];
 
     $conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
