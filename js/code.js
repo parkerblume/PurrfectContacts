@@ -30,10 +30,11 @@ function doLogin()
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
     var hash = md5( password );
+    let loginResult = document.getElementById("loginResult");
 	
     if (!validLoginForm(login, password))
     {
-        document.getElementById("loginResult").innerHTML = "Invalid username or password!";
+        loginResult.innerHTML = "Invalid username or password!";
         return;
     }
 	document.getElementById("loginResult").innerHTML = "";
@@ -55,7 +56,7 @@ function doLogin()
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					loginResult.innerHTML = "User/Password combination incorrect";
 					return;
 				}
 		
@@ -64,7 +65,8 @@ function doLogin()
                 email = jsonObject.email;
                 profileImage = jsonObject.profilePicPath;
 				saveCookie();
-	
+                
+                loginResult.innerHTML = "Login successful!";
 				window.location.href = "contacts.html";
 			}
 		};
