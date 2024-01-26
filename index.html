@@ -40,6 +40,22 @@
               <button type="button" id="loginButton" onclick="doLogin();"> Login</button>
               <span id="loginResult"></span>
             </form>
+
+            <!-- Sign up -->
+            <form id="signupForm" class="register-box">
+              <input type="text" class="name ele" id="firstName" placeholder="First Name" name="firstName" required />
+              <input type="text" class="name ele" id="lastName" placeholder="Last Name" name="lastName" required />
+              <input type="text" class="email ele" id="email" placeholder="Email" name="email" required />
+              <input type="text" class="user ele" id="username" placeholder="Username" name="login" required
+                pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}"
+                title="Must be between 3-13 characters and must contain at least one letter" />
+              <input type="password" class="password ele" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
+                    pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
+                    title="Must be between 8-32 characters and must contain at least one number and one special character" />
+              <i class="toggle-password-register far fa-eye" onclick="togglePasswordVisibility('register')"></i>
+              <button type="button" id="signupButton" onclick="doRegister();"> Register! </button>
+              <span id="signupResult"></span>
+            </form>
           </div>
 
         </div> <!-- Field container div -->
