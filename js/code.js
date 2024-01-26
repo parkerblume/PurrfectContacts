@@ -12,13 +12,18 @@ let register = document.querySelector(".register");
 let login = document.querySelector(".login");
 let slider = document.querySelector(".slider");
 
-register.addEventListener("click", () => {
-    slider.classList.add("moveslider");
-    });
-    
-login.addEventListener("click", () => {
-    slider.classList.remove("moveslider");
-});
+if (register)
+{
+    register.addEventListener("click", () => {
+        slider.classList.add("moveslider");
+        });    
+}
+if (login)
+{
+    login.addEventListener("click", () => {
+        slider.classList.remove("moveslider");
+    });   
+}
 
 function doLogin()
 {
@@ -158,6 +163,12 @@ function getRandomImage()
     return "defaultCat" + randNum + ".png";
 }
 
+function getRandomImage()
+{
+    let randNum = Math.floor(Math.random() * (3) + 1)
+    return "defaultCat" + randNum + ".png";
+}
+
 function togglePasswordVisibility(check) {
     var input = check === "register" ? document.getElementById("password") : document.getElementById("loginPassword") ;
 
@@ -166,6 +177,53 @@ function togglePasswordVisibility(check) {
     } else {
         input.type = "password";
     }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const navbarContainer = document.getElementById("navbar");
+    const xhr = new XMLHttpRequest();
+
+    // grabs current active page to do css stuffs :)
+    const currentPage = window.location.pathname;
+  
+    // loads the navbar onto the current page
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          navbarContainer.innerHTML = xhr.responseText;
+
+          setupNavbar();
+
+          // display active page in navbar
+          const navLinks = document.querySelectorAll('.nav-links a');
+          navLinks.forEach(link => {
+              const href = link.getAttribute('href');
+              if (href === "" || href === "/index.html")
+              {
+                if (currentPage === "" || currentPage === "/index.html") link.classList.add('active');
+              }
+              else if (currentPage.endsWith(href)) {
+                  link.classList.add('active');
+              }
+          });
+
+        } else {
+          console.error('Failed to load navbar.');
+        }
+      }
+    };
+  
+    xhr.open('GET', 'navbar.html', true);
+    xhr.send();
+
+});
+
+function setupNavbar()
+{
+    const homeLink = document.getElementById('homeLink');
+    const userDisplay = document.getElementById('user-display');
+    homeLink.innerHTML = '<a href="/index.html" class="">Home</a>';
+    userDisplay.style.display = 'none';
 }
 
 function showRequiredField()
