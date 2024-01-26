@@ -37,7 +37,6 @@
           <form id="loginForm" class="login-box">
             <input type="text" class="email ele" id="loginName" placeholder="Username OR Email" name="username" required="">
             <input type="password" class="password ele" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}" >
-            <i class="toggle-password-login" onclick="togglePasswordVisibility('login')"></i>
             <button class="clkbtn" id="loginButton" onclick="doLogin();"> Login</button>
                       <span id="loginResult"></span>
           </form>
@@ -52,7 +51,6 @@
             <input type="password" class="password ele" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
                   pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
                   title="Must be between 8-32 characters and must contain at least one number and one special character" />
-            <i class="toggle-password-register" onclick="togglePasswordVisibility('register')"></i>
             <button class="clkbtn" id="signupButton" onclick="doRegister();"> Register! </button>
             <span id="signupResult"></span>
           </form>
