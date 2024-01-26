@@ -262,6 +262,7 @@ header {
 	position: relative;
 	overflow: hidden;
 	transition: all 0.5s ease-in-out;
+  min-height:200px; /* Remove later */
 }
 
 .btn {
@@ -296,4 +297,8 @@ header {
 	top: 20px;
 	left: 75px;
 	transition: all 0.5s ease-in-out;
+}
+
+.moveslider {
+	left: 225px;
 }

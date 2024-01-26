@@ -8,6 +8,10 @@ let lastName = "";
 let email = "";
 let profileImage = "";
 
+let register = document.querySelector(".register");
+let login = document.querySelector(".login");
+let slider = document.querySelector(".slider");
+
 function doLogin()
 {
 	userId = 0;
@@ -67,6 +71,17 @@ function doLogin()
 	}
 
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    // login page event listeners
+    register.addEventListener("click", () => {
+    slider.classList.add("moveslider");
+    });
+    
+    login.addEventListener("click", () => {
+        slider.classList.remove("moveslider");
+    });
+});
 
 function doRegister() {
     firstName = document.getElementById("firstName").value;
