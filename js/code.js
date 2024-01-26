@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
           // display active page in navbar
           const navLinks = document.querySelectorAll('.nav-links a');
           navLinks.forEach(link => {
-              if (currentPage.endsWith(link.getAttribute('href')) || currentPage.endsWith("")) {
+              if (currentPage.endsWith(link.getAttribute('href')) || (currentPage.endsWith("") && link.getAttribute('href') != "/members.html")) {
                   link.classList.add('active');
               }
           });
