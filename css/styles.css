@@ -251,3 +251,49 @@ header {
 	font-weight: 400;
 	letter-spacing: 1.5px;
 }
+
+.container {
+	height: 500px;
+	width: 450px;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	box-shadow: 8px 8px 20px var(--accent-color);
+	position: relative;
+	overflow: hidden;
+	transition: all 0.5s ease-in-out;
+}
+
+.btn {
+	height: 60px;
+	width: 300px;
+	margin: 20px auto;
+	box-shadow: 10px 10px 30px var(--accent-color);
+	border-radius: 50px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.login,
+.register {
+	font-size: 22px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	position: relative;
+	cursor: pointer;
+}
+
+.slider {
+	height: 60px;
+	width: 150px;
+	border-radius: 50px;
+	background-image: linear-gradient(to right,
+			var(--tertiary-color),
+			var(--accent-color));
+	position: absolute;
+	top: 20px;
+	left: 75px;
+	transition: all 0.5s ease-in-out;
+}
