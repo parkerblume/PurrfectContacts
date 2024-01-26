@@ -149,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // grabs current active page to do css stuffs :)
     const currentPage = window.location.pathname;
-    //const navLinks = document.querySelectorAll('.nav-links a');
   
     // loads the navbar onto the current page
     xhr.onreadystatechange = function () {
@@ -157,7 +156,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (xhr.status === 200) {
           navbarContainer.innerHTML = xhr.responseText;
 
-          const navLinks = document.querySelectorAll('.nav-links a');
+          const isLoggedIn = document.cookie.includes("loggedIn=true");
+          const navLinks = document.querySelectorAll('.nav-links');
+          setupNavbar(isLoggedIn);
+
+          // display active page in navbar
+          navLinks = document.querySelectorAll('.nav-links a');
           navLinks.forEach(link => {
               if (currentPage.endsWith(link.getAttribute('href'))) {
                   link.classList.add('active');
@@ -173,7 +177,23 @@ document.addEventListener('DOMContentLoaded', function () {
     xhr.open('GET', 'navbar.html', true);
     xhr.send();
 
-  });
+});
+
+function setupNavbar(userLoggedIn)
+{
+    const homeLink = document.getElementById('homeLink');
+    const userDisplay = document.getElementById('user-display');
+    if (userLoggedIn)
+    {
+        userDisplay.style.display = 'block';
+        homeLink.innerHTML = '<a href="/contacts.html" class="">Contacts</a>'; 
+    }
+    else
+    {
+        homeLink.innerHTML = '<a href="/index.html" class="">Home</a>';
+        userDisplay.style.display = 'none';
+    }
+}
 
 function showRequiredField()
 {

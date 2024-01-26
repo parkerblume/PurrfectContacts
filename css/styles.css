@@ -160,69 +160,6 @@ header {
     margin-top:-24px; /*icon height / 2*/
 }
 
-.navbar {
-	background-color: var(--primary-color);
-	color: #fff;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 2000;
-}
-  
-.navbar-container {
-max-width: 100%;
-margin: 0 auto;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding-right:2%;
-padding-left: 2%;
-}
-
-.logo {
-	padding:1px;
-	
-}
-.logo a {
-	color: #fff;
-	text-decoration: none;
-	padding:0;
-  }
-.logo img {
-	padding-top:10px;
-	height:5%;
-	width:5%;
-}
-  
-.nav-links {
-list-style: none;
-margin: 0;
-padding: 0;
-display: flex;
-}
-
-.nav-links li {
-margin: 0 15px;
-}
-
-.nav-links a {
-color: #fff;
-text-decoration: none;
-font-weight: bold;
-font-size: 1.2em;
-transition: color 0.3s, border-bottom 0.3s;
-}
-
-/* underline for active page */
-.nav-links a.active {
-border-bottom: 2px solid white;
-}
-
-.nav-links a:hover {
-color: var(--secondary-color);
-border-bottom: 2px solid var(--accent-color);
-}
-
 .toggle-password-login {
     position: absolute;
     top: 50%;

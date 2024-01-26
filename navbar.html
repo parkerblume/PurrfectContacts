@@ -1,17 +1,31 @@
 <head>
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/navbar.css" rel="stylesheet">
   <link href="images/" rel="images">
+  <meta charset="UTF-8">
 </head>
 
-  <div class="navbar-container">
-    <div class="logo">
-      <a href="https://github.com/parkerblume/PurrfectContacts">
-        <img src="images/sittingCat.png">
-      </a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="/index.html" class="">Home</a></li>
-      <li><a href="/members.html" class="">About</a></li>
-      <li><a href="/contact.html" class="">Contact</a></li>
-    </ul>
+<div class="navbar-container">
+  <div class="logo">
+    <a href="https://github.com/parkerblume/PurrfectContacts">
+      <img src="images/sittingCat.png">
+    </a>
   </div>
+  <ul class="nav-links">
+    <li id="homeLink"><a href="/index.html" class="">Home</a></li>
+    <li><a href="/members.html" class="">About</a></li>
+    <li id="user-display" class="user-dropdown">
+      <div id="user-pic" class="user-pic">
+        <div class="user-pic-container">
+          <img src="images/contactimages/meadesteed.PNG" class="user-pic" alt="User Picture">
+        </div>
+        <button class="user-btn">Hi, <span id="userName">&#x2B9B</span></button>
+      </div>
+      <div class="dropdown-content" id="userDropdownContent">
+          <a href="/settings.html">Profile Settings</a>
+          <a href="#" onclick="doLogout()">Logout</a>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="js/code.js"></script>
