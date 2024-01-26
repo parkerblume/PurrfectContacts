@@ -1,8 +1,6 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$dateCreated = $inData["dateCreated"];
-	$lastLoginDate = $inData["lastLoginDate"];
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
 	$email = $inData["email"];
@@ -17,8 +15,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into USERS (DateCreated,DateLastLoggedIn,FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?,?,?)");
-		$stmt->bind_param("ssssssss", $dateCreated,$lastLoginDate,$firstName,$lastName,$email,$username,$password,$profilePicPath);
+    $stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Email,Login,Password,ProfileImagePath) VALUES(?,?,?,?,?,?)");
+    $stmt->bind_param("ssssss", $firstName,$lastName,$email,$username,$password,$profilePicPath);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
