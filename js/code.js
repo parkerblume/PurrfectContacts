@@ -130,7 +130,9 @@ function doRegister() {
                 lastName = jsonObject.lastName;
                 email = jsonObject.email;
                 profileImage = jsonObject.profilePicPath;
-              
+                
+
+                window.location.href = "contacts.html";
                 saveCookie();
             }
         };
@@ -166,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
           // display active page in navbar
           const navLinks = document.querySelectorAll('.nav-links a');
           navLinks.forEach(link => {
-              if (currentPage.endsWith(link.getAttribute('href'))) {
+              if (currentPage.endsWith(link.getAttribute('href')) || currentPage.endsWith("")) {
                   link.classList.add('active');
               }
           });
