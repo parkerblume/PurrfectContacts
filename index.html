@@ -16,7 +16,7 @@
   </head>
   <body class="body">
     <div class="content"></div>
-    
+
         <header> <h1 class="heading">Welcome to Purrfect Contacts!</h1> </header>  
         <h3 class="title">Keep track of your purrfect cats.</h3>
 
@@ -29,6 +29,19 @@
             <button class="login">Login</button>
             <button class="register">Register</button>
           </div>
+
+          <!-- Form section that contains the
+          login and the signup form -->
+          <div class="form-section">
+            <form id="loginForm" class="login-box">
+              <input type="text" class="ele" id="loginName" placeholder="Username OR Email" name="username" required="">
+              <input type="password" class="ele" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}" >
+              <i class="toggle-password-login far fa-eye" onclick="togglePasswordVisibility('login')"></i>
+              <button class="clkbtn" id="loginButton" onclick="doLogin();"> Login</button>
+                        <span id="loginResult"></span>
+            </form>
+          </div>
+
         </div> <!-- Field container div -->
       
       <div class="row" style="height:100%; display: flex; width: 100%;">
