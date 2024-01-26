@@ -42,6 +42,14 @@ body {
 	background-color: var(--accent-color);
 }
 
+.content {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex: 1 0 100%;
+	flex-direction: column;
+}
+
 header {
 	width: 100%;
 	display: flex;
