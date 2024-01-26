@@ -280,7 +280,10 @@ function readCookie()
 	
 	if( userId < 0 )
 	{
-		window.location.href = "index.html";
+        const isLoginPage = window.location.pathname.endsWith("/index.html");
+        if (!isLoginPage) {
+            window.location.href = "index.html";
+        }
 	}
 	else
 	{
