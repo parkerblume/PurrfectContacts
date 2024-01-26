@@ -159,6 +159,16 @@ header {
     margin-top:-24px; /*icon height / 2*/
 }
 
+.image-box
+{
+  border: 1px solid red;
+  flex: 1 0 35%;
+  margin-top:5%;
+  height:400px;
+  overflow:hidden;
+}
+
+
 /* For Responsiveness of the page */
 
 @media screen and (max-width: 650px) {
@@ -294,3 +304,21 @@ header {
 		font-size: 19px;
 	}
 }
+#bubble {
+    width:300px; 
+    height:200px;
+    left: -70px;
+    position: relative;
+    top: 50px;
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+  }
+
+  #kitty {
+    width:200px; 
+    height:200px;
+    
+    top:120px;
+    left:-10px;
+    transition: 0.5s ease-in-out;
+  }
