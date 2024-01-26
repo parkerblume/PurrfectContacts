@@ -123,22 +123,9 @@ header {
 	margin-top: 10%;
 }
 .login-box,
-  register-box {
-	transition: 0.5s ease-in-out;
+.register-box {
+	transition: all 0.5s ease-in-out;
 }
-
-.form-container {
-    max-width: 350px;
-    margin: 0 auto 100px;
-    text-align: center;
-    height: 350px;
-    width: 100%;
-    padding: 20px;
-    background-color: rgba(255, 192, 203, 0.8); 
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
 
 
 .ele {
@@ -172,16 +159,6 @@ header {
 {
     margin-top:-24px; /*icon height / 2*/
 }
-
-.image-box
-{
-  border: 1px solid red;
-  flex: 1 0 35%;
-  margin-top:5%;
-  height:400px;
-  overflow:hidden;
-}
-
 
 .toggle-password-login {
     position: absolute;

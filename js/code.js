@@ -229,7 +229,6 @@ function showSignup()
   container.style.height = "570px";
   loginFields.style.left = "-500px";
   signUpFields.style.left = "0px";
-  container.style.height="425px";
   document.getElementById("kitty").style.left="0px";
 }
 
@@ -241,10 +240,8 @@ function showLogin()
 
   container.style.height = "500px";
   loginFields.style.left = "0px";
-  signUpFields.style.left = "400px";
-  container.style.height="350px";
-  document.getElementById("kitty").style.left="-75px";
   signUpFields.style.left = "500px";
+  document.getElementById("kitty").style.left="-75px";
 }
 
 function saveCookie()
