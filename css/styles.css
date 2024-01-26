@@ -38,7 +38,7 @@ body {
 	flex-direction: column;
 	overflow:hidden;
 	gap: 30px;
-	margin-top:80px;
+  /*margin-bottom:50px; FIX LATER */
 	background-color: var(--accent-color);
 }
 
