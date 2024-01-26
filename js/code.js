@@ -13,16 +13,6 @@ let register = document.querySelector(".register");
 let login = document.querySelector(".login");
 let slider = document.querySelector(".slider");
 let formSection = document.querySelector(".form-section");
- 
-register.addEventListener("click", () => {
-    slider.classList.add("moveslider");
-    showSignup();
-});
- 
-login.addEventListener("click", () => {
-    slider.classList.remove("moveslider");
-    showLogin();
-});
 
 function doLogin()
 {
@@ -52,6 +42,9 @@ function doLogin()
 	{
 		xhr.onreadystatechange = function() 
 		{
+       
+                   console.log(xhr.readyState);
+            console.log(xhr.status);
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
@@ -70,7 +63,7 @@ function doLogin()
 				saveCookie();
                 
                 loginResult.innerHTML = "Login successful!";
-				window.location.href = "contacts.html";
+				window.location.href = "/contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -150,6 +143,21 @@ function getRandomImage()
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    // login page event listeners
+    if (login && register && slider)
+    {
+      register.addEventListener("click", () => {
+      slider.classList.add("moveslider");
+      showSignup();
+      });
+       
+      login.addEventListener("click", () => {
+          slider.classList.remove("moveslider");
+          showLogin();
+      });
+    }
+
     const navbarContainer = document.getElementById("navbar");
     const xhr = new XMLHttpRequest();
 
@@ -168,7 +176,12 @@ document.addEventListener('DOMContentLoaded', function () {
           // display active page in navbar
           const navLinks = document.querySelectorAll('.nav-links a');
           navLinks.forEach(link => {
-              if (currentPage.endsWith(link.getAttribute('href')) || (currentPage.endsWith("") && link.getAttribute('href') != "/members.html")) {
+              const href = link.getAttribute('href');
+              if (href === "" || href === "/index.html")
+              {
+                if (currentPage === "" || currentPage === "/index.html") link.classList.add('active');
+              }
+              else if (currentPage.endsWith(href)) {
                   link.classList.add('active');
               }
           });
@@ -230,7 +243,7 @@ function showSignup()
   container.style.height = "570px";
   loginFields.style.left = "-500px";
   signUpFields.style.left = "0px";
-  document.getElementById("kitty").style.left="0px";
+  //document.getElementById("kitty").style.left="0px";
 }
 
 function showLogin()
@@ -242,7 +255,7 @@ function showLogin()
   container.style.height = "500px";
   loginFields.style.left = "0px";
   signUpFields.style.left = "500px";
-  document.getElementById("kitty").style.left="-75px";
+  //document.getElementById("kitty").style.left="-75px";
 }
 
 function saveCookie()
