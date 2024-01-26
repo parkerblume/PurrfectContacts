@@ -37,8 +37,8 @@
               <input type="text" class="ele" id="loginName" placeholder="Username OR Email" name="username" required="">
               <input type="password" class="ele" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}" >
               <i class="toggle-password-login far fa-eye" onclick="togglePasswordVisibility('login')"></i>
-              <button class="clkbtn" id="loginButton" onclick="doLogin();"> Login</button>
-                        <span id="loginResult"></span>
+              <button type="button" id="loginButton" onclick="doLogin();"> Login</button>
+              <span id="loginResult"></span>
             </form>
           </div>
 
