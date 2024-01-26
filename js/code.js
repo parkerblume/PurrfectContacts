@@ -125,7 +125,7 @@ function doRegister() {
                 profileImage = jsonObject.profilePicPath;
                 
 
-                window.location.href = "contacts.html";
+                //window.location.href = "contacts.html";
                 saveCookie();
             }
         };
@@ -142,7 +142,7 @@ function getRandomImage()
     return "defaultCat" + randNum + ".png";
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
 
     // login page event listeners
     if (login && register && slider)
@@ -196,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
     xhr.send();
 
 });
+*/
 
 function setupNavbar(userLoggedIn)
 {
