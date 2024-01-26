@@ -8,22 +8,9 @@ let lastName = "";
 let email = "";
 let profileImage = "";
 
-let register = document.querySelector(".register");
-let login = document.querySelector(".login");
-let slider = document.querySelector(".slider");
-
-if (register)
-{
-    register.addEventListener("click", () => {
-        slider.classList.add("moveslider");
-        });    
-}
-if (login)
-{
-    login.addEventListener("click", () => {
-        slider.classList.remove("moveslider");
-    });   
-}
+let register = document.getElementById("registerSelect");
+let login = document.getElementById("loginSelect");
+let slider = document.getElementById("slider");
 
 function doLogin()
 {
@@ -180,6 +167,17 @@ function togglePasswordVisibility(check) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    if (register && login && slider)
+    {
+        register.addEventListener("click", () => {
+            slider.classList.add("moveslider");
+            });    
+
+        login.addEventListener("click", () => {
+            slider.classList.remove("moveslider");
+        });   
+    }
+
     const navbarContainer = document.getElementById("navbar");
     const xhr = new XMLHttpRequest();
 
