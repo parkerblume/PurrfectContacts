@@ -161,11 +161,10 @@ document.addEventListener('DOMContentLoaded', function () {
           navbarContainer.innerHTML = xhr.responseText;
 
           const isLoggedIn = document.cookie.includes("loggedIn=true");
-          const navLinks = document.querySelectorAll('.nav-links');
           setupNavbar(isLoggedIn);
 
           // display active page in navbar
-          navLinks = document.querySelectorAll('.nav-links a');
+          const navLinks = document.querySelectorAll('.nav-links a');
           navLinks.forEach(link => {
               if (currentPage.endsWith(link.getAttribute('href'))) {
                   link.classList.add('active');
