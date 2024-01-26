@@ -1,6 +1,6 @@
 
 <?php
-
+	session_start(); 
 	$inData = getRequestInfo();
 	
 	$id = 0;
@@ -22,6 +22,11 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
+			$_SESSION['id'] = $row['ID'];
+			$_SESSION['firstName'] = $row['FirstName'];
+			$_SESSION['lastName'] = $row['LastName'];
+			$_SESSION['email'] = $row['Email'];
+			$_SESSION['profileImage'] = $row['ProfileImagePath'];
 			returnWithInfo( $row['FirstName'], $row['LastName'], $row['Email'], $row['ProfileImagePath'], $row['ID'] );
 		}
 		else
