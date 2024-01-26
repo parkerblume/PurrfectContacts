@@ -67,7 +67,7 @@ function setupNavbar()
     homeLink.innerHTML = '<a href="/contacts.html" class="">Contacts</a>'; 
 
     const user = document.getElementById('userName');
-    user = firstName + " &#x2B9B";
+    user.textContent = firstName + " &#x2B9B";
 }
 
 function readCookie()
