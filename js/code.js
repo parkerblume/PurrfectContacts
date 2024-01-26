@@ -146,6 +146,16 @@ function getRandomImage()
     return "defaultCat" + randNum + ".png";
 }
 
+function togglePasswordVisibility(check) {
+    var input = check === "register" ? document.getElementById("password") : document.getElementById("loginPassword") ;
+
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+
 function showRequiredField()
 {
   document.getElementById("requirements").style.display = "contents";

@@ -26,6 +26,7 @@
                   <span id="inner-title">Log in to your purrrfect account</span>
                   <input type="text" class="input-field" id="loginName" placeholder="Username" name="username" required="">
                   <input type="password" class="input-field" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}">
+                  <i class="toggle-password-register far fa-eye" onclick="togglePasswordVisibility('login')"></i>
                   <button type="button" id="loginButton" onclick="doLogin();"> Log In! </button>
                   <span id="loginResult"></span>
                   <p>Don't have an account? <a class="links" onclick="showSignup()">Sign up!</a></p>
@@ -41,6 +42,7 @@
                   <input type="password" class="input-field" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
                         pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
                         title="Must be between 8-32 characters and must contain at least one number and one special character" />
+                        <i class="toggle-password-register far fa-eye" onclick="togglePasswordVisibility('register')"></i>
                   <button type="button" id="loginButton" onclick="doRegister();"> Register! </button>
                   <span id="signupResult"></span>
                   <p>Already have an account? <a class="links" onclick="showLogin()">Log in!</a></p>
