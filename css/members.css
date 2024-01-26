@@ -6,9 +6,7 @@
 /* body formatting */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f0e6f2;
-    background-image: url('../images/pileofCatsCartoon.png');
-    background-position: center center;
+    background-color: #DBE4EE;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -25,7 +23,7 @@ body {
   
   /* Style the links inside the navigation bar */
   .topnav a {
-    float: left;
+    float: right;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
@@ -54,47 +52,21 @@ body {
     font-size: 17px;
   }
 
-/*buttons that are on the sidebar*/
-.sidebuttons {
-    padding: 10px 0px 15px 0px;
-    display: inline-block;
-}
-.sidebuttons:hover{
-    color:#a08b7b;  
-}
-.buttons:hover{
-    color:#897261;  
-}
-.sidenav a:hover{
-    color: #897261;
-}
-.font {
-    text-align: center;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 44px;
-    color: #007D2F;
-    background:none;
-    border:none;
-    cursor: pointer;
-    margin-left: 80px;
-}
 
 .container {
     width: 100%;
-    margin-top: 70px;
+    margin-top: 100px;
     overflow:hidden;
+    
   }
   /* grid w/images and names */
   .grid-container {
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-gap: 10px;
-    padding: 10px;
+    padding:  10px;
     margin-left: 250px;
-    margin-right: 50px;
+    margin-right: 250px;
   }
   .grid-item {
     text-align: center;
