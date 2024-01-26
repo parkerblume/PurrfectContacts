@@ -16,12 +16,12 @@ let formSection = document.querySelector(".form-section");
  
 register.addEventListener("click", () => {
     slider.classList.add("moveslider");
-    formSection.classList.add("form-section-move");
+    showSignup();
 });
  
 login.addEventListener("click", () => {
     slider.classList.remove("moveslider");
-    formSection.classList.remove("form-section-move");
+    showLogin();
 });
 
 function doLogin()
@@ -33,19 +33,18 @@ function doLogin()
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
     var hash = md5( password );
+    let loginResult = document.getElementById("loginResult");
 	
     if (!validLoginForm(login, password))
     {
-        document.getElementById("loginResult").innerHTML = "Invalid username or password!";
+        loginResult.innerHTML = "Invalid username or password!";
         return;
     }
 	document.getElementById("loginResult").innerHTML = "";
-
 	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify(tmp);
 	
 	let url = urlBase + '/Login.' + extension;
-
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -60,7 +59,7 @@ function doLogin()
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					loginResult.innerHTML = "User/Password combination incorrect";
 					return;
 				}
 		
@@ -68,10 +67,9 @@ function doLogin()
 				lastName = jsonObject.lastName;
                 email = jsonObject.email;
                 profileImage = jsonObject.profilePicPath;
-
-
 				saveCookie();
-	
+                
+                loginResult.innerHTML = "Login successful!";
 				window.location.href = "contacts.html";
 			}
 		};
@@ -88,19 +86,14 @@ function doRegister() {
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
     email = document.getElementById("email").value;
-
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
-
     if (!validSignUpForm(firstName, lastName, email, username, password)) {
         document.getElementById("signupResult").innerHTML = "Invalid signup!";
         return;
     }
-
     var hash = md5(password);
-
     document.getElementById("signupResult").innerHTML = "";
-
     // Gather random default profile image
     let imagePath = baseImagePath + getRandomImage();
     let tmp = {
@@ -111,11 +104,8 @@ function doRegister() {
         password: hash,
         profilePicPath: imagePath
     };
-
     let jsonPayload = JSON.stringify(tmp);
-
     let url = urlBase + '/Register.' + extension;
-
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -128,14 +118,11 @@ function doRegister() {
             if (this.readyState != 4) {
                 return;
             }
-
             if (this.status == 409) {
                 document.getElementById("signupResult").innerHTML = "User already exists";
                 return;
             }
-
             if (this.status == 200) {
-
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
                 document.getElementById("signupResult").innerHTML = "User added";
@@ -147,7 +134,6 @@ function doRegister() {
                 saveCookie();
             }
         };
-
         xhr.send(jsonPayload);
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
@@ -155,11 +141,62 @@ function doRegister() {
     // fix this later.
     //showLogin();
 }
-
 function getRandomImage()
 {
     let randNum = Math.floor(Math.random() * (3) + 1)
     return "defaultCat" + randNum + ".png";
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const navbarContainer = document.getElementById("navbar");
+    const xhr = new XMLHttpRequest();
+
+    // grabs current active page to do css stuffs :)
+    const currentPage = window.location.pathname;
+  
+    // loads the navbar onto the current page
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          navbarContainer.innerHTML = xhr.responseText;
+
+          const isLoggedIn = document.cookie.includes("loggedIn=true");
+          const navLinks = document.querySelectorAll('.nav-links');
+          setupNavbar(isLoggedIn);
+
+          // display active page in navbar
+          navLinks = document.querySelectorAll('.nav-links a');
+          navLinks.forEach(link => {
+              if (currentPage.endsWith(link.getAttribute('href'))) {
+                  link.classList.add('active');
+              }
+          });
+
+        } else {
+          console.error('Failed to load navbar.');
+        }
+      }
+    };
+  
+    xhr.open('GET', 'navbar.html', true);
+    xhr.send();
+
+});
+
+function setupNavbar(userLoggedIn)
+{
+    const homeLink = document.getElementById('homeLink');
+    const userDisplay = document.getElementById('user-display');
+    if (userLoggedIn)
+    {
+        userDisplay.style.display = 'block';
+        homeLink.innerHTML = '<a href="/contacts.html" class="">Contacts</a>'; 
+    }
+    else
+    {
+        homeLink.innerHTML = '<a href="/index.html" class="">Home</a>';
+        userDisplay.style.display = 'none';
+    }
 }
 
 function showRequiredField()
@@ -173,13 +210,24 @@ function hideRequiredField()
   document.getElementById("requirements").classList.remove("fade-in-image");
 }
 
+function togglePasswordVisibility(check) {
+    var input = check === "register" ? document.getElementById("password") : document.getElementById("loginPassword") ;
+
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+
 function showSignup()
 {
   const loginFields = document.getElementById("loginForm");
   const signUpFields = document.getElementById("signupForm");
-  const container = document.getElementById("fieldContainer");
-  
-  loginFields.style.left = "-400px";
+  const container = document.getElementById("field-container");
+
+  container.style.height = "570px";
+  loginFields.style.left = "-500px";
   signUpFields.style.left = "0px";
   container.style.height="425px";
   document.getElementById("kitty").style.left="0px";
@@ -189,12 +237,14 @@ function showLogin()
 {
   const loginFields = document.getElementById("loginForm");
   const signUpFields = document.getElementById("signupForm");
-  const container = document.getElementById("fieldContainer");
+  const container = document.getElementById("field-container");
 
+  container.style.height = "500px";
   loginFields.style.left = "0px";
   signUpFields.style.left = "400px";
   container.style.height="350px";
   document.getElementById("kitty").style.left="-75px";
+  signUpFields.style.left = "500px";
 }
 
 function saveCookie()
@@ -490,8 +540,8 @@ function searchContacts() {
 }
 
 function clickLogin() {
-    var log = document.getElementById("login");
-    var reg = document.getElementById("signup");
+    var log = document.getElementById("loginForm");
+    var reg = document.getElementById("signupForm");
     var but = document.getElementById("btn");
 
     log.style.left = "-400px";
@@ -501,13 +551,13 @@ function clickLogin() {
 
 function clickRegister() {
 
-    var log = document.getElementById("login");
-    var reg = document.getElementById("signup");
+    var log = document.getElementById("loginForm");
+    var reg = document.getElementById("signupForm");
     var but = document.getElementById("btn");
 
-    reg.style.left = "-400px";
+    reg.style.left = "-00px";
     log.style.left = "0px";
-    but.style.left = "0px";
+    but.style.left = "1000px";
 
 }
 
