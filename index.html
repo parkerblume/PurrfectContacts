@@ -1,62 +1,68 @@
-<html>
-  <head>
-    <title>Purrfect Contacts</title>
-    <script type="text/javascript" src="js/md5.js"></script>
-    <script type="text/javascript" src="js/code.js"></script>
-      <link href="css/styles.css" rel="stylesheet">
-      <link href="images/" rel="images">
-      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="images/" rel="images">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, 
+						initial-scale=1.0">
+</head>
 
-  </head>
-  <body class="body">
-      <div class="row">
-        <h1 id="title">Purrfect Contacts</h1>
-      </div>
-      
-      <div class="row" style="height:100%; display: flex; width: 100%;">
-        <div class="" style="display: flex; justify-content: center; align-items: center; width:100%;">
-          <div style="display: flex; justify-content: center; align-items: center; width: 100%; border: 1px solid purple; flex: 1 0 60%;">
-            <div style="flex: 1 0 50%; border: 1px solid green;">
-            
-            </div>
-            <div class="box-container">
-              <div id="fieldContainer" class="form-container">
-                <form id="loginForm" class="input-form">
-                  <span id="inner-title">Log in to your purrrfect account</span>
-                  <input type="text" class="input-field" id="loginName" placeholder="Username" name="username" required="">
-                  <input type="password" class="input-field" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}">
-                  <button type="button" id="loginButton" onclick="doLogin();"> Log In! </button>
-                  <span id="loginResult"></span>
-                  <p>Don't have an account? <a class="links" onclick="showSignup()">Sign up!</a></p>
-                </form>
-    
-                <form id="signupForm" class="input-form">
-                  <input type="text" class="input-field" id="firstName" placeholder="First Name" name="firstName" required />
-                  <input type="text" class="input-field" id="lastName" placeholder="Last Name" name="lastName" required />
-                  <input type="text" class="input-field" id="email" placeholder="Email" name="email" required />
-                  <input type="text" class="input-field" id="username" placeholder="Username" name="login" required
-                    pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}"
-                    title="Must be between 3-13 characters and must contain at least one letter" />
-                  <input type="password" class="input-field" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
-                        pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
-                        title="Must be between 8-32 characters and must contain at least one number and one special character" />
-                  <button type="button" id="loginButton" onclick="doRegister();"> Register! </button>
-                  <span id="signupResult"></span>
-                  <p>Already have an account? <a class="links" onclick="showLogin()">Log in!</a></p>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div id="imageDisplay" class="image-box" >
-            <img id="kitty" src="images/sittingCat.png" alt="Sitting cat :)">
-            <div id="requirements" class="bubble-container">
-              <img id="bubble" src="images/speechbubble.png" alt="password requirements bubble">
-            </div>
-          </div>
+<body>
+    <nav id="navbar" class="navbar"></nav>
+
+    <div class="content">
+      <header>
+        <h1 class="heading">Welcome to Purrfect Contacts!</h1>
+      </header>  
+      <h3 class="title">Keep track of your purrfect cats.</h3>
+      <!-- container div -->
+      <div id="field-container" class="container">
+
+        <!-- upper button section to select
+          the login or signup form -->
+        <div class="slider"></div>
+        <div class="btn">
+          <button class="login">Login</button>
+          <button class="register">Register</button>
+        </div>
+        
+
+        <!-- Form section that contains the
+          login and the signup form -->
+        <div class="form-section">
+
+          <!-- login form -->
+          <form id="loginForm" class="login-box">
+            <input type="text" class="email ele" id="loginName" placeholder="Username OR Email" name="username" required="">
+            <input type="password" class="password ele" id="loginPassword" placeholder="Pawsword" name="password" required="" pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&amp;*]).{8,32}" >
+            <i class="toggle-password-login far fa-eye" onclick="togglePasswordVisibility('login')"></i>
+            <button class="clkbtn" id="loginButton" onclick="doLogin();"> Login</button>
+                      <span id="loginResult"></span>
+          </form>
+          <!-- signup form -->
+          <form id="signupForm" class="register-box">
+            <input type="text" class="name ele" id="firstName" placeholder="First Name" name="firstName" required />
+            <input type="text" class="name ele" id="lastName" placeholder="Last Name" name="lastName" required />
+            <input type="text" class="email ele" id="email" placeholder="Email" name="email" required />
+            <input type="text" class="user ele" id="username" placeholder="Username" name="login" required
+              pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}"
+              title="Must be between 3-13 characters and must contain at least one letter" />
+            <input type="password" class="password ele" id="password" placeholder="Pawsword" name="password" onfocus="showRequiredField()" onblur="hideRequiredField()"
+                  pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
+                  title="Must be between 8-32 characters and must contain at least one number and one special character" />
+            <i class="toggle-password-register far fa-eye" onclick="togglePasswordVisibility('register')"></i>
+            <button class="clkbtn" id="signupButton" onclick="doRegister();"> Register! </button>
+            <span id="signupResult"></span>
+          </form>
         </div>
       </div>
+    </div>
 
-    <div class="row">COP4331 - Group 14</div>
-  </body>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+</body>
 </html>
