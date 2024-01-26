@@ -166,7 +166,7 @@ function showSignup()
   loginFields.style.left = "-400px";
   signUpFields.style.left = "0px";
   container.style.height="425px";
-  document.getElementById("kitty").style.left="0px";
+  //document.getElementById("kitty").style.left="0px";
 }
 
 function showLogin()
@@ -178,7 +178,7 @@ function showLogin()
   loginFields.style.left = "0px";
   signUpFields.style.left = "400px";
   container.style.height="350px";
-  document.getElementById("kitty").style.left="-75px";
+  //document.getElementById("kitty").style.left="-75px";
 }
 
 function saveCookie()
