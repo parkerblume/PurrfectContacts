@@ -43,7 +43,7 @@ function doLogin()
 		xhr.onreadystatechange = function() 
 		{
        
-                   console.log(xhr.readyState);
+            console.log(xhr.readyState);
             console.log(xhr.status);
 			if (this.readyState == 4 && this.status == 200) 
 			{
@@ -63,7 +63,7 @@ function doLogin()
 				saveCookie();
                 
                 loginResult.innerHTML = "Login successful!";
-				window.location.href = "/contacts.html";
+				
 			}
 		};
 		xhr.send(jsonPayload);
