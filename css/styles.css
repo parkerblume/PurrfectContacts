@@ -1,133 +1,258 @@
-.button {
-    border-radius: 3px;
-    background-color: #0069ff;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    height: 48px;
-    justify-content: center;
-    text-decoration: none;
-    width: 148px;
+@import url(
+"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+:root {
+	--primary-color: #3E7CB1;
+	--secondary-color: #054A91;
+	--tertiary-color: #81A4CD;
+	--accent-color: #DBE4EE;
   }
 
-  .content {
-    align-items: center;
-    border: solid 2px #f1f1f1;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    margin: 32px auto;
-    padding: 32px;
+body {
+	height: 100%;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	overflow:hidden;
+	gap: 30px;
+	margin-top:80px;
+	background-color: var(--accent-color);
+}
+
+header {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 25px;
+}
+
+.content {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex: 1 0 100%;
+	flex-direction: column;
+}
+
+.heading {
+	color: var(--secondary-color);
+}
+
+.title {
+	font-weight: 400;
+	letter-spacing: 1.5px;
+}
+
+.container {
+	height: 500px;
+	width: 450px;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	box-shadow: 8px 8px 20px var(--accent-color);
+	position: relative;
+	overflow: hidden;
+	transition: all 0.5s ease-in-out;
+}
+
+.btn {
+	height: 60px;
+	width: 300px;
+	margin: 20px auto;
+	box-shadow: 10px 10px 30px var(--accent-color);
+	border-radius: 50px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.login,
+.register {
+	font-size: 22px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	position: relative;
+	cursor: pointer;
+}
+
+.slider {
+	height: 60px;
+	width: 150px;
+	border-radius: 50px;
+	background-image: linear-gradient(to right,
+			var(--tertiary-color),
+			var(--accent-color));
+	position: absolute;
+	top: 20px;
+	left: 75px;
+	transition: all 0.5s ease-in-out;
+}
+
+.moveslider {
+	left: 225px;
+}
+
+.form-section {
+    max-width: 100%;
     text-align: center;
-    width: 960px;
-  }
-  
-  .content_min {
-    align-items: center;
-    border: solid 2px #f3f3f3;
-    background-color: #fdfdfd;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    margin: 8px auto;
-    padding: 8px;
-    text-align: center;
-    width: 860px;
-  }
-
-  .copyright {
-    color: #99999999;
-    font-size: 13px;
-    margin-left: 10px;
-  }
-
-  .description {
-    color: #676767;
-  }
-
-  .empty-access {
-    height: 220px;
-    margin-bottom: -20px;
-  }
-
-  .header {
-    align-items: center;
-    display: flex;
-    margin: 15px;
-  }
-
-  .logo {
-    height: 30px;
-    color: #000000;
-    width: 30px;
-  }
-
-  .title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 21px;
-    font-weight: 600;
-    color: #000000;
-  }
-
-  .body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	position: relative;
     height: 100%;
-    margin: 0;
-    background-color: #dbe4ee; /* Light pastel pink background color */
-  }
-
-  .box-container {
-    border: 1px solid blue;
-    display: flex; 
-    flex-direction: column; 
-    /* flex: 1 0 50% */
-  }
-
-  .form-container {
-    max-width: 350px;
-    margin: 0 auto 100px;
-    text-align: center;
-    height: 350px;
     width: 100%;
     padding: 20px;
-    background-color: #81a4cd; 
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: 0.5s ease-in-out;
-  }
+}
 
-  .input-form {
-    transition: 0.5s ease-in-out;
-  }
+.form-section-move {
+	left: -500px;
+}
 
-  .input-form button {
-    width: 100%;
-    padding: 2%;
-    margin-top: 2%;
-    background-color: #054a91; 
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+.login-box {
+	margin-top: 10%;
+}
+.login-box,
+.register-box {
+	transition: all 0.5s ease-in-out;
+}
+
+
+.ele {
+	height: 60px;
+	width: 400px;
+	outline: none;
+	border: none;
+	color: rgb(77, 77, 77);
+	background-color: rgb(240, 240, 240);
+	border-radius: 50px;
+	padding-left: 30px;
+	font-size: 18px;
+	margin-top:2%;
+	margin-bottom:2%;
+}
+
+.clkbtn {
+	height: 60px;
+	width: 150px;
+	border-radius: 50px;
+	background-image: linear-gradient(to right,
+    var(--tertiary-color),
+    var(--accent-color));
+	font-size: 22px;
+	border: none;
+	cursor: pointer;
+	margin-top:4%
+}
+
+.icon
+{
+    margin-top:-24px; /*icon height / 2*/
+}
+
+.toggle-password-login {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
     cursor: pointer;
-  }
+}
 
-  .input-form p {
-    margin:0px;
-  }
+.toggle-password-register {
+    position: absolute;
+    top: 75%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
 
-  .input-field {
-    width: 100%;
-    padding: 5%;
-    margin-bottom: 1%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+#field-container {
+	height: 500px;
+}
 
-  .image-box
+#loginForm {
+    position: relative;
+    left: 0px;
+}
+
+
+#loginButton,
+#loginName,
+#loginPassword {
+  position: relative;
+}
+
+#signupForm {
+  position: relative;
+  left: 500px;
+  top: -295px;
+}
+
+/* For Responsiveness of the page */
+
+@media screen and (max-width: 650px) {
+	.container {
+		height: 600px;
+		width: 300px;
+	}
+
+	.title {
+		font-size: 15px;
+	}
+
+	.btn {
+		height: 50px;
+		width: 200px;
+		margin: 20px auto;
+	}
+
+	.login,
+	.signup {
+		font-size: 19px;
+	}
+
+	.slider {
+		height: 50px;
+		width: 100px;
+		left: 50px;
+	}
+
+	.moveslider {
+		left: 150px;
+	}
+
+	.form-section {
+		height: 500px;
+		width: 600px;
+	}
+
+	.form-section-move {
+		left: -300px;
+	}
+
+	.login-box,
+	.register-box {
+		height: 100%;
+		width: 300px;
+	}
+
+	.ele {
+		height: 50px;
+		width: 250px;
+		font-size: 15px;
+
+	}
+	.image-box
   {
     border: 1px solid red;
     flex: 1 0 35%;
@@ -136,35 +261,37 @@
     overflow:hidden;
   }
 
-  .bubble-container {
-    display: none;
-    position: relative;
-    top:10px;
-  }
+	.clkbtn {
+		height: 50px;
+		width: 130px;
+		font-size: 19px;
+	}
+}
 
-  .valid {
-    color: #009345;
-   }
+@media screen and (max-width: 320px) {
+	.container {
+		height: 600px;
+		width: 250px;
+	}
 
-   .valid:before {
-     position: relative;
-     left: -35px;
-    }
+	.heading {
+		font-size: 30px;
+	}
 
-  .invalid {
-    color: red;
-   }
+	.title {
+		font-size: 10px;
+	}
 
-   .invalid:before {
-     position: relative;
-     left: -35px;
-   }
+	.btn {
+		height: 50px;
+		width: 200px;
+		margin: 20px auto;
+	}
 
-   .fade-in-image { animation: fadeIn 5s; }
-   @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
+	.login,
+	.register {
+		font-size: 19px;
+	}
 
   #kitty {
     width:200px; 
@@ -175,7 +302,38 @@
     transition: 0.5s ease-in-out;
   }
 
-  #bubble {
+	.moveslider {
+		left: 127px;
+	}
+
+	.form-section {
+		height: 500px;
+		width: 500px;
+	}
+
+	.form-section-move {
+		left: -250px;
+	}
+
+	.login-box,
+	.register-box {
+		height: 100%;
+		width: 250px;
+	}
+
+	.ele {
+		height: 50px;
+		width: 220px;
+		font-size: 15px;
+	}
+
+	.clkbtn {
+		height: 50px;
+		width: 130px;
+		font-size: 19px;
+	}
+}
+#bubble {
     width:300px; 
     height:200px;
     left: -70px;
@@ -184,30 +342,12 @@
     opacity: 1;
     transition: 0.5s ease-in-out;
   }
-  
 
-  #loginForm {
-    position: relative;
-    left: 0px;
-  }   
-
-  #loginButton,
-  #loginName,
-  #loginPassword {
-    position: relative;
-  }
-
-  #signupForm {
-    position: relative;
-    left: 400px;
-    top: -235px;
-  }
-
-  .links {
-    color: #ffffff;
-    text-decoration: underline;
-    margin-top:2%;
-    margin-bottom: 0;
-    cursor: pointer;
-    display: inline-block;
+  #kitty {
+    width:200px; 
+    height:200px;
+    
+    top:120px;
+    left:-10px;
+    transition: 0.5s ease-in-out;
   }
