@@ -1,3 +1,6 @@
+firstName = "";
+
+
 function doLogout()
 {
 	userId = 0;
@@ -17,6 +20,7 @@ function doLogout()
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    readCookie();
     const navbarContainer = document.getElementById("navbar");
     const xhr = new XMLHttpRequest();
 
@@ -61,6 +65,33 @@ function setupNavbar()
     const userDisplay = document.getElementById('user-display');
     userDisplay.style.display = 'block';
     homeLink.innerHTML = '<a href="/contacts.html" class="">Contacts</a>'; 
+
+    const user = document.getElementById('userName');
+    user = firstName + " &#x2B9B";
+}
+
+function readCookie()
+{
+	userId = -1;
+	let data = document.cookie;
+	let splits = data.split(",");
+	for(var i = 0; i < splits.length; i++) 
+	{
+		let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
+		if( tokens[0] == "firstName" )
+		{
+			firstName = tokens[1];
+		}
+		else if( tokens[0] == "lastName" )
+		{
+			lastName = tokens[1];
+		}
+		else if( tokens[0] == "userId" )
+		{
+			userId = parseInt( tokens[1].trim() );
+		}
+	}
 }
 
 // Contact Table - CRUD operations
