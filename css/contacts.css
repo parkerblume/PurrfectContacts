@@ -1,3 +1,4 @@
+/*Contact CSS */
 h1{
     font-size: 30px;
     color: #fff;
@@ -6,19 +7,23 @@ h1{
     text-align: center;
     margin-bottom: 15px;
   }
+
   table{
     width:100%;
     table-layout: fixed;
   }
+
   .tbl-header{
     background-color: #054a91;
    }
+
   .tbl-content{
     height:400px;
     overflow-x:auto;
     margin-top: 0px;
     border: 1px solid #3e7cb1;
   }
+
   th{
     padding: 20px 15px;
     text-align: left;
@@ -27,7 +32,8 @@ h1{
     color: white;
     text-transform: uppercase;
   }
-  
+
+  /* hover affect for each row*/
   tr:hover {
     background-color: #3e7cb1;
     color: white;
