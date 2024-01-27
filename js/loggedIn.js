@@ -69,7 +69,7 @@ function setupNavbar()
 
     // add user elements to profile block in navbar
     const user = document.getElementById('userName');
-    user.textContent = firstName + " &#x2B9B";
+    user.textContent = firstName + " ⮛";
     document.getElementById("user-picture").src = profileImage;
 }
 
