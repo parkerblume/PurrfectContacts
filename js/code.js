@@ -41,6 +41,10 @@ function doLogin()
 	{
 		xhr.onreadystatechange = function() 
 		{
+            console.log(this.readyState);
+            console.log(this.responseText);
+            console.log(this.status);
+            console.log(this.responseType);
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
@@ -60,7 +64,7 @@ function doLogin()
 
 				saveCookie();
 	
-				window.location.href = "contacts.html";
+				//window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
