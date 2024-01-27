@@ -7,6 +7,7 @@ let firstName = "";
 let lastName = "";
 let email = "";
 let profileImage = "";
+let redirectionAttempted = false;
 
 let register = document.getElementById("registerSelect");
 let login = document.getElementById("loginSelect");
@@ -297,10 +298,11 @@ function readCookie()
         }
 	}
 	
-	if( userId < 0 )
+	if( userId < 0 && !redirectionAttempted)
 	{
-        if (window.location.href != "members.html")
-        {
+        const currentPage = window.location.pathname;
+        if (currentPage !== "/index.html" || currentPage !== "/") {
+            redirectionAttempted = true;
             window.location.href = "index.html";
         }
 	}
