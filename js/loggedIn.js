@@ -9,15 +9,7 @@ function doLogout()
 	firstName = "";
 	lastName = "";
 	document.cookie = "firstName= ,lastName= ,userId= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    let url = urlBase + '/Logout.' + extension;
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            window.location.href = "index.html";
-        }
-    };
-    xhr.send();
+    window.location.href = "index.html";
 }
 
 
