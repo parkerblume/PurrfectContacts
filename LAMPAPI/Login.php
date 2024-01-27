@@ -22,10 +22,12 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
+			http_response_code(200);
 			returnWithInfo( $row['FirstName'], $row['LastName'], $row['Email'], $row['ProfileImagePath'], $row['ID'] );
 		}
 		else
 		{
+			http_response_code(409);
 			returnWithError("No Records Found");
 		}
 

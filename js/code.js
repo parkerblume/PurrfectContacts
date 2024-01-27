@@ -110,9 +110,6 @@ function doRegister() {
 
     try {
         xhr.onreadystatechange = function () {
-
-            console.log("Ready state:", xhr.readyState);
-            console.log("Status:", xhr.status);
             if (this.readyState != 4) {
                 return;
             }
@@ -131,6 +128,9 @@ function doRegister() {
                 lastName = jsonObject.lastName;
                 email = jsonObject.email;
                 profileImage = jsonObject.profilePicPath;
+
+                console.log("Ready state:", xhr.readyState);
+                console.log("Status:", xhr.status);
 
                 saveCookie();
             }
