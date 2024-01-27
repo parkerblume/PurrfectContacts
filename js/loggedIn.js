@@ -68,8 +68,8 @@ function setupNavbar()
     homeLink.innerHTML = '<a href="/contacts.html" class="">Contacts</a>'; 
 
     // add user elements to profile block in navbar
-    const user = document.getElementById('user');
-    user.innerHTML = `Hi, <span id="userName" style="font-family:'Poppins', sans-serif;">${firstName} ⮛</span>`;
+    const user = document.getElementById('userName');
+    user.textContent = ` ${firstName} ⮛`;
     document.getElementById("user-picture").src = profileImage;
 }
 
