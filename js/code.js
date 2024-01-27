@@ -64,7 +64,7 @@ function doLogin()
 
 
 				saveCookie();
-                
+
                 loginResult.innerHTML = "Login successful!";
 				window.location.href = "contacts.html";
 			}
@@ -164,6 +164,7 @@ function togglePasswordVisibility(check) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    readCookie();
     if (register && login && slider)
     {
         register.addEventListener("click", () => {
@@ -298,7 +299,10 @@ function readCookie()
 	
 	if( userId < 0 )
 	{
-		window.location.href = "index.html";
+        if (window.location.href != "members.html")
+        {
+            window.location.href = "index.html";
+        }
 	}
 }
 
