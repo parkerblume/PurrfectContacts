@@ -1,6 +1,5 @@
 
 <?php
-
 	$inData = getRequestInfo();
 	
 	$id = 0;

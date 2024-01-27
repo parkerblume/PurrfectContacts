@@ -21,14 +21,15 @@ function doLogin()
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
     var hash = md5( password );
-	
+	let loginResult = document.getElementById("loginResult");
+
     if (!validLoginForm(login, password))
     {
-        document.getElementById("loginResult").innerHTML = "Invalid username or password!";
+        loginResult.innerHTML = "Invalid username or password!";
         return;
     }
-	document.getElementById("loginResult").innerHTML = "";
 
+	loginResult.innerHTML = "";
 	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify(tmp);
 	
@@ -52,7 +53,7 @@ function doLogin()
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					loginResult.innerHTML = "User/Password combination incorrect";
 					return;
 				}
 		
@@ -63,7 +64,8 @@ function doLogin()
 
 
 				saveCookie();
-	
+                
+                loginResult.innerHTML = "Login successful!";
 				window.location.href = "contacts.html";
 			}
 		};
@@ -427,5 +429,3 @@ function validSignUpForm(fName, lName, email, user, pass) {
 
     return true;
 }
-
-//contacts js here
