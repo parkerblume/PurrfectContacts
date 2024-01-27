@@ -221,7 +221,17 @@ function setupNavbar()
     const homeLink = document.getElementById('homeLink');
     const userDisplay = document.getElementById('user-display');
     homeLink.innerHTML = '<a href="/index.html" class="">Home</a>';
-    userDisplay.style.display = 'none';
+
+    if (firstName === "")
+    {
+        userDisplay.style.display = 'none';
+    }
+    else
+    {
+        userDisplay.style.display = "block";
+        document.getElementById("user-picture").src = profileImage;
+        document.getElementById("userName").innerHTML = `Hi, ${firstName} &#11163`;
+    }
 }
 
 function showRequiredField()
