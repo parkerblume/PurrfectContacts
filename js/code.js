@@ -165,7 +165,6 @@ function togglePasswordVisibility(check) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    readCookie();
     if (register && login && slider)
     {
         register.addEventListener("click", () => {
@@ -221,8 +220,19 @@ function setupNavbar()
     const userDisplay = document.getElementById('user-display');
     homeLink.innerHTML = '<a href="/index.html" class="">Home</a>';
 
-    if (firstName === "")
+    // user logged in
+    if (loggedIn())
     {
+        userDisplay.style.display = 'block';
+        homeLink.innerHTML = '<a href="/contacts.html" class="">Contacts</a>'; 
+        // add user elements to profile block in navbar
+        const user = document.getElementById('userName');
+        user.textContent = `   ${firstName} ⮛`;
+        document.getElementById("user-picture").src = profileImage;
+    }
+    else
+    {
+        homeLink.innerHTML = '<a href="/index.html" class="">Home</a>';
         userDisplay.style.display = 'none';
     }
 }
@@ -271,7 +281,7 @@ function saveCookie()
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ",img=" + profileImage + ";expires=" + date.toGMTString();
 }
 
-function readCookie()
+function loggedIn()
 {
 	userId = -1;
 	let data = document.cookie;
@@ -283,6 +293,7 @@ function readCookie()
 		if( tokens[0] == "firstName" )
 		{
 			firstName = tokens[1];
+            loggedIn = true;
 		}
 		else if( tokens[0] == "lastName" )
 		{
@@ -300,12 +311,12 @@ function readCookie()
 	
 	if( userId < 0 && !redirectionAttempted)
 	{
-        const currentPage = window.location.pathname;
-        if (currentPage !== "/index.html" || currentPage !== "/") {
-            redirectionAttempted = true;
-            window.location.href = "index.html";
-        }
+        return false;
 	}
+    else
+    {
+        return true;
+    }
 }
 
 
