@@ -64,7 +64,7 @@ function doLogin()
 
 				saveCookie();
 	
-				//window.location.href = "contacts.html";
+				window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -279,7 +279,7 @@ function saveCookie()
 	let minutes = 20;
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + "img=" + profileImage + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
@@ -303,6 +303,10 @@ function readCookie()
 		{
 			userId = parseInt( tokens[1].trim() );
 		}
+        else if ( tokens[0] == "img" )
+        {
+            profileImage = tokens[1];
+        }
 	}
 	
 	if( userId < 0 )
