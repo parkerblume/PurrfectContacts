@@ -427,3 +427,5 @@ function validSignUpForm(fName, lName, email, user, pass) {
 
     return true;
 }
+
+//contacts js here
