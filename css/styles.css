@@ -115,6 +115,9 @@ header {
 
 .moveslider {
 	left: 225px;
+	background-image: linear-gradient(to left,
+	var(--tertiary-color),
+	var(--accent-color));
 }
 
 .form-section {
