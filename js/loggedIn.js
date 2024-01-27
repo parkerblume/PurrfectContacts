@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     };
-  
     xhr.open('GET', 'navbar.html', true);
     xhr.send();
 
