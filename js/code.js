@@ -7,7 +7,6 @@ let firstName = "";
 let lastName = "";
 let email = "";
 let profileImage = "";
-let redirectionAttempted = false;
 
 let register = document.getElementById("registerSelect");
 let login = document.getElementById("loginSelect");
@@ -309,12 +308,17 @@ function loggedIn()
         }
 	}
 	
-	if( userId < 0 && !redirectionAttempted)
+	if( userId < 0)
 	{
         return false;
 	}
     else
     {
+        const currPage = window.location.pathname;
+        if (currPage === "/" || currPage === "/index.html") // force redirect if logged in
+        {
+            window.location.href = "/contacts.html"
+        }
         return true;
     }
 }
