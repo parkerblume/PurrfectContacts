@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
               const href = link.getAttribute('href');
               if (href === "" || href === "/index.html")
               {
-                if (currentPage === "" || currentPage === "/index.html") link.classList.add('active');
+                if (currentPage === "/" || currentPage === "/index.html") link.classList.add('active');
               }
               else if (currentPage.endsWith(href)) {
                   link.classList.add('active');
@@ -239,24 +239,25 @@ function showSignup()
 {
   const loginFields = document.getElementById("loginForm");
   const signUpFields = document.getElementById("signupForm");
-  const container = document.getElementById("fieldContainer");
+  const container = document.getElementById("field-container");
+  document.querySelector(".slider").classList.add("moveslider");  
   
-  loginFields.style.left = "-400px";
+  loginFields.style.left = "-500px";
   signUpFields.style.left = "0px";
-  container.style.height="425px";
-  //document.getElementById("kitty").style.left="0px";
+  container.style.height="570px";
+  
 }
 
 function showLogin()
 {
   const loginFields = document.getElementById("loginForm");
   const signUpFields = document.getElementById("signupForm");
-  const container = document.getElementById("fieldContainer");
+  const container = document.getElementById("field-container");
+  document.querySelector(".slider").classList.remove("moveslider");  
 
   loginFields.style.left = "0px";
-  signUpFields.style.left = "400px";
-  container.style.height="350px";
-  //document.getElementById("kitty").style.left="-75px";
+  signUpFields.style.left = "500px";
+  container.style.height="500px";
 }
 
 function saveCookie()
@@ -729,48 +730,3 @@ function validAddContact(firstName, lastName, phone, email) {
     return true;
 
 }
-
-//function searchColor()
-//{
-//	let srch = document.getElementById("searchText").value;
-//	document.getElementById("colorSearchResult").innerHTML = "";
-	
-//	let colorList = "";
-
-//	let tmp = {search:srch,userId:userId};
-//	let jsonPayload = JSON.stringify( tmp );
-
-//	let url = urlBase + '/SearchColors.' + extension;
-	
-//	let xhr = new XMLHttpRequest();
-//	xhr.open("POST", url, true);
-//	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-//	try
-//	{
-//		xhr.onreadystatechange = function() 
-//		{
-//			if (this.readyState == 4 && this.status == 200) 
-//			{
-//				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-//				let jsonObject = JSON.parse( xhr.responseText );
-//				
-//				for( let i=0; i<jsonObject.results.length; i++ )
-//				{
-//					colorList += jsonObject.results[i];
-//					if( i < jsonObject.results.length - 1 )
-//					{
-//						colorList += "<br />\r\n";
-//					}
-//				}
-//				
-//				document.getElementsByTagName("p")[0].innerHTML = colorList;
-//			}
-//		};
-		//xhr.send(jsonPayload);
-//	}
-//	catch(err)
-//	{
-//		document.getElementById("colorSearchResult").innerHTML = err.message;
-//	}
-	
-//}
