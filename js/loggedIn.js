@@ -94,7 +94,7 @@ function readCookie()
 	
 	if( userId < 0 )
 	{
-		window.location.href = "index.html";
+		//window.location.href = "index.html"; UNCOMMENT BEFORE FINISH PROJECT. (force redirect to index if logged out)
 	}
 }
 
