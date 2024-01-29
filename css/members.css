@@ -1,12 +1,17 @@
+@import url(
+"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 :root {
-    --radius: 5px;
-    --padding: 10px;
+    --primary-color: #3E7CB1;
+    --secondary-color: #054A91;
+    --tertiary-color: #81A4CD;
+    --accent-color: #DBE4EE;
 }
 
 /* body formatting */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #DBE4EE;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--accent-color);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -18,53 +23,22 @@ h1 {
 
   font-family: "Poppins", sans-serif;
   text-align: center;
-   color:#054A91;
+   color:var(--secondary-color);
 
 }
 
-/* Add a black background color to the top navigation */
-.topnav {
-    background-color: #054a91;
-    overflow: hidden;
-  }
-  
-  /* Style the links inside the navigation bar */
-  .topnav a {
-    float: right;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  /* Change the color of links on hover */
-  .topnav a:hover {
-    background-color: #81a4cd;
-    color: black;
-  }
-  
-  /* Add a color to the active/current link */
-  .topnav a.active {
-    background-color: #054a91;
-    color: white;
-  }
-
-  .topnav a.logout{
-    float: right;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-
+.content {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex: 1 0 100%;
+	flex-direction: column;
+}
 
 .container {
     width: 100%;
     margin-top: 100px;
     overflow:hidden;
-    
   }
   /* grid w/images and names */
   .grid-container {
@@ -82,7 +56,7 @@ h1 {
     font-size: 20px;
     letter-spacing: 1px;
     font-family: 'Montserrat';
-    color: #054A91; 
+    color: var(--secondary-color); 
     padding: 20px 0;
   }
   .grid-item img {
@@ -90,23 +64,9 @@ h1 {
     height: auto;
     opacity: 80%;
   }
-/*--------------------
-#footer {
-    grid-area: content3;
-    display: grid;
-    text-align: center;
-    bottom: 0;
-    display: block;
-    text-align: center center;
-    text-decoration: none;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 3vw;
-    line-height: 44px;
-    color: black;
-    margin: auto;
-}*/
+  .grid-item a {
+    color: var(--secondary-color)
+  }
 
 /*tablets*/
 @media only screen and (min-width:768px) {

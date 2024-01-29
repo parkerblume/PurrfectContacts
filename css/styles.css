@@ -26,6 +26,16 @@ body {
 	background-color: var(--accent-color);
 }
 
+header {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px;
+}
+
 .content {
 	position: absolute;
 	top:50%;
@@ -38,14 +48,14 @@ body {
 	flex-direction: column;
 }
 
-header {
+.content-container {
 	width: 100%;
-	display: flex;
+	margin-top: 50px;
+	overflow:hidden;
+	display: inherit;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 8px;
-	padding: 10px;
 }
 
 .heading {
