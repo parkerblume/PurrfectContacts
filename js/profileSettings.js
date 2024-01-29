@@ -31,7 +31,7 @@ function doUpdateUser() {
     let changesResult = document.getElementById("changeResult");
 
     if (!validChanges(firstName, lastName, email, password)) {
-        document.getElementById("signupResult").innerHTML = "Invalid signup!";
+        changesResult.innerHTML = "Invalid signup!";
         return;
     }
     var hash = md5(password);
