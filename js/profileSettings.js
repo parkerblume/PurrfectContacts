@@ -42,7 +42,7 @@ function doUpdateUser() {
         lastName: lastName,
         email: email,
         password: hash,
-        profilePicPath: imagePath
+        profilePicPath: profileImage
     };
 
     let jsonPayload = JSON.stringify(tmp);
