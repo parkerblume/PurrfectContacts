@@ -11,6 +11,7 @@ let profileImage = "";
 let register = document.getElementById("registerSelect");
 let login = document.getElementById("loginSelect");
 let slider = document.getElementById("slider");
+let loginPassword = document.getElementById("loginPassword");
 
 function doLogin()
 {
@@ -185,11 +186,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });   
     }
 
-    loginPassword.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            doLogin();
-        }
-    });
+    if (loginPassword)
+    {
+        loginPassword.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                doLogin();
+            }
+        });
+    }
 
     const navbarContainer = document.getElementById("navbar");
     const xhr = new XMLHttpRequest();

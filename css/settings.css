@@ -31,8 +31,8 @@ body {
 }
 
 .content-div {
-    height: 650px;
-	width: 550px;
+    height: 40rem;
+	width: 50%x;
     margin-top:50px;
 	justify-content: center;
 	align-items: center;
@@ -84,9 +84,9 @@ body {
 }
 
 .toggle-password {
-    position: absolute;
-    top: 30.5%;
-    right: 40px;
+    position: relative;
+    top: -19px;
+    right: -24rem;
     transform: translateY(-50%);
     cursor: pointer;
 }
