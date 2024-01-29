@@ -68,12 +68,16 @@ function doLogin()
                 loginResult.innerHTML = "Login successful!";
 				window.location.href = "contacts.html";
 			}
+            else
+            {
+                loginResult.innerHTML = "Login failed!";
+            }
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		loginResult.innerHTML = err.message;
 	}
 
 }
@@ -136,6 +140,7 @@ function doRegister() {
                 profileImage = jsonObject.profilePicPath;
 
                 saveCookie();
+                window.location.href = "contacts.html";
             }
         };
 
