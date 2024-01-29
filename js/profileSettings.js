@@ -1,6 +1,4 @@
-const urlBase = 'https://fakewhitepages.com/LAMPAPI';
-const extension = 'php';
-const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
+const userImagePath = 'https://fakewhitepages.com/images/User%20Images/';
 
 firstName = "";
 lastName = "";
