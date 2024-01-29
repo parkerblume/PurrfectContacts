@@ -46,7 +46,12 @@ function doLogin()
             console.log(this.responseText);
             console.log(this.status);
             console.log(this.responseType);
-			if (this.readyState == 4 && this.status == 200) 
+            if (this.status === 409)
+            {
+                loginResult.innerHTML = "User/Password combination incorrect";
+                return;
+            }
+            else if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
