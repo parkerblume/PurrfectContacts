@@ -37,10 +37,6 @@ header {
 }
 
 .content {
-	position: absolute;
-	top:50%;
-	left:50%;
-	transform: translate(-50%, -50%);
 	justify-content: center;
 	align-items: center;
 	display: flex;
@@ -50,7 +46,6 @@ header {
 
 .content-container {
 	width: 100%;
-	margin-top: 50px;
 	overflow:hidden;
 	display: inherit;
 	flex-direction: column;
