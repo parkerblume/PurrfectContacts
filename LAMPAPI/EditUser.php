@@ -2,9 +2,11 @@
     $inData = getRequestInfo();
 
     $id = $inData["id"];
+    $firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
     $email = $inData["email"];
     $password = $inData["password"];
-    $ProfileImagePath = $inData["ProfileImagePath"];
+    $ProfileImagePath = $inData["profilePicPath"];
 
     $conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
     if ($conn->connect_error) {
@@ -12,12 +14,22 @@
     } 
     else 
     {
-        $stmt = $conn->prepare("UPDATE Users SET Email=?, Password=?, ProfileImagePath=? WHERE ID=?");
-        $stmt->bind_param("sssi", $email, $password, $ProfileImagePath, $id);
-        $stmt->execute();
-        $stmt->close();
-        $conn->close();
-        returnWithError("");
+        $stmt = $conn->prepare("UPDATE Users SET FirstName=?, LastName=?, Email=?, Password=?, ProfileImagePath=? WHERE ID=?");
+        $stmt->bind_param("sssssi", $firstName, $lastName, $email, $password, $ProfileImagePath, $id);
+        if ($stmt->execute())
+        {
+            $stmt->close();
+            $conn->close();
+            http_response_code(200);
+            returnWithError("");
+        }
+        else
+        {
+            $stmt->close();
+            $conn->close();
+            http_response_code(400);
+            returnWithError("Failed to update!");
+        }
     }
 
     function getRequestInfo()

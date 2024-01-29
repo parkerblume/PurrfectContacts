@@ -1,3 +1,7 @@
+const urlBase = 'https://fakewhitepages.com/LAMPAPI';
+const extension = 'php';
+const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
+
 firstName = "";
 lastName = "";
 email="";
@@ -24,7 +28,46 @@ function doUploadPhoto()
 }
 
 function doUpdateUser() {
-    // uses api to update user
+
+    let password = document.getElementById("userPassword").value;
+    let changesResult = document.getElementById("changeResult");
+
+    if (!validChanges(firstName, lastName, email, password)) {
+        document.getElementById("signupResult").innerHTML = "Invalid signup!";
+        return;
+    }
+    var hash = md5(password);
+    let tmp = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: hash,
+        profilePicPath: imagePath
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/EditUser.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				saveCookie();
+                changesResult.innerHTML = "Changes successful!";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		changesResult.innerHTML = err.message;
+	}
 }
 
 function doDeleteUser() {
@@ -72,4 +115,78 @@ function readCookie()
 	{
 		//window.location.href = "index.html"; UNCOMMENT BEFORE FINISH PROJECT. (force redirect to index if logged out)
 	}
+}
+
+function togglePasswordVisibility() {
+    var input = document.getElementById("userPassword") ;
+
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+
+function validChanges(fName, lName, email, pass) {
+
+    var fNameErr = lNameErr = emailErr = passErr = true;
+
+    if (fName == "") {
+        console.log("FIRST NAME IS BLANK");
+    }
+    else {
+        console.log("first name IS VALID");
+        fNameErr = false;
+    }
+
+    if (lName == "") {
+        console.log("LAST NAME IS BLANK");
+    }
+    else {
+        console.log("LAST name IS VALID");
+        lNameErr = false;
+    }
+
+    if (email == "")
+    {
+        console.log("EMAIL IS BLANK");
+    }
+    else
+    {
+        var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (!regex.test(email)) 
+        {
+            console.log("EMAIL IS NOT VALID");
+        }
+        else
+        {
+            console.log("EMAIL IS VALID");
+            emailErr = false;
+        }
+    }
+
+    if (pass == "") {
+        console.log("PASSWORD IS BLANK");
+    }
+    else {
+        var regex = /(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}/;
+
+        if (regex.test(pass) == false) {
+            console.log("PASSWORD IS NOT VALID");
+        }
+
+        else {
+
+            console.log("PASSWORD IS VALID");
+            passErr = false;
+        }
+    }
+
+    if ((fNameErr || lNameErr || emailErr || passErr) == true) {
+        return false;
+
+    }
+
+    return true;
 }

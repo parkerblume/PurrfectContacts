@@ -62,7 +62,7 @@ body {
 .user-display p {
     font-size: 10px;
     color:gray;
-    margin-top: 10px;
+    margin-top: 25px;
     margin-bottom: 8px;
 }
 
@@ -71,8 +71,8 @@ body {
 }
 
 .user-display img {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -81,6 +81,14 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1 0 0;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 30.5%;
+    right: 40px;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
 .name-display {
@@ -136,7 +144,6 @@ body {
     width:100% !important;
     color: red;
     font-size:17px;
-    
 }
 .cat-container {
     display: flex;
