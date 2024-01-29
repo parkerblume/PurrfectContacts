@@ -8,6 +8,11 @@ userId = "";
 
 document.addEventListener('DOMContentLoaded', function () {
     readCookie();
+    updateUserDetails();
+});
+
+function updateUserDetails()
+{
     // populate profile settings fields
     const fName = document.getElementById("displayFirstName");
     const lName = document.getElementById("displayLastName");
@@ -18,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     lName.value = lastName;
     eDisplay.value = email;
     userImg.src = profileImage;
-});
+}
 
 function doUploadPhoto()
 {
@@ -58,6 +63,8 @@ function doUpdateUser() {
 			{
 				saveCookie();
                 changesResult.innerHTML = "Changes successful!";
+                readCookie();
+                updateUserDetails();
 			}
 		};
 		xhr.send(jsonPayload);
