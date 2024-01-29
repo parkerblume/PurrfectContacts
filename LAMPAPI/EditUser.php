@@ -55,5 +55,3 @@
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
-
-// Which essentially, allows the user to upload a file (change ProfileImagePath), their email, and password
