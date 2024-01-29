@@ -10,12 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const fName = document.getElementById("displayFirstName");
     const lName = document.getElementById("displayLastName");
     const eDisplay = document.getElementById("displayEmail");
+    const userImg = document.getElementById("displayPicture");
     
     fName.value = firstName;
     lName.value = lastName;
     eDisplay.value = email;
-
+    userImg.src = profileImage;
 });
+
+function doUploadPhoto()
+{
+    // uses something to upload user photo
+}
 
 function doUpdateUser() {
     // uses api to update user

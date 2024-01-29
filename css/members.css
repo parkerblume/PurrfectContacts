@@ -8,6 +8,12 @@
     --accent-color: #DBE4EE;
 }
 
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
 /* body formatting */
 body {
     font-family: "Poppins", sans-serif;
