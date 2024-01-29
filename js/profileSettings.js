@@ -41,9 +41,9 @@ function doUpdateUser() {
     }
     var hash = md5(password);
     let tmp = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
+        firstName: document.getElementById("displayFirstName").value,
+        lastName: document.getElementById("displayLastName").value,
+        email: document.getElementById("displayEmail").value,
         password: hash,
         profilePicPath: profileImage
     };
@@ -67,7 +67,7 @@ function doUpdateUser() {
                 lastName = jsonObject.lastName;
                 email = jsonObject.email;
                 profileImage = jsonObject.profilePicPath;
-                
+
 				saveCookie();
                 changesResult.innerHTML = "Changes successful!";
                 readCookie();
