@@ -21,7 +21,7 @@
             $stmt->close();
             $conn->close();
             http_response_code(200);
-            returnWithError("");
+            returnWithInfo( $row['FirstName'], $row['LastName'], $row['Email'], $row['ProfileImagePath'], $row['ID'] );
         }
         else
         {
@@ -48,6 +48,12 @@
         $retValue = '{"error":"' . $err . '"}';
         sendResultInfoAsJson($retValue);
     }
+
+    function returnWithInfo( $firstName, $lastName, $email, $profilePicPath, $id )
+	{
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","email":"' . $email . '","profilePicPath":"' . $profilePicPath . '","error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
 ?>
 
 // Which essentially, allows the user to upload a file (change ProfileImagePath), their email, and password

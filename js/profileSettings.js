@@ -61,6 +61,13 @@ function doUpdateUser() {
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
+                let jsonObject = JSON.parse(xhr.responseText);
+                userId = jsonObject.id;
+                firstName = jsonObject.firstName;
+                lastName = jsonObject.lastName;
+                email = jsonObject.email;
+                profileImage = jsonObject.profilePicPath;
+                
 				saveCookie();
                 changesResult.innerHTML = "Changes successful!";
                 readCookie();
