@@ -68,7 +68,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	background-color: white;
-	box-shadow: 8px 8px 20px var(--accent-color);
+	border-radius: 2%;
 	position: relative;
 	overflow: hidden;
 	transition: all 0.5s ease-in-out;
