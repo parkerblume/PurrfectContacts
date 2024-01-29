@@ -14,7 +14,7 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color) !important;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
