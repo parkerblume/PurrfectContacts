@@ -41,6 +41,7 @@ function doUpdateUser() {
     }
     var hash = md5(password);
     let tmp = {
+        id: userId,
         firstName: document.getElementById("displayFirstName").value,
         lastName: document.getElementById("displayLastName").value,
         email: document.getElementById("displayEmail").value,
