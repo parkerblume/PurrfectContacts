@@ -185,6 +185,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });   
     }
 
+    loginPassword.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            doLogin();
+        }
+    });
+
     const navbarContainer = document.getElementById("navbar");
     const xhr = new XMLHttpRequest();
 
