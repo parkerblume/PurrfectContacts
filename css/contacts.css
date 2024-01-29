@@ -11,6 +11,7 @@ body{
     background: -webkit-linear-gradient(left, #81a4cd, #dbe4ee);
     background: linear-gradient(to right, #81a4cd, #dbe4ee);
     font-family: 'Poppins', sans-serif;
+    display: flex;
   }
 
 /*Contact CSS */
@@ -35,7 +36,7 @@ h1{
 
   .content-contacts
   {
-    margin-top:100px;
+    margin-top: 40px;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -71,7 +72,7 @@ h1{
   th,td{
     border-bottom: 1px solid black;
     word-break: break-all;
-    text-align: center;
+    text-align: left;
   }
 
   td img{
@@ -93,12 +94,12 @@ h1{
   
 /* add user button */
 .add_new{
-  padding: 12px;
-  border-radius: 50%;
-  display: inline-block;
-  color: black;
+  margin-right: 1100px;
+  height: 50px;
+  width: 50px;  
+  border-radius: 100%;
   background-color: white;
-  font-size: 64px;
+  font-size: 16px;
 }
 
 .table_button{
@@ -113,9 +114,34 @@ h1{
   font-size: 20px;
 }
 
-input{
-  padding: 10px 15px;
-  border-radius: 6px;
+.box{
+  margin-left: 900px;  
+  height:30px;
+  display: flex;
+  cursor: pointer;
+  padding: 10px 20px;
+  background: transparent;
+  align-items: center;
+}
+
+.box:hover input{
+  width: 300px;
+}
+
+.box input{
+  width: 0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  transition: 0.8s;
+  background: white;
+  border-radius: 30px;
+
+}
+
+.box a{
+  color: black;
+  font-size: 24px;
 }
 
   /* for custom scrollbar for webkit browser*/

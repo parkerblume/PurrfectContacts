@@ -12,20 +12,28 @@
     <meta charset="UTF-8">
 
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 	<nav id="navbar" class="custom-nav"></nav>
 	<h1>Contacts</h1>
-	<div><button type ="add_new"><ion-icon name="add-outline"></ion-icon></button> </button></div>
-	<input placeholder="search"/>
+
     <div class="content-contacts">
+		<div class="box">
+			<input type ="text" placeholder="search"/>
+			<a href = "a">
+				<ion-icon name="search-outline"></ion-icon>
+			</a>
+		</div>
+		<div>
+			<button class ="add_new"><ion-icon name="add-outline"></ion-icon></button> </button>
+		</div>
 		<div class="table-section">
 			<div class="tbl-header">
 			<table cellpadding="0" cellspacing="0" border="0">
 				<thead>
 				<tr>
-					<th>Image here</th>
+					<th></th>
 					<th>First name</th>
 					<th>Last name</th>
 					<th>Email<th> 
