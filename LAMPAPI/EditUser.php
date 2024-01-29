@@ -21,7 +21,7 @@
             $stmt->close();
             $conn->close();
             http_response_code(200);
-            returnWithInfo( $row['FirstName'], $row['LastName'], $row['Email'], $row['ProfileImagePath'], $row['ID'] );
+            returnWithInfo( $firstName, $lastName, $email, $ProfileImagePath, $id );
         }
         else
         {
