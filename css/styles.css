@@ -22,7 +22,6 @@ body {
 	align-items: center;
 	flex-direction: column;
 	overflow:hidden;
-	gap: 30px;
 	background-color: var(--accent-color);
 }
 
@@ -46,11 +45,12 @@ header {
 
 .content-container {
 	width: 100%;
-	overflow:hidden;
+	overflow:scroll;
 	display: inherit;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	margin-top:40px;
 }
 
 .heading {
