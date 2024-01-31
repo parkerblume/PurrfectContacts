@@ -45,6 +45,10 @@ body{
     margin-top: 0px;
   }
 
+  tr{
+    border: 2px solid black !important; 
+  }
+
   th{
     padding: 20px 15px;
     font-weight: 500;
@@ -89,10 +93,11 @@ body{
   height: 50px;
   width: 50px;  
   border-radius: 100%;
-  background-color: #3e7cb1;
+  background-color: #004e9d;
   justify-content: center; 
   align-items: center;
   font-size: 25px;
+  color: white;
   border: 2px solid black;
 }
 .test {
@@ -102,7 +107,7 @@ body{
 }
 
 .add_new:hover{
-  background-color: #81a4cd;
+  background-color: #053f79;
 }
 
 .table_button{
