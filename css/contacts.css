@@ -15,33 +15,24 @@ body{
   }
 
 /*Contact CSS */
-h1{
-    font-size: 30px;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-
   table{
     width:100%;
     table-layout: fixed;
   }
 
-  .table-section {
-    margin-left:100px;
-    margin-right:100px;
-  }
-
   .content-contacts
   {
+    padding-top: 10px;
     margin-top: 40px;
-    justify-content: center;
-    align-items: center;
+    justify-content: end;
+    align-items: end;
     display: flex;
     flex: 1 0 100%;
     flex-direction: column;
+    width: 1000px;
+    background-color: white;
+    border-radius: 2%;
+    box-shadow: 8px 8px 20px #054a91;
   }
   
   .tbl-header{
@@ -52,7 +43,6 @@ h1{
     height:400px;
     overflow-x:auto;
     margin-top: 0px;
-    border: 1px solid #3e7cb1;
   }
 
   th{
@@ -70,7 +60,6 @@ h1{
   }
 
   th,td{
-    border-bottom: 1px solid black;
     word-break: break-all;
     text-align: left;
   }
@@ -94,12 +83,26 @@ h1{
   
 /* add user button */
 .add_new{
+  position: relative;
+  display: flex;
   margin-right: 1100px;
   height: 50px;
   width: 50px;  
   border-radius: 100%;
-  background-color: white;
-  font-size: 16px;
+  background-color: #3e7cb1;
+  justify-content: center; 
+  align-items: center;
+  font-size: 25px;
+  border: 2px solid black;
+}
+.test {
+  padding:0 !important;
+  justify-content: center;
+  margin:0;
+}
+
+.add_new:hover{
+  background-color: #81a4cd;
 }
 
 .table_button{
@@ -115,7 +118,6 @@ h1{
 }
 
 .box{
-  margin-left: 900px;  
   height:30px;
   display: flex;
   cursor: pointer;
@@ -126,6 +128,7 @@ h1{
 
 .box:hover input{
   width: 300px;
+  border: 2px solid black;
 }
 
 .box input{
@@ -136,12 +139,12 @@ h1{
   transition: 0.8s;
   background: white;
   border-radius: 30px;
-
 }
 
 .box a{
   color: black;
-  font-size: 24px;
+  font-size: 28px;
+  display: flex;
 }
 
   /* for custom scrollbar for webkit browser*/
