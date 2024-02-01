@@ -100,6 +100,24 @@ body{
   color: white;
   border: 2px solid black;
 }
+
+#addRow{
+  display:none;
+}
+
+.check{
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  border: none;
+  font-size: 25px;
+}
+
+.check:hover, .table_button:hover{
+  color: white;
+  font-size: 26px;
+}
+
 .test {
   padding:0 !important;
   justify-content: center;

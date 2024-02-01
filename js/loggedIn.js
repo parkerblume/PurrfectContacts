@@ -98,6 +98,15 @@ function readCookie()
 	}
 }
 
+function showTable() {
+    var x = document.getElementById("addRow");
+    if (x.style.display === "none") {
+        x.style.display = "flex";
+    } else {
+        x.style.display = "none";
+    }
+}
+
 // Contact Table - CRUD operations
 function addContact()
 {

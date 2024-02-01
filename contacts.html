@@ -36,7 +36,7 @@
 					<tr>
 						<div>
 							<th><div>
-								<button class ="add_new test"><ion-icon name="person-add-outline"></ion-icon></button> </button>
+								<button class ="add_new test" onclick="showTable()"><ion-icon name="person-add-outline"></ion-icon></button></button>
 							</div></th>
 							<th>First name</th>
 							<th>Last name</th>
@@ -49,7 +49,7 @@
 					</thead>
 				</table>
 			</div>
-			<div class="tbl-content">
+			<div class="tbl-content" id="contactsTable">
 			<table cellpadding="0" cellspacing="0" border="0">
 				<tbody>
 				<tr>
@@ -63,7 +63,7 @@
 						<button class = "table_button"onclick="delete_row()"> <ion-icon name="create-outline"></ion-icon></button></button></td>
 				</tr>
 				<tr>
-					<td><img src="getRandomImage()"/></td>
+					<td><img src="images/blackCat.png"/></td>
 					<td>Rachel</td>
 					<td>Vitaliano</td>
 					<td>rachelvit@gmail.com</td>
@@ -72,6 +72,17 @@
 					<td><button class= "table_button" onclick ="edit_row()"><ion-icon name="trash-outline"></ion-icon></button>
 						<button class = "table_button"onclick="delete_row()"> <ion-icon name="create-outline"></ion-icon></button></button></td>
 				</tr>
+					<tr id="addRow">
+					  <td></td>
+					  <td><input type="text" id="contactTextFirst" placeholder="First Name" required></td>
+					  <td><input type="text" id="contactTextLast" placeholder="Last Name" required></td>
+					  <td><input type="text" id="contactTextEmail" placeholder="name@email.com"
+						pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required></td>
+					  <td><input type="text" id="contactTextNumber" placeholder="XXX-XXX-XXXX" required
+						pattern="^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$"></td>
+					  <td></td>
+					  <td>	<button type="button" class="check" onclick="addContact();"><ion-icon name="checkmark-outline"></ion-icon></button>
+					</tr>
 				</tbody>
 			</table>
 			</div>
