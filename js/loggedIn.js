@@ -2,10 +2,10 @@ const urlBase = 'https://fakewhitepages.com/LAMPAPI';
 const extension = 'php';
 const baseImagePath = 'https://fakewhitepages.com/images/contactimages/';
 
-firstName = "";
-lastName = "";
-profileImage = "";
-userId = "";
+let firstName = "";
+let lastName = "";
+let profileImage = "";
+let userId = "";
 
 function doLogout()
 {
