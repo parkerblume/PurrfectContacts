@@ -7,12 +7,12 @@ profileImage = "";
 userId = "";
 
 document.addEventListener('DOMContentLoaded', function () {
-    readCookie();
     updateUserDetails();
 });
 
 function updateUserDetails()
 {
+    readCookie();
     // populate profile settings fields
     const fName = document.getElementById("displayFirstName");
     const lName = document.getElementById("displayLastName");
@@ -71,7 +71,6 @@ function doUpdateUser() {
 
 				saveCookie();
                 changesResult.innerHTML = "Changes successful!";
-                readCookie();
                 updateUserDetails();
 			}
 		};
@@ -84,7 +83,33 @@ function doUpdateUser() {
 }
 
 function doDeleteUser() {
-    // uses api to delete user and their contacts
+    let tmp = {
+        id: userId
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/DeleteUser.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+                document.cookie = "firstName= ,lastName= ,userId= ,email= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+                document.window.href="index.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("deleteInfo").innerHTML = err.message;
+	}
 }
 
 // just redirects user to contacts page

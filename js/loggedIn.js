@@ -12,7 +12,7 @@ function doLogout()
 	userId = 0;
 	firstName = "";
 	lastName = "";
-	document.cookie = "firstName= ,lastName= ,userId= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	document.cookie = "firstName= ,lastName= ,userId= ,email= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location.href = "index.html";
 }
 
