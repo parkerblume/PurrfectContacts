@@ -83,6 +83,11 @@ function doUpdateUser() {
 }
 
 function doDeleteUser() {
+    if (!window.confirm("Are you sure you want to delete your account?"))
+    {
+        return;
+    }
+    
     let tmp = {
         id: userId
     };
@@ -100,11 +105,8 @@ function doDeleteUser() {
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-                if (window.confirm("Are you sure you want to delete your account?"))
-                {
                     document.cookie = "firstName= ,lastName= ,userId= ,email= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
                     window.location.href="index.html";
-                }
 			}
 		};
 		xhr.send(jsonPayload);
