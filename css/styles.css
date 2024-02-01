@@ -95,7 +95,7 @@ header {
 	font-size: 22px;
 	border: none;
 	cursor: pointer;
-	margin-top:4%
+	margin-top:-10px;
   }
 
 .login,
@@ -161,17 +161,17 @@ header {
 }
 
 .toggle-password-login {
-  position: absolute;
-  top: 50%;
-  right: 15px;
+  position: relative;
+  top: -40px;
+  right: -180px;
   transform: translateY(-50%);
   cursor: pointer;
 }
 
 .toggle-password-register {
-  position: absolute;
-  top: 75%;
-  right: 15px;
+  position: relative;
+  top: -40px;
+  right: -180px;
   transform: translateY(-50%);
   cursor: pointer;
 }
@@ -195,7 +195,7 @@ header {
 #signupForm {
   position: relative;
   left: 500px;
-  top: -295px;
+  top: -325px;
 }
 
 

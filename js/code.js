@@ -8,11 +8,6 @@ let lastName = "";
 let email = "";
 let profileImage = "";
 
-let register = document.getElementById("registerSelect");
-let login = document.getElementById("loginSelect");
-let slider = document.getElementById("slider");
-let loginPassword = document.getElementById("loginPassword");
-
 function doLogin()
 {
 	userId = 0;
@@ -154,8 +149,6 @@ function doRegister() {
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
     }
-    // fix this later.
-    //showLogin();
 }
 
 function getRandomImage()
@@ -175,6 +168,12 @@ function togglePasswordVisibility(check) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    let register = document.getElementById("registerSelect");
+    let login = document.getElementById("loginSelect");
+    let slider = document.getElementById("slider");
+    let loginPassword = document.getElementById("loginPassword");
+    let regPassword = document.getElementById("password");
+
     if (register && login && slider)
     {
         register.addEventListener("click", () => {
@@ -186,9 +185,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });   
     }
 
-    if (loginPassword)
+    if (loginPassword && regPassword)
     {
         loginPassword.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                doLogin();
+            }
+        });
+        regPassword.addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
                 doLogin();
             }
