@@ -101,7 +101,7 @@ function doDeleteUser() {
 			if (this.readyState == 4 && this.status == 200) 
 			{
                 document.cookie = "firstName= ,lastName= ,userId= ,email= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-                document.window.href="index.html";
+                window.location.href="index.html";
 			}
 		};
 		xhr.send(jsonPayload);
