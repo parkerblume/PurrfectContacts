@@ -100,8 +100,11 @@ function doDeleteUser() {
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-                document.cookie = "firstName= ,lastName= ,userId= ,email= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-                window.location.href="index.html";
+                if (window.confirm("Are you sure you want to delete your account?"))
+                {
+                    document.cookie = "firstName= ,lastName= ,userId= ,email= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+                    window.location.href="index.html";
+                }
 			}
 		};
 		xhr.send(jsonPayload);
