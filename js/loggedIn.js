@@ -1,3 +1,6 @@
+const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
+
+
 firstName = "";
 lastName = "";
 profileImage = "";
@@ -96,6 +99,60 @@ function readCookie()
 	{
 		//window.location.href = "index.html"; UNCOMMENT BEFORE FINISH PROJECT. (force redirect to index if logged out)
 	}
+}
+
+function getRandomImage()
+{
+    let randNum = Math.floor(Math.random() * (3) + 1)
+    return "defaultCat" + randNum + ".png";
+}
+
+function createTableRow()
+{
+    var row = document.createElement("tr");
+
+    // may have to figure out another way to add an image, not sure if it's this that is not working
+    // or its because this link only works on the actual server.
+    let image = baseImagePath + getRandomImage();
+    let userPhoto = `<td><img scr="${image}" /></td>`;
+
+    // all NEW rows will follow this format
+    const form = [
+        userPhoto,
+        '<input type="text" placeholder="First Name" required>',
+        '<input type="text" placeholder="Last Name" required>',
+        '<input type="text" placeholder="name@email.com" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>',
+        '<input type="text" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">',
+        '<input type="text">',
+        '<button type="button" class="check" onclick="addContact"><ion-icon name="checkmark-outline"></ion-icon></button>'
+    ];
+
+    // for each field, we make a td tag, we can probably further set properties
+    // such as for the image we may want the width to be smaller,
+    // vs the field names, we may want to be larger.
+    // We can stylize the columns in the header on the html and maybe apply it here,
+    // such as a counter so we know 1 - image, 2 - firstName, etc.
+    for (let field of form)
+    {
+        var item = document.createElement("td");
+        item.style="margin:0px; width:50px; height:10px;"
+        item.innerHTML = field;
+        row.appendChild(item);
+    }
+
+    // the main question is, once they hit that checkmark, how do we switch that specific row to being the edit and delete buttons?
+    // hmmmmmm.
+
+    return row;
+}
+
+function addContactForm() 
+{
+    // this appends a row to the table body, so that way if there is more rows
+    // it won't remove them by messing with the innerHTML property.
+    var tbody = document.getElementById("tBody");
+    var newRow = createTableRow();
+    tbody.appendChild(newRow);
 }
 
 // Contact Table - CRUD operations
