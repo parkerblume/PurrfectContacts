@@ -36,7 +36,7 @@
 					<tr>
 						<div>
 							<th><div>
-								<button class ="add_new test" onclick="showTable()"><ion-icon name="person-add-outline"></ion-icon></button></button>
+								<button class ="add_new" onclick="showTable()"><ion-icon name="person-add-outline"></ion-icon></button></button>
 							</div></th>
 							<th>First name</th>
 							<th>Last name</th>
@@ -73,6 +73,7 @@
 						<button class = "table_button"onclick="delete_row()"> <ion-icon name="create-outline"></ion-icon></button></button></td>
 				</tr>
 					<tr id="addRow">
+					<form action="">
 					  <td></td>
 					  <td><input type="text" id="contactTextFirst" placeholder="First Name" required></td>
 					  <td><input type="text" id="contactTextLast" placeholder="Last Name" required></td>
@@ -82,6 +83,7 @@
 						pattern="^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$"></td>
 					  <td></td>
 					  <td>	<button type="button" class="check" onclick="addContact();"><ion-icon name="checkmark-outline"></ion-icon></button>
+					  </form>
 					</tr>
 				</tbody>
 			</table>

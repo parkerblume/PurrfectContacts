@@ -46,7 +46,8 @@ body{
   }
 
   tr{
-    border: 2px solid black !important; 
+    border-bottom: 1px solid black !important; 
+    display: flex;
   }
 
   th{
@@ -89,7 +90,6 @@ body{
 .add_new{
   position: relative;
   display: flex;
-  margin-right: 1100px;
   height: 50px;
   width: 50px;  
   border-radius: 100%;
@@ -99,6 +99,7 @@ body{
   font-size: 25px;
   color: white;
   border: 2px solid black;
+  padding:0 !important;
 }
 
 #addRow{
@@ -116,12 +117,6 @@ body{
 .check:hover, .table_button:hover{
   color: white;
   font-size: 26px;
-}
-
-.test {
-  padding:0 !important;
-  justify-content: center;
-  margin:0;
 }
 
 .add_new:hover{
