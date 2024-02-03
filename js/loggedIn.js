@@ -1,10 +1,3 @@
-
-
-firstName = "";
-lastName = "";
-profileImage = "";
-userId = "";
-
 function doLogout()
 {
 	userId = 0;
@@ -13,7 +6,6 @@ function doLogout()
 	document.cookie = "firstName= ,lastName= ,userId= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location.href = "index.html";
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
     readCookie();
