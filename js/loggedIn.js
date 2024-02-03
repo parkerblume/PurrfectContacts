@@ -1,6 +1,3 @@
-const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
-const urlBase = 'https://fakewhitepages.com/LAMPAPI';
-const extension = 'php';
 
 
 firstName = "";
@@ -113,8 +110,6 @@ function createTableRow()
 {
     var row = document.createElement("tr");
 
-    // may have to figure out another way to add an image, not sure if it's this that is not working
-    // or its because this link only works on the actual server.
     let image = baseImagePath + getRandomImage();
     let userPhoto = `<td><img src="${image}" /></td>`;
 
@@ -125,7 +120,7 @@ function createTableRow()
         '<input type="text" style="width:100%" placeholder="Last Name" required>',
         '<input type="text" style="width:100%" placeholder="name@email.com" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>',
         '<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">',
-        '<button type="button" class="check" onclick="addContact(this)"><ion-icon name="checkmark-outline"></ion-icon></button>'
+        '<button type="button" class="check" onclick=""><ion-icon name="checkmark-outline"></ion-icon></button>'
     ];
 
     // for each field, we make a td tag, we can probably further set properties
@@ -165,6 +160,22 @@ function createTableRow()
     // the main question is, once they hit that checkmark, how do we switch that specific row to being the edit and delete buttons?
     // hmmmmmm.
     //row.lastElementChild.querySelector('button.check').addEventListener('click', addContact);
+    let check = row.querySelector('button.check');
+    let fieldsFilled = false;
+    let eventListener = function () {
+        let firstName = row.querySelector('input[placeholder="First Name"]');
+        let lastName = row.querySelector('input[placeholder="Last Name"]');
+        let email = row.querySelector('input[placeholder="name@email.com"]');
+        let number = row.querySelector('input[placeholder="XXX-XXX-XXXX"]');
+
+        fieldsFilled = validAddContact(firstName, lastName, number, email);
+        //check.disabled = !fieldsFilled // the opposite for how disabled fields work
+        if (fieldsFilled) {
+            addContact(this);
+        }
+    }
+
+    check.addEventListener('click', eventListener);
 
 
     return row;
@@ -218,6 +229,12 @@ function addContact(button)
     let lastname = row.querySelector('[placeholder="Last Name"]').value;
     let phonenumber = row.querySelector('[placeholder="XXX-XXX-XXXX"]').value;
     let emailaddress = row.querySelector('[placeholder="name@email.com"]').value;
+
+    // change input fields back to regular
+    row.querySelectorAll('input[required]').forEach(input => {
+        if (input.value)
+        input.style.borderColor = '';
+    });
 
     if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
         console.log("INVALID FIRST NAME, LAST NAME, PHONE, OR EMAIL ENTERED");
@@ -473,30 +490,34 @@ function validAddContact(firstName, lastName, phone, email) {
 
     var fNameErr = lNameErr = phoneErr = emailErr = true;
 
-    if (firstName == "") {
+    if (firstName.value == "") {
         console.log("FIRST NAME IS BLANK");
+        firstName.style.borderColor = "red";
     }
     else {
         console.log("first name IS VALID");
         fNameErr = false;
     }
 
-    if (lastName == "") {
+    if (lastName.value == "") {
         console.log("LAST NAME IS BLANK");
+        lastName.style.borderColor = "red";
     }
     else {
         console.log("LAST name IS VALID");
         lNameErr = false;
     }
 
-    if (phone == "") {
+    if (phone.value == "") {
         console.log("PHONE IS BLANK");
+        phone.style.borderColor = "red";
     }
     else {
         var regex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
 
-        if (regex.test(phone) == false) {
+        if (regex.test(phone.value) == false) {
             console.log("PHONE IS NOT VALID");
+            phone.style.borderColor = "red";
         }
 
         else {
@@ -505,14 +526,16 @@ function validAddContact(firstName, lastName, phone, email) {
         }
     }
 
-    if (email == "") {
+    if (email.value == "") {
         console.log("EMAIL IS BLANK");
+        email.style.borderColor = "red";
     }
     else {
         var regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
-        if (regex.test(email) == false) {
+        if (regex.test(email.value) == false) {
             console.log("EMAIL IS NOT VALID");
+            email.style.borderColor = "red";
         }
 
         else {
