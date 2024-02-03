@@ -1,4 +1,6 @@
 const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
+const urlBase = 'https://fakewhitepages.com/LAMPAPI';
+const extension = 'php';
 
 
 firstName = "";
@@ -114,7 +116,7 @@ function createTableRow()
     // may have to figure out another way to add an image, not sure if it's this that is not working
     // or its because this link only works on the actual server.
     let image = baseImagePath + getRandomImage();
-    let userPhoto = `<td><img scr="${image}" /></td>`;
+    let userPhoto = `<td><img src="${image}" /></td>`;
 
     // all NEW rows will follow this format
     const form = [
@@ -162,6 +164,8 @@ function createTableRow()
 
     // the main question is, once they hit that checkmark, how do we switch that specific row to being the edit and delete buttons?
     // hmmmmmm.
+    //row.lastElementChild.querySelector('button.check').addEventListener('click', addContact);
+
 
     return row;
 }
@@ -463,4 +467,66 @@ function searchContacts() {
             }
         }
     }
+}
+
+function validAddContact(firstName, lastName, phone, email) {
+
+    var fNameErr = lNameErr = phoneErr = emailErr = true;
+
+    if (firstName == "") {
+        console.log("FIRST NAME IS BLANK");
+    }
+    else {
+        console.log("first name IS VALID");
+        fNameErr = false;
+    }
+
+    if (lastName == "") {
+        console.log("LAST NAME IS BLANK");
+    }
+    else {
+        console.log("LAST name IS VALID");
+        lNameErr = false;
+    }
+
+    if (phone == "") {
+        console.log("PHONE IS BLANK");
+    }
+    else {
+        var regex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
+
+        if (regex.test(phone) == false) {
+            console.log("PHONE IS NOT VALID");
+        }
+
+        else {
+            console.log("PHONE IS VALID");
+            phoneErr = false;
+        }
+    }
+
+    if (email == "") {
+        console.log("EMAIL IS BLANK");
+    }
+    else {
+        var regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+        if (regex.test(email) == false) {
+            console.log("EMAIL IS NOT VALID");
+        }
+
+        else {
+
+            console.log("EMAIL IS VALID");
+            emailErr = false;
+        }
+    }
+
+    if ((phoneErr || emailErr || fNameErr || lNameErr) == true) {
+        return false;
+
+    }
+
+    return true;
+
 }
