@@ -119,12 +119,11 @@ function createTableRow()
     // all NEW rows will follow this format
     const form = [
         userPhoto,
-        '<input type="text" placeholder="First Name" required>',
-        '<input type="text" placeholder="Last Name" required>',
-        '<input type="text" placeholder="name@email.com" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>',
-        '<input type="text" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">',
-        '<input type="text">',
-        '<button type="button" class="check" onclick="addContact"><ion-icon name="checkmark-outline"></ion-icon></button>'
+        '<input type="text" style="width:100%" placeholder="First Name" required>',
+        '<input type="text" style="width:100%" placeholder="Last Name" required>',
+        '<input type="text" style="width:100%" placeholder="name@email.com" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>',
+        '<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">',
+        '<button type="button" class="check" onclick="addContact(this)"><ion-icon name="checkmark-outline"></ion-icon></button>'
     ];
 
     // for each field, we make a td tag, we can probably further set properties
@@ -132,10 +131,31 @@ function createTableRow()
     // vs the field names, we may want to be larger.
     // We can stylize the columns in the header on the html and maybe apply it here,
     // such as a counter so we know 1 - image, 2 - firstName, etc.
+    let counter = 0;
     for (let field of form)
     {
         var item = document.createElement("td");
-        item.style="margin:0px; width:50px; height:10px;"
+        switch (counter++)
+        {
+            // image field
+            case 0:
+                item.style="width:8%; height:10px; padding:0; padding-left:15px;";
+                break;
+            // name fields
+            case 1:
+            case 2:
+                item.style="width:20%; height:10px;";
+                break;
+            // email/phone #
+            case 3:
+            case 4:
+                item.style="width:25%; height:10px;";
+                break;
+            // button field
+            case 5:
+                item.style="width:100px; height:50px; padding:0;";
+                break;
+        }
         item.innerHTML = field;
         row.appendChild(item);
     }
@@ -155,14 +175,45 @@ function addContactForm()
     tbody.appendChild(newRow);
 }
 
-// Contact Table - CRUD operations
-function addContact()
+function changeRowButtons(row)
 {
-	
-    let firstname = document.getElementById("contactTextFirst").value;
-    let lastname = document.getElementById("contactTextLast").value;
-    let phonenumber = document.getElementById("contactTextNumber").value;
-    let emailaddress = document.getElementById("contactTextEmail").value;
+    let td = row.lastElementChild;
+
+    let container = document.createElement('div');
+    container.style = "display: flex;";
+
+    // change check to edit button
+    let button = document.querySelector('.check');
+    button.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
+    button.classList.remove('check');
+    button.classList.add('table_button');
+    button.addEventListener('click', function() { edit_row(row); });
+
+    // add delete button
+    let delButton = document.createElement('button');
+    delButton.classList.add('table_button');
+    delButton.innerHTML = '<ion-icon name="trash-outline"></ion-icon>'
+    delButton.addEventListener('click', function() { delete_row(row); });
+
+    // append it to the td tag with the edit button
+    container.appendChild(button);
+    container.appendChild(delButton);
+
+    td.innerHTML = "";
+    td.appendChild(container); 
+}
+
+// Contact Table - CRUD operations
+function addContact(button)
+{
+	// change button from checkmark, to edit/delete icons
+    let row = button.parentNode.parentNode; // grabs the specific row
+    changeRowButtons(row);
+
+    let firstname = row.querySelector('[placeholder="First Name"]').value;
+    let lastname = row.querySelector('[placeholder="Last Name"]').value;
+    let phonenumber = row.querySelector('[placeholder="XXX-XXX-XXXX"]').value;
+    let emailaddress = row.querySelector('[placeholder="name@email.com"]').value;
 
     if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
         console.log("INVALID FIRST NAME, LAST NAME, PHONE, OR EMAIL ENTERED");
