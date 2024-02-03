@@ -1,6 +1,6 @@
 const urlBase = 'https://fakewhitepages.com/LAMPAPI';
 const extension = 'php';
-const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
+const baseImagePath = '/images/User%20Images/';
 
 let userId = 0;
 let firstName = "";

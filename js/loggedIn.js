@@ -102,7 +102,7 @@ function readCookie()
 
 function getRandomImage()
 {
-    let randNum = Math.floor(Math.random() * (3) + 1)
+    let randNum = Math.floor(Math.random() * (11) + 1)
     return "defaultCat" + randNum + ".png";
 }
 
@@ -143,7 +143,7 @@ function createTableRow()
             case 2:
                 item.style="width:20%; height:10px;";
                 break;
-            // email/phone #
+            // email/phone 
             case 3:
             case 4:
                 item.style="width:25%; height:10px;";
@@ -157,9 +157,6 @@ function createTableRow()
         row.appendChild(item);
     }
 
-    // the main question is, once they hit that checkmark, how do we switch that specific row to being the edit and delete buttons?
-    // hmmmmmm.
-    //row.lastElementChild.querySelector('button.check').addEventListener('click', addContact);
     let check = row.querySelector('button.check');
     let fieldsFilled = false;
     let eventListener = function () {
@@ -169,7 +166,6 @@ function createTableRow()
         let number = row.querySelector('input[placeholder="XXX-XXX-XXXX"]');
 
         fieldsFilled = validAddContact(firstName, lastName, number, email);
-        //check.disabled = !fieldsFilled // the opposite for how disabled fields work
         if (fieldsFilled) {
             addContact(this);
         }
@@ -193,29 +189,44 @@ function addContactForm()
 function changeRowButtons(row)
 {
     let td = row.lastElementChild;
+    let button = "";
 
-    let container = document.createElement('div');
-    container.style = "display: flex;";
-
-    // change check to edit button
-    let button = document.querySelector('.check');
-    button.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
-    button.classList.remove('check');
-    button.classList.add('table_button');
-    button.addEventListener('click', function() { edit_row(row); });
-
-    // add delete button
-    let delButton = document.createElement('button');
-    delButton.classList.add('table_button');
-    delButton.innerHTML = '<ion-icon name="trash-outline"></ion-icon>'
-    delButton.addEventListener('click', function() { delete_row(row); });
-
-    // append it to the td tag with the edit button
-    container.appendChild(button);
-    container.appendChild(delButton);
-
-    td.innerHTML = "";
-    td.appendChild(container); 
+    // if they confirm their changes
+    if ((button = document.querySelector('.check') != null))
+    {
+        let container = document.createElement('div');
+        container.style = "display: flex;";
+    
+        // change check to edit button
+        button = document.querySelector('.check');
+        button.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
+        button.classList.remove('check');
+        button.classList.add('table_button');
+        button.addEventListener('click', function() { edit_row(row); });
+    
+        // add delete button
+        let delButton = document.createElement('button');
+        delButton.classList.add('table_button');
+        delButton.innerHTML = '<ion-icon name="trash-outline"></ion-icon>'
+        delButton.addEventListener('click', function() { delete_row(row); });
+    
+        // disable input fields
+        row.querySelectorAll('input[required]').forEach(input => {
+            input.readOnly = true;
+        });
+    
+        // append it to the td tag with the edit button
+        container.appendChild(button);
+        container.appendChild(delButton);
+    
+        td.innerHTML = "";
+        td.appendChild(container); 
+    }
+    else
+    {
+        // re add check button
+        // give check button onlick to be updateContact(this) instead of addContact(this).
+    }
 }
 
 // Contact Table - CRUD operations
@@ -326,6 +337,7 @@ function loadContacts() {
 
 function edit_row(id) 
 {
+    
     document.getElementById("edit_button" + id).style.display = "none";
     document.getElementById("save_button" + id).style.display = "inline-block";
 
@@ -430,33 +442,6 @@ function delete_row(no)
 
     };
 
-}
-
-function searchContacts() {
-    const content = document.getElementById("searchText");
-    const selections = content.value.toUpperCase().split(' ');
-    const table = document.getElementById("contacts");
-    const tr = table.getElementsByTagName("tr");// Table Row
-
-    for (let i = 0; i < tr.length; i++) {
-        const td_fn = tr[i].getElementsByTagName("td")[0];// Table Data: First Name
-        const td_ln = tr[i].getElementsByTagName("td")[1];// Table Data: Last Name
-
-        if (td_fn && td_ln) {
-            const txtValue_fn = td_fn.textContent || td_fn.innerText;
-            const txtValue_ln = td_ln.textContent || td_ln.innerText;
-            tr[i].style.display = "none";
-
-            for (selection of selections) {
-                if (txtValue_fn.toUpperCase().indexOf(selection) > -1) {
-                    tr[i].style.display = "";
-                }
-                if (txtValue_ln.toUpperCase().indexOf(selection) > -1) {
-                    tr[i].style.display = "";
-                }
-            }
-        }
-    }
 }
 
 function searchContacts() {
