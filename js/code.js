@@ -149,7 +149,7 @@ function doRegister() {
 
 function getRandomImage()
 {
-    let randNum = Math.floor(Math.random() * (3) + 1)
+    let randNum = Math.floor(Math.random() * (11) + 1)
     return "defaultCat" + randNum + ".png";
 }
 
