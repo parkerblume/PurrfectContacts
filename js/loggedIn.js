@@ -119,7 +119,6 @@ function createTableRow(jsonObject)
             lastNameItem,
             emailItem,
             phoneItem,
-            '<button type="button" class="check" onclick=""><ion-icon name="checkmark-outline"></ion-icon></button>'
         ];
 
     }
@@ -171,8 +170,33 @@ function createTableRow(jsonObject)
 
     if (jsonObject != null)
     {
-        // change the already added check button to edit/delete buttons
-        changeRowButtons(row);
+        // add edit/delete buttons
+        let td = document.createElement("td");
+        let container = document.createElement('div');
+        container.style = "display: flex;";
+    
+        // change check to edit button
+        button = document.createElement('button');
+        button.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
+        button.classList.add('table_button');
+        button.addEventListener('click', function() { edit_row(row); });
+    
+        // add delete button
+        let delButton = document.createElement('button');
+        delButton.classList.add('table_button');
+        delButton.innerHTML = '<ion-icon name="trash-outline"></ion-icon>'
+        delButton.addEventListener('click', function() { delete_row(row); });
+    
+        // disable input fields
+        row.querySelectorAll('input[required]').forEach(input => {
+            input.readOnly = true;
+        });
+    
+        // append it to the td tag with the edit button
+        container.appendChild(button);
+        container.appendChild(delButton);
+
+        td.appendChild(container); 
         row.setAttribute("data-contact-id", jsonObject.ContactID); // allows us to pull contact ID later when edits are made.
     }
     else
