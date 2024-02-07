@@ -197,6 +197,7 @@ function createTableRow(jsonObject)
         container.appendChild(delButton);
 
         td.appendChild(container); 
+        td.style = "width:100px; height:50px; padding:0;";
         row.setAttribute("data-contact-id", jsonObject.ContactID); // allows us to pull contact ID later when edits are made.
     }
     else
