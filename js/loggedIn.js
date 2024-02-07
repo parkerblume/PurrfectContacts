@@ -463,46 +463,35 @@ function updateContact(button)
 
 function delete_row(row) 
 {
-    let namef_val = document.getElementById("first_Name" + no).innerText;
-    let namel_val = document.getElementById("last_Name" + no).innerText;
-    nameOne = namef_val.substring(0, namef_val.length);
-    nameTwo = namel_val.substring(0, namel_val.length);
-    let check = confirm('Confirm deletion of contact: ' + nameOne + ' ' + nameTwo);
-    if (check === true) 
-	{
-        document.getElementById("row" + no + "").outerHTML = "";
-        let tmp = 
-		{
-            firstName: nameOne,
-            lastName: nameTwo,
-            userId: userId
-        };
+    let firstname = row.querySelector('[placeholder="First Name"]').value;
+    let lastname = row.querySelector('[placeholder="Last Name"]').value;
 
-        let jsonPayload = JSON.stringify(tmp);
+    let name = firstname + " " + lastname;
+
+    if (confirm("Are you sure you want to delete the contact for " + name + "?")) {
+        let jsonPayload = JSON.stringify({
+            name: name,
+            userId: userId // Assuming userId is defined elsewhere in your code
+        });
 
         let url = urlBase + '/DeleteContact.' + extension;
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        try {
-            xhr.onreadystatechange = function () 
-			{
-                if (this.readyState == 4 && this.status == 200) 
-				{
 
-                    console.log("Contact has been deleted");
-                    loadContacts();
+        try {
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("Contact has been deleted!");
+                    // You can perform any additional actions after successful deletion here
                 }
             };
             xhr.send(jsonPayload);
-        } 
-		catch (err) 
-		{
+        } catch (err) {
             console.log(err.message);
         }
-
-    };
+    }
 
 }
 
