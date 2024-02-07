@@ -5,16 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
 function updateUserDetails()
 {
     readCookie();
+
     // populate profile settings fields
     const fName = document.getElementById("displayFirstName");
     const lName = document.getElementById("displayLastName");
     const eDisplay = document.getElementById("displayEmail");
-    const userImg = document.getElementById("displayPicture");
-    
+	const imgDisplay = document.getElementById("displayPicture");
+
+    imgDisplay.src = profileImage;
     fName.value = firstName;
     lName.value = lastName;
     eDisplay.value = email;
-    userImg.src = profileImage;
 }
 
 function doUploadPhoto()
