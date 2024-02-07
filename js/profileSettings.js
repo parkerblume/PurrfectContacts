@@ -20,7 +20,9 @@ function updateUserDetails()
 
 function doUploadPhoto()
 {
-    // uses something to upload user photo
+    // Did not get the time to figure out how to allow a user to 
+    // upload a file (photo) onto the digital cloud droplet.
+    window.alert("Pay me $40 to upload a photo.")
 }
 
 function doUpdateUser() {

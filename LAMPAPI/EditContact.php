@@ -2,10 +2,10 @@
     $inData = getRequestInfo();
 
     $name = $inData["name"];
-    $phone = $inData["phone"];
+    $phone = $inData["phoneNumber"];
     $email = $inData["email"];
     $userId = $inData["userId"];
-    $id = $inData["id"];
+    $id = $inData["contactID"];
 
     $conn = new mysqli("localhost", "Admins", "COP4331", "COP4331");
     if ($conn->connect_error) {
@@ -15,10 +15,19 @@
     {
         $stmt = $conn->prepare("UPDATE Contacts SET Name=?, Phone=?, Email=? WHERE UserID=? AND ID=?");
         $stmt->bind_param("sssii", $name, $phone, $email, $userId, $id);
-        $stmt->execute();
-        $stmt->close();
-        $conn->close();
-        returnWithError("");
+        if ($stmt->execute())
+        {
+            $stmt->close();
+            $conn->close();
+            http_response_code(200);
+            responseWithError("");
+        }
+        else
+        {
+            $stmt->close();
+            $conn->close();
+            returnWithError("Could not update contact");
+        }
     }
 
     function getRequestInfo()
