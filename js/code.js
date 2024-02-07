@@ -1,6 +1,6 @@
 const urlBase = 'https://fakewhitepages.com/LAMPAPI';
 const extension = 'php';
-const baseImagePath = 'https://fakewhitepages.com/images/User%20Images/';
+const baseImagePath = '/images/User%20Images/';
 
 let userId = 0;
 let firstName = "";
@@ -153,7 +153,7 @@ function doRegister() {
 
 function getRandomImage()
 {
-    let randNum = Math.floor(Math.random() * (3) + 1)
+    let randNum = Math.floor(Math.random() * (11) + 1)
     return "defaultCat" + randNum + ".png";
 }
 

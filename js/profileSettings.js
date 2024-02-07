@@ -1,11 +1,3 @@
-const userImagePath = 'https://fakewhitepages.com/images/User%20Images/';
-
-//let first = "";
-//let lastName = "";
-let email="";
-//let profileImage = "";
-//let userId = "";
-
 document.addEventListener('DOMContentLoaded', function () {
     updateUserDetails();
 });
