@@ -1,16 +1,12 @@
-firstName = "";
-lastName = "";
-email="";
-profileImage = "";
-userId = "";
-
 document.addEventListener('DOMContentLoaded', function () {
     readCookie();
     // populate profile settings fields
     const fName = document.getElementById("displayFirstName");
     const lName = document.getElementById("displayLastName");
     const eDisplay = document.getElementById("displayEmail");
-    
+	const imgDisplay = document.getElementById("user-picture");
+
+    imgDisplay.src = profileImage;
     fName.value = firstName;
     lName.value = lastName;
     eDisplay.value = email;

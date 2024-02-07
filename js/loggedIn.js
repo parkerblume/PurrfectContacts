@@ -232,6 +232,7 @@ function addContact(button)
     let lastname = row.querySelector('[placeholder="Last Name"]').value;
     let phonenumber = row.querySelector('[placeholder="XXX-XXX-XXXX"]').value;
     let emailaddress = row.querySelector('[placeholder="name@email.com"]').value;
+    let contactPic = row.querySelector('td:first-child img').getAttribute('src');
 
     // change input fields back to regular
     row.querySelectorAll('input[required]').forEach(input => {
@@ -248,7 +249,8 @@ function addContact(button)
         lastName: lastname,
         phoneNumber: phonenumber,
         emailAddress: emailaddress,
-        userId: userId
+        userId: userId,
+        contactImagePath: contactPic
     };
 
 	let jsonPayload = JSON.stringify(tmp);
