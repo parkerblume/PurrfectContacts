@@ -16,6 +16,17 @@ body{
 
 /*Contact CSS */
 
+input[type=text] {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #3E7CB1;
+	background: rgba(#3E7CB1, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #3E7CB1;
+}
+
 .content-contacts
 {
   padding-top: 10px;
