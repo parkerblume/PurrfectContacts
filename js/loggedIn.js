@@ -471,7 +471,7 @@ function delete_row(row)
     if (confirm("Are you sure you want to delete the contact for " + name + "?")) {
         let jsonPayload = JSON.stringify({
             name: name,
-            userId: userId // Assuming userId is defined elsewhere in your code
+            userId: userId 
         });
 
         let url = urlBase + '/DeleteContact.' + extension;
@@ -484,7 +484,6 @@ function delete_row(row)
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log("Contact has been deleted!");
-                    // You can perform any additional actions after successful deletion here
                 }
             };
             xhr.send(jsonPayload);
