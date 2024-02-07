@@ -45,7 +45,6 @@ header {
 
 .content-container {
 	width: 100%;
-	overflow:scroll;
 	display: inherit;
 	flex-direction: column;
 	align-items: center;
