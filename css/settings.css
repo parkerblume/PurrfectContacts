@@ -14,7 +14,7 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color) !important;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -31,8 +31,8 @@ body {
 }
 
 .content-div {
-    height: 650px;
-	width: 550px;
+    height: 40rem;
+	width: 50%x;
     margin-top:50px;
 	justify-content: center;
 	align-items: center;
@@ -62,7 +62,7 @@ body {
 .user-display p {
     font-size: 10px;
     color:gray;
-    margin-top: 10px;
+    margin-top: 25px;
     margin-bottom: 8px;
 }
 
@@ -71,8 +71,8 @@ body {
 }
 
 .user-display img {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -81,6 +81,14 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1 0 0;
+}
+
+.toggle-password {
+    position: relative;
+    top: -19px;
+    right: -24rem;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
 .name-display {
@@ -136,7 +144,6 @@ body {
     width:100% !important;
     color: red;
     font-size:17px;
-    
 }
 .cat-container {
     display: flex;
@@ -146,9 +153,9 @@ body {
 
 .cat-container img {
     position: relative;
-    top: -55px;
-    height:525px;
-    width: 525px;
+    top: -45px;
+    height:375px;
+    width: 375px;
 }
 
 .content-div h3 {

@@ -8,10 +8,6 @@ let lastName = "";
 let email = "";
 let profileImage = "";
 
-let register = document.getElementById("registerSelect");
-let login = document.getElementById("loginSelect");
-let slider = document.getElementById("slider");
-
 function doLogin()
 {
 	userId = 0;
@@ -46,7 +42,12 @@ function doLogin()
             console.log(this.responseText);
             console.log(this.status);
             console.log(this.responseType);
-			if (this.readyState == 4 && this.status == 200) 
+            if (this.status === 409)
+            {
+                loginResult.innerHTML = "User/Password combination incorrect";
+                return;
+            }
+            else if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
@@ -68,12 +69,16 @@ function doLogin()
                 loginResult.innerHTML = "Login successful!";
 				window.location.href = "contacts.html";
 			}
+            else
+            {
+                loginResult.innerHTML = "Login failed!";
+            }
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		loginResult.innerHTML = err.message;
 	}
 
 }
@@ -136,6 +141,7 @@ function doRegister() {
                 profileImage = jsonObject.profilePicPath;
 
                 saveCookie();
+                window.location.href = "contacts.html";
             }
         };
 
@@ -143,8 +149,6 @@ function doRegister() {
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
     }
-    // fix this later.
-    //showLogin();
 }
 
 function getRandomImage()
@@ -164,6 +168,12 @@ function togglePasswordVisibility(check) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    let register = document.getElementById("registerSelect");
+    let login = document.getElementById("loginSelect");
+    let slider = document.getElementById("slider");
+    let loginPassword = document.getElementById("loginPassword");
+    let regPassword = document.getElementById("password");
+
     if (register && login && slider)
     {
         register.addEventListener("click", () => {
@@ -173,6 +183,20 @@ document.addEventListener('DOMContentLoaded', function () {
         login.addEventListener("click", () => {
             slider.classList.remove("moveslider");
         });   
+    }
+
+    if (loginPassword && regPassword)
+    {
+        loginPassword.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                doLogin();
+            }
+        });
+        regPassword.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                doLogin();
+            }
+        });
     }
 
     const navbarContainer = document.getElementById("navbar");

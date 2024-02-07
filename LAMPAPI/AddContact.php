@@ -4,7 +4,7 @@
 	$name = $inData["name"];
 	$phone = $inData["phoneNumber"];
 	$email = $inData["emailAddress"];
-	$userID = $inData["userID"];
+	$userID = $inData["userId"];
 	$contactImagePath = $inData["contactImagePath"];
 
 

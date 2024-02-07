@@ -45,10 +45,12 @@ header {
 
 .content-container {
 	width: 100%;
+	overflow:hidden;
 	display: inherit;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	margin-top:20px;
 	margin-top:20px;
 }
 
@@ -95,7 +97,7 @@ header {
 	font-size: 22px;
 	border: none;
 	cursor: pointer;
-	margin-top:4%
+	margin-top:-10px;
   }
 
 .login,
@@ -156,22 +158,22 @@ header {
 	border-radius: 50px;
 	padding-left: 30px;
 	font-size: 18px;
-	margin-top:2%;
-	margin-bottom:2%;
+	margin-top:1%;
+	margin-bottom:1%;
 }
 
 .toggle-password-login {
-  position: absolute;
-  top: 50%;
-  right: 15px;
+  position: relative;
+  top: -40px;
+  right: -180px;
   transform: translateY(-50%);
   cursor: pointer;
 }
 
 .toggle-password-register {
-  position: absolute;
-  top: 75%;
-  right: 15px;
+  position: relative;
+  top: -40px;
+  right: -180px;
   transform: translateY(-50%);
   cursor: pointer;
 }
@@ -195,7 +197,7 @@ header {
 #signupForm {
   position: relative;
   left: 500px;
-  top: -295px;
+  top: -265px;
 }
 
 

@@ -3,7 +3,7 @@ function doLogout()
 	userId = 0;
 	firstName = "";
 	lastName = "";
-	document.cookie = "firstName= ,lastName= ,userId= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	document.cookie = "firstName= ,lastName= ,userId= ,email= ,img= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location.href = "index.html";
 }
 
@@ -55,7 +55,7 @@ function setupNavbar()
 
     // add user elements to profile block in navbar
     const user = document.getElementById('userName');
-    user.textContent = `   ${firstName} ⮛`;
+    user.textContent = `${firstName} ⮛`;
     document.getElementById("user-picture").src = profileImage;
 }
 
@@ -64,7 +64,7 @@ function readCookie()
 	userId = -1;
 	let data = document.cookie;
 	let splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
+	for(let i = 0; i < splits.length; i++) 
 	{
 		let thisOne = splits[i].trim();
 		let tokens = thisOne.split("=");
@@ -98,32 +98,51 @@ function getRandomImage()
     return "defaultCat" + randNum + ".png";
 }
 
-function createTableRow()
+function createTableRow(jsonObject)
 {
-    var row = document.createElement("tr");
 
-    let image = baseImagePath + getRandomImage();
-    let userPhoto = `<td><img src="${image}" /></td>`;
+    let form = [];
+    let row = document.createElement("tr");
+    if (jsonObject != null)
+    {
+        let userPhoto = `<td><img src="${jsonObject.ContactImagePath}"></img></td>`;
+        let name = jsonObject.Name.split(" ");
 
-    // all NEW rows will follow this format
-    const form = [
-        userPhoto,
-        '<input type="text" style="width:100%" placeholder="First Name" required>',
-        '<input type="text" style="width:100%" placeholder="Last Name" required>',
-        '<input type="text" style="width:100%" placeholder="name@email.com" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>',
-        '<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">',
-        '<button type="button" class="check" onclick=""><ion-icon name="checkmark-outline"></ion-icon></button>'
-    ];
+        let firstNameItem = `<input type="text" style="width:100%" placeholder="First Name" value="${name[0]}" required>`;
+        let lastNameItem = `<input type="text" style="width:100%" placeholder="Last Name" value="${name[1]}" required>`;
+        let emailItem = `<input type="text" style="width:100%" placeholder="name@email.com" value="${jsonObject.Email}" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>`;
+        let phoneItem = `<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" value="${jsonObject.Phone}" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">`;
 
-    // for each field, we make a td tag, we can probably further set properties
-    // such as for the image we may want the width to be smaller,
-    // vs the field names, we may want to be larger.
-    // We can stylize the columns in the header on the html and maybe apply it here,
-    // such as a counter so we know 1 - image, 2 - firstName, etc.
+        form = [
+            userPhoto,
+            firstNameItem,
+            lastNameItem,
+            emailItem,
+            phoneItem,
+        ];
+
+    }
+    else
+    {
+        let image = baseImagePath + getRandomImage();
+        let userPhoto = `<td><img src="${image}"></img></td>`;
+
+        // all NEW rows will follow this format
+        form = [
+            userPhoto,
+            '<input type="text" style="width:100%" placeholder="First Name" required>',
+            '<input type="text" style="width:100%" placeholder="Last Name" required>',
+            '<input type="text" style="width:100%" placeholder="name@email.com" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>',
+            '<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$">',
+            '<button type="button" class="check" onclick=""><ion-icon name="checkmark-outline"></ion-icon></button>'
+        ];
+    }
+
+    // for each field, we make a td tag, and set styling properties
     let counter = 0;
     for (let field of form)
     {
-        var item = document.createElement("td");
+        let item = document.createElement("td");
         switch (counter++)
         {
             // image field
@@ -149,21 +168,58 @@ function createTableRow()
         row.appendChild(item);
     }
 
-    let check = row.querySelector('button.check');
-    let fieldsFilled = false;
-    let eventListener = function () {
-        let firstName = row.querySelector('input[placeholder="First Name"]');
-        let lastName = row.querySelector('input[placeholder="Last Name"]');
-        let email = row.querySelector('input[placeholder="name@email.com"]');
-        let number = row.querySelector('input[placeholder="XXX-XXX-XXXX"]');
+    if (jsonObject != null)
+    {
+        // add edit/delete buttons
+        let td = document.createElement("td");
+        let container = document.createElement('div');
+        container.style = "display: flex;";
+    
+        // change check to edit button
+        button = document.createElement('button');
+        button.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
+        button.classList.add('table_button');
+        button.addEventListener('click', function() { edit_row(row); });
+    
+        // add delete button
+        let delButton = document.createElement('button');
+        delButton.classList.add('table_button');
+        delButton.innerHTML = '<ion-icon name="trash-outline"></ion-icon>'
+        delButton.addEventListener('click', function() { delete_row(row); });
+    
+        // disable input fields
+        row.querySelectorAll('input[required]').forEach(input => {
+            input.readOnly = true;
+        });
+    
+        // append it to the td tag with the edit button
+        container.appendChild(button);
+        container.appendChild(delButton);
 
-        fieldsFilled = validAddContact(firstName, lastName, number, email);
-        if (fieldsFilled) {
-            addContact(this);
-        }
+        td.appendChild(container); 
+        td.style = "width:100px; height:50px; padding:0;";
+        row.appendChild(td);
+        row.setAttribute("data-contact-id", jsonObject.ContactID); // allows us to pull contact ID later when edits are made.
     }
+    else
+    {
+        // event listener for adding check button to properly allow a contact to be added.
+        let check = row.querySelector('button.check');
+        let fieldsFilled = false;
+        let eventListener = function () {
+            let firstName = row.querySelector('input[placeholder="First Name"]');
+            let lastName = row.querySelector('input[placeholder="Last Name"]');
+            let email = row.querySelector('input[placeholder="name@email.com"]');
+            let number = row.querySelector('input[placeholder="XXX-XXX-XXXX"]');
 
-    check.addEventListener('click', eventListener);
+            fieldsFilled = validAddContact(firstName, lastName, number, email);
+            if (fieldsFilled) {
+                addContact(this);
+            }
+        }
+
+        check.addEventListener('click', eventListener);
+    }
 
 
     return row;
@@ -173,8 +229,8 @@ function addContactForm()
 {
     // this appends a row to the table body, so that way if there is more rows
     // it won't remove them by messing with the innerHTML property.
-    var tbody = document.getElementById("tBody");
-    var newRow = createTableRow();
+    let tbody = document.getElementById("tBody");
+    let newRow = createTableRow(null);
     tbody.appendChild(newRow);
 }
 
@@ -184,15 +240,14 @@ function changeRowButtons(row)
     let button = "";
 
     // if they confirm their changes
-    if ((button = document.querySelector('.check') != null))
+    if ((document.querySelector('.check')) != null)
     {
         let container = document.createElement('div');
         container.style = "display: flex;";
     
         // change check to edit button
-        button = document.querySelector('.check');
+        button = document.createElement('button');
         button.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
-        button.classList.remove('check');
         button.classList.add('table_button');
         button.addEventListener('click', function() { edit_row(row); });
     
@@ -216,8 +271,29 @@ function changeRowButtons(row)
     }
     else
     {
-        // re add check button
-        // give check button onlick to be updateContact(this) instead of addContact(this).
+        // remove edit/delete buttons
+        td.innerHTML = "";
+
+        button = document.createElement('button');
+        button.classList.add('check');
+        button.innerHTML = '<ion-icon name="checkmark-outline"></ion-icon>';
+
+        // re-add event listener but instead use updateContact()
+        let fieldsFilled = false;
+        let eventListener = function () {
+            let firstName = row.querySelector('input[placeholder="First Name"]');
+            let lastName = row.querySelector('input[placeholder="Last Name"]');
+            let email = row.querySelector('input[placeholder="name@email.com"]');
+            let number = row.querySelector('input[placeholder="XXX-XXX-XXXX"]');
+    
+            fieldsFilled = validAddContact(firstName, lastName, number, email);
+            if (fieldsFilled) {
+                updateContact(this);
+            }
+        }
+        
+        button.addEventListener('click', eventListener);
+        td.appendChild(button);
     }
 }
 
@@ -226,13 +302,16 @@ function addContact(button)
 {
 	// change button from checkmark, to edit/delete icons
     let row = button.parentNode.parentNode; // grabs the specific row
-    changeRowButtons(row);
 
     let firstname = row.querySelector('[placeholder="First Name"]').value;
     let lastname = row.querySelector('[placeholder="Last Name"]').value;
+
+    let name = firstname + " " + lastname;
     let phonenumber = row.querySelector('[placeholder="XXX-XXX-XXXX"]').value;
     let emailaddress = row.querySelector('[placeholder="name@email.com"]').value;
     let contactPic = row.querySelector('td:first-child img').getAttribute('src');
+
+    // check button checks for validity through the event listener, so no need to do it here again.
 
     // change input fields back to regular
     row.querySelectorAll('input[required]').forEach(input => {
@@ -240,13 +319,10 @@ function addContact(button)
         input.style.borderColor = '';
     });
 
-    if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
-        console.log("INVALID FIRST NAME, LAST NAME, PHONE, OR EMAIL ENTERED");
-        return;
-    }
+    changeRowButtons(row);
+
     let tmp = {
-        firstName: firstname,
-        lastName: lastname,
+        name: name,
         phoneNumber: phonenumber,
         emailAddress: emailaddress,
         userId: userId,
@@ -255,7 +331,7 @@ function addContact(button)
 
 	let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/AddContacts.' + extension;
+    let url = urlBase + '/AddContact.' + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -267,11 +343,8 @@ function addContact(button)
             if (this.readyState == 4 && this.status == 200) 
 			{
                 console.log("Contact has been added!");
-                // Clear input fields in form 
-                document.getElementById("addMe").reset();
-                // reload contacts table and switch view to show
-                loadContacts();
-                showTable();
+                //loadContacts();
+                //showTable();
             }
         };
         xhr.send(jsonPayload);
@@ -305,22 +378,14 @@ function loadContacts() {
                     console.log(jsonObject.error);
                     return;
                 }
-                let text = "<table border='1'>"
+
+                // grab the table body element, and create a row for each contact
+                let tbody = document.getElementById("tBody");
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                    ids[i] = jsonObject.results[i].ID
-                    text += "<tr id='row" + i + "'>"
-                    text += "<td id='first_Name" + i + "'><span>" + jsonObject.results[i].FirstName + "</span></td>";
-                    text += "<td id='last_Name" + i + "'><span>" + jsonObject.results[i].LastName + "</span></td>";
-                    text += "<td id='email" + i + "'><span>" + jsonObject.results[i].EmailAddress + "</span></td>";
-                    text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].PhoneNumber + "</span></td>";
-                    text += "<td>" +
-                        "<button type='button' id='edit_button" + i + "' class='w3-button w3-circle w3-lime' onclick='edit_row(" + i + ")'>" + "<span class='glyphicon glyphicon-edit'></span>" + "</button>" +
-                        "<button type='button' id='save_button" + i + "' value='Save' class='w3-button w3-circle w3-lime' onclick='save_row(" + i + ")' style='display: none'>" + "<span class='glyphicon glyphicon-saved'></span>" + "</button>" +
-                        "<button type='button' onclick='delete_row(" + i + ")' class='w3-button w3-circle w3-amber'>" + "<span class='glyphicon glyphicon-trash'></span> " + "</button>" + "</td>";
-                    text += "<tr/>"
+                    let row = createTableRow(jsonObject.results[i]);
+                    tbody.appendChild(row);
                 }
-                text += "</table>"
-                document.getElementById("tbody").innerHTML = text;
+                
             }
         };
         xhr.send(jsonPayload);
@@ -329,74 +394,77 @@ function loadContacts() {
     }
 }
 
-function edit_row(id) 
+function edit_row(row) 
 {
-    
-    document.getElementById("edit_button" + id).style.display = "none";
-    document.getElementById("save_button" + id).style.display = "inline-block";
-
-    var firstNameI = document.getElementById("first_Name" + id);
-    var lastNameI = document.getElementById("last_Name" + id);
-    var email = document.getElementById("email" + id);
-    var phone = document.getElementById("phone" + id);
-
-    var namef_data = firstNameI.innerText;
-    var namel_data = lastNameI.innerText;
-    var email_data = email.innerText;
-    var phone_data = phone.innerText;
-
-    firstNameI.innerHTML = "<input type='text' id='namef_text" + id + "' value='" + namef_data + "'>";
-    lastNameI.innerHTML = "<input type='text' id='namel_text" + id + "' value='" + namel_data + "'>";
-    email.innerHTML = "<input type='text' id='email_text" + id + "' value='" + email_data + "'>";
-    phone.innerHTML = "<input type='text' id='phone_text" + id + "' value='" + phone_data + "'>"
+    // change input fields to allow editing
+    row.querySelectorAll('input[required]').forEach(input => {
+        input.readOnly = false;
+    });   
+    changeRowButtons(row);
 }
-function save_row(no) {
-    var namef_val = document.getElementById("namef_text" + no).value;
-    var namel_val = document.getElementById("namel_text" + no).value;
-    var email_val = document.getElementById("email_text" + no).value;
-    var phone_val = document.getElementById("phone_text" + no).value;
-    var id_val = ids[no]
 
-    document.getElementById("first_Name" + no).innerHTML = namef_val;
-    document.getElementById("last_Name" + no).innerHTML = namel_val;
-    document.getElementById("email" + no).innerHTML = email_val;
-    document.getElementById("phone" + no).innerHTML = phone_val;
+function updateContact(button)
+{
+    let row = button.parentNode.parentNode;
+    let firstname = row.querySelector('[placeholder="First Name"]').value;
+    let lastname = row.querySelector('[placeholder="Last Name"]').value;
 
-    document.getElementById("edit_button" + no).style.display = "inline-block";
-    document.getElementById("save_button" + no).style.display = "none";
+    let name = firstname + " " + lastname;
+    let phonenumber = row.querySelector('[placeholder="XXX-XXX-XXXX"]').value;
+    let emailaddress = row.querySelector('[placeholder="name@email.com"]').value;
+    let contactID =  row.getAttribute("data-contact-id");
+
+    // check button checks for validity through the event listener, so no need to do it here again.
+
+    row.querySelectorAll('input[required]').forEach(input => {
+        input.readOnly = true;
+    });   
+
+    changeRowButtons(row);
+
+    // change input fields back to regular border if needed
+    row.querySelectorAll('input[required]').forEach(input => {
+        if (input.value)
+        input.style.borderColor = '';
+    });
 
     let tmp = {
-        phoneNumber: phone_val,
-        emailAddress: email_val,
-        newFirstName: namef_val,
-        newLastName: namel_val,
-        id: id_val
+        name: name,
+        phoneNumber: phonenumber,
+        emailAddress: emailaddress,
+        userId: userId,
+        contactID: contactID
     };
 
-    let jsonPayload = JSON.stringify(tmp);
+	let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/UpdateContacts.' + extension;
+    let url = urlBase + '/EditContact.' + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log("Contact has been updated");
-                loadContacts();
+
+	try
+	{
+		xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) 
+			{
+                console.log("Contact has been added!");
+                //loadContacts();
             }
         };
         xhr.send(jsonPayload);
-    } catch (err) {
+    } 
+	catch (err) 
+	{
         console.log(err.message);
     }
 }
 
-function delete_row(no) 
+function delete_row(row) 
 {
-    var namef_val = document.getElementById("first_Name" + no).innerText;
-    var namel_val = document.getElementById("last_Name" + no).innerText;
+    let namef_val = document.getElementById("first_Name" + no).innerText;
+    let namel_val = document.getElementById("last_Name" + no).innerText;
     nameOne = namef_val.substring(0, namef_val.length);
     nameTwo = namel_val.substring(0, namel_val.length);
     let check = confirm('Confirm deletion of contact: ' + nameOne + ' ' + nameTwo);
@@ -412,7 +480,7 @@ function delete_row(no)
 
         let jsonPayload = JSON.stringify(tmp);
 
-        let url = urlBase + '/DeleteContacts.' + extension;
+        let url = urlBase + '/DeleteContact.' + extension;
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
@@ -467,7 +535,7 @@ function searchContacts() {
 
 function validAddContact(firstName, lastName, phone, email) {
 
-    var fNameErr = lNameErr = phoneErr = emailErr = true;
+    let fNameErr = lNameErr = phoneErr = emailErr = true;
 
     if (firstName.value == "") {
         console.log("FIRST NAME IS BLANK");
@@ -492,7 +560,7 @@ function validAddContact(firstName, lastName, phone, email) {
         phone.style.borderColor = "red";
     }
     else {
-        var regex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
+        let regex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
 
         if (regex.test(phone.value) == false) {
             console.log("PHONE IS NOT VALID");
@@ -510,7 +578,7 @@ function validAddContact(firstName, lastName, phone, email) {
         email.style.borderColor = "red";
     }
     else {
-        var regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+        let regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
         if (regex.test(email.value) == false) {
             console.log("EMAIL IS NOT VALID");
