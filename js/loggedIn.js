@@ -108,10 +108,10 @@ function createTableRow(jsonObject)
         let userPhoto = `<td><img src="${jsonObject.ContactImagePath}"></img></td>`;
         let name = jsonObject.Name.split(" ");
 
-        let firstNameItem = `<input type="text" style="width:100%" value="${name[0]}" required>`;
-        let lastNameItem = `<input type="text" style="width:100%" value="${name[1]}" required>`;
-        let emailItem = `<input type="text" style="width:100%" value="${jsonObject.Email}" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>`;
-        let phoneItem = `<input type="text" style="width:100%" value="${jsonObject.Phone}" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">`;
+        let firstNameItem = `<input type="text" style="width:100%" placeholder="First Name" value="${name[0]}" required>`;
+        let lastNameItem = `<input type="text" style="width:100%" placeholder="Last Name" value="${name[1]}" required>`;
+        let emailItem = `<input type="text" style="width:100%" placeholder="name@email.com" value="${jsonObject.Email}" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>`;
+        let phoneItem = `<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" value="${jsonObject.Phone}" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">`;
 
         form = [
             userPhoto,
