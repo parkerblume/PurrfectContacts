@@ -133,7 +133,7 @@ function createTableRow(jsonObject)
             '<input type="text" style="width:100%" placeholder="First Name" required>',
             '<input type="text" style="width:100%" placeholder="Last Name" required>',
             '<input type="text" style="width:100%" placeholder="name@email.com" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>',
-            '<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$">',
+            '<input onkeydown= "phoneNumberFormat()" id= "phoneNum" type="text" style="width:100%" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$">',
             '<button type="button" class="check" onclick=""><ion-icon name="checkmark-outline"></ion-icon></button>'
         ];
     }
@@ -223,6 +223,31 @@ function createTableRow(jsonObject)
 
 
     return row;
+}
+
+function phoneNumberFormat()
+{
+    const inputField = document.getElementById('phoneNum')
+    const formattedInputValue = formatPhoneNumber(inputField.value);
+    inputField.value = formattedInputValue;
+}
+
+function formatPhoneNumber(value)
+{
+
+    if(!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if(phoneNumberLength < 4) return phoneNumber;
+    if(phoneNumberLength < 7) 
+    {
+        return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3)}`;
+
+    }
+
+    return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6,9)}`;
+
+
 }
 
 function addContactForm() 
