@@ -111,7 +111,7 @@ function createTableRow(jsonObject)
         let firstNameItem = `<input type="text" style="width:100%" placeholder="First Name" value="${name[0]}" required data-field="firstName">`;
         let lastNameItem = `<input type="text" style="width:100%" placeholder="Last Name" value="${name[1]}" required data-field="lastName">`;
         let emailItem = `<input type="text" style="width:100%" placeholder="name@email.com" value="${jsonObject.Email}" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>`;
-        let phoneItem = `<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" value="${jsonObject.Phone}" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">`;
+        let phoneItem = `<input onkeydown= "phoneNumberFormat()" id= "phoneNum" type="text" style="width:100%" placeholder="XXX-XXX-XXXX" value="${jsonObject.Phone}" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">`;
 
         form = [
             userPhoto,
