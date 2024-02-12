@@ -465,12 +465,13 @@ function delete_row(row)
 {
     let firstname = row.querySelector('[placeholder="First Name"]').value;
     let lastname = row.querySelector('[placeholder="Last Name"]').value;
+    let contactID =  row.getAttribute("data-contact-id");
 
     let name = firstname + " " + lastname;
 
     if (confirm("Are you sure you want to delete the contact for " + name + "?")) {
         let jsonPayload = JSON.stringify({
-            name: name,
+            id: contactID,
             userId: userId 
         });
 
