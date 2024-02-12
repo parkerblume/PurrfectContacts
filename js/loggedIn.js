@@ -228,7 +228,7 @@ function createTableRow(jsonObject)
 function phoneNumberFormat(phoneField)
 {
     const formattedInputValue = formatPhoneNumber(phoneField.value);
-    inputField.value = formattedInputValue;
+    phoneField.value = formattedInputValue;
 }
 
 function formatPhoneNumber(value)
