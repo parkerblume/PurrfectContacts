@@ -1,0 +1,31 @@
+<head>
+    <link href="css/navbar.css" rel="stylesheet">
+    <link href="images/" rel="images">
+    <meta charset="UTF-8">
+  </head>
+  
+  <div class="navbar-container">
+    <div class="logo">
+      <a href="https://github.com/parkerblume/PurrfectContacts">
+        <img src="images/winkingcat.png">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li id="homeLink"><a href="/index.html" class="">Home</a></li>
+      <li><a href="/members.html" class="">About</a></li>
+      <li id="user-display" class="user-dropdown">
+        <div id="user-pic" class="user-pic">
+          <div class="user-pic-container">
+            <img src="" class="user-pic" id="user-picture" alt="User Picture">
+          </div>
+          <button class="user-btn" id="user">Hi,  <span id="userName"></span></button>
+        </div>
+        <div class="dropdown-content" id="userDropdownContent">
+            <a style="font-size: small;" href="/settings.html">Profile Settings</a>
+            <a style="font-size: small;" href="#" onclick="doLogout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <script type="text/javascript" src="js/code.js"></script>

@@ -1,0 +1,243 @@
+  /*background style*/
+   @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body{
+    background: -webkit-linear-gradient(left, #81a4cd, #dbe4ee);
+    background: linear-gradient(to right, #81a4cd, #dbe4ee);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+  }
+
+/*Contact CSS */
+
+input[type=text] {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #3E7CB1;
+	background: rgba(#3E7CB1, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #3E7CB1;
+}
+
+.content-contacts
+{
+  padding-top: 10px;
+  margin-top: 40px;
+  justify-content: end;
+  align-items: end;
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  background-color: white;
+  border-radius: 2% 2% 0 0;
+  box-shadow: 8px 8px 20px #054a91;
+  height:650px;
+  justify-content:start;
+}
+
+.border-container {
+  border: 3px solid black;
+  height:610px;
+  max-height: 620px;
+  justify-content: start;
+  display: block;
+  overflow: scroll;
+}
+
+.table-height {
+  width:100%;
+  table-layout:fixed;
+  margin-bottom:0;
+  max-height:600px;
+}
+
+.table-border {
+  justify-content: start;
+}
+
+.body-section {
+  min-height:450px !important;
+  border: 2px solid black;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+  .tbl-header{
+    background-color: #054a91;
+    max-height:50px !important;
+    overflow: hidden;
+   }
+
+  .tbl-content{
+    height:400px;
+    overflow-x:auto;
+    margin-top: 0px;
+  }
+
+  .image-margins {
+    margin-right:20px;
+  }
+
+  tr{
+    border: 2px solid black !important; 
+  }
+
+  th{
+    padding: 20px 15px;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  /* hover affect for each row*/
+  tr:hover {
+    background-color: #3e7cb1;
+    color: white;
+  }
+
+  th,td{
+    word-break: break-all;
+    text-align: left;
+  }
+
+  td img{
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 2px solid black;
+    margin-left:5%;
+  }
+
+  td{
+    padding: 15px;
+    flex: 1 0 0;
+    vertical-align:middle;
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    border-bottom: solid 1px #3e7cb1;
+  }
+  
+/* add user button */
+.add_new{
+  position: relative;
+  display: flex;
+  margin-right: 1100px;
+  height: 50px;
+  width: 50px;  
+  border-radius: 100%;
+  background-color: #004e9d;
+  justify-content: center; 
+  align-items: center;
+  font-size: 25px;
+  color: white;
+  border: 2px solid black;
+}
+
+#addRow{
+  display:none;
+}
+
+.check{
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  border: none;
+  font-size: 25px;
+}
+
+.check:hover, .table_button:hover{
+  color: white;
+  font-size: 26px;
+}
+
+.test {
+  padding:0 !important;
+  justify-content: center;
+  margin:0;
+}
+
+.add_new:hover{
+  background-color: #053f79;
+}
+
+.table_button{
+  padding: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  color: black;
+  background-color: transparent;
+  overflow: hidden;        
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+}
+
+.load_button{
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+.load_button:hover{
+  color: black;
+}
+
+.box{
+  height:30px;
+  display: flex;
+  cursor: pointer;
+  padding: 10px 20px;
+  background: transparent;
+  align-items: center;
+}
+
+.box:hover input{
+  width: 300px;
+  border: 2px solid black;
+}
+
+.box input{
+  width: 0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  transition: 0.8s;
+  background: white;
+  border-radius: 30px;
+}
+
+.box a{
+  color: black;
+  font-size: 28px;
+  display: flex;
+}
+#tBody {
+  min-height:400px;
+}
+
+  /* for custom scrollbar for webkit browser*/
+  
+  ::-webkit-scrollbar {
+      width: 10px;
+  } 
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  } 
+  ::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  }

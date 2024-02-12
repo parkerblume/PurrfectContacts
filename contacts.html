@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Purrfect Contacts: Contact Page</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/contacts.css" rel="stylesheet">
+    <link href="images/" rel="images">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/loggedIn.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, 
+            initial-scale=1.0">
+
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+	<nav id="navbar" class="custom-nav"></nav>
+    <div class="content-contacts">
+		<div class="box">
+			
+			<input onkeyup="searchContacts()" id="searchText" type ="text" placeholder="search"/>
+			<a>
+				<ion-icon name="search-outline"></ion-icon>
+			</a>
+		</div>
+			<table cellspacing="0" cellpadding="0" class="table-height">
+				<thead class="tbl-header">
+					<tr>
+						<th style="width:8%; padding-right:0;"><div style="width:60px;">
+							<button class ="add_new test" onclick="addContactForm()"><ion-icon name="person-add-outline"></ion-icon></button>
+						</div></th>
+						<th style="width:20%">First name</th>
+						<th style="width:20%">Last name</th>
+						<th style="width:25%">Email</th> 
+						<th style="width:25%">Phone</th>
+						<th style="width:100px;"><button class="load_button" onclick="loadContacts()"><ion-icon name="reload-outline"></ion-icon></button>
+						</th>
+					</tr>
+				</thead>
+			</table>
+			<!-- We had to seperate the header and body into two tables
+				 The div border-container is for a nice border around the table,
+				 since if we try to apply it to the body itself, it does not work right
+				 the second div just has the overflow to scroll, so that they can scroll through
+				 their contacts. -->
+			<div class="border-container">
+			<div style="overflow-y:scroll;width:100%;">
+				<table cellpadding="0" cellspacing="0" class="table-height table-border">
+						<tbody id="tBody">
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
