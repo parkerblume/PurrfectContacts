@@ -485,6 +485,8 @@ function delete_row(row)
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log("Contact has been deleted!");
+                    document.getElementById("tBody").innerHTML = "";
+                    loadContacts();
                 }
             };
             xhr.send(jsonPayload);
