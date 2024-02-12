@@ -108,8 +108,8 @@ function createTableRow(jsonObject)
         let userPhoto = `<td><img src="${jsonObject.ContactImagePath}"></img></td>`;
         let name = jsonObject.Name.split(" ");
 
-        let firstNameItem = `<input type="text" style="width:100%" placeholder="First Name" value="${name[0]}" required>`;
-        let lastNameItem = `<input type="text" style="width:100%" placeholder="Last Name" value="${name[1]}" required>`;
+        let firstNameItem = `<input type="text" style="width:100%" placeholder="First Name" value="${name[0]}" required data-field="firstName">`;
+        let lastNameItem = `<input type="text" style="width:100%" placeholder="Last Name" value="${name[1]}" required data-field="lastName">`;
         let emailItem = `<input type="text" style="width:100%" placeholder="name@email.com" value="${jsonObject.Email}" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>`;
         let phoneItem = `<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" value="${jsonObject.Phone}" required pattern="^[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4}$">`;
 
@@ -130,8 +130,8 @@ function createTableRow(jsonObject)
         // all NEW rows will follow this format
         form = [
             userPhoto,
-            '<input type="text" style="width:100%" placeholder="First Name" required>',
-            '<input type="text" style="width:100%" placeholder="Last Name" required>',
+            '<input type="text" style="width:100%" placeholder="First Name" required data-field="firstName">',
+            '<input type="text" style="width:100%" placeholder="Last Name" required data-field="lastName">',
             '<input type="text" style="width:100%" placeholder="name@email.com" pattern="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" required>',
             '<input type="text" style="width:100%" placeholder="XXX-XXX-XXXX" required pattern="^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$">',
             '<button type="button" class="check" onclick=""><ion-icon name="checkmark-outline"></ion-icon></button>'
@@ -500,16 +500,16 @@ function delete_row(row)
 function searchContacts() {
     const content = document.getElementById("searchText");
     const selections = content.value.toUpperCase().split(' ');
-    const table = document.getElementById("contacts");
+    const table = document.getElementById("tBody");
     const tr = table.getElementsByTagName("tr");// Table Row
 
     for (let i = 0; i < tr.length; i++) {
-        const td_fn = tr[i].getElementsByTagName("td")[0];// Table Data: First Name
-        const td_ln = tr[i].getElementsByTagName("td")[1];// Table Data: Last Name
+        const td_fn = tr[i].querySelector('[data-field="firstName"]');// Table Data: First Name
+        const td_ln = tr[i].querySelector('[data-field="lastName"]');// Table Data: Last Name
 
         if (td_fn && td_ln) {
-            const txtValue_fn = td_fn.textContent || td_fn.innerText;
-            const txtValue_ln = td_ln.textContent || td_ln.innerText;
+            const txtValue_fn = td_fn.value.trim();
+            const txtValue_ln = td_ln.value.trim();
             tr[i].style.display = "none";
 
             for (selection of selections) {
