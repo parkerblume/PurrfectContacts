@@ -49,6 +49,7 @@ input[type=text] {
   max-height: 620px;
   justify-content: start;
   display: block;
+  overflow-y: auto;
 }
 
 .table-height {
