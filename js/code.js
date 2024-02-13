@@ -128,14 +128,7 @@ function doRegister() {
 
             if (this.status == 200) {
 
-                let jsonObject = JSON.parse(xhr.responseText);
-                userId = jsonObject.id;
                 window.alert("User account created!");
-                firstName = jsonObject.firstName;
-                lastName = jsonObject.lastName;
-                email = jsonObject.email;
-                profileImage = jsonObject.profilePicPath;
-
                 showLogin();
             }
         };
