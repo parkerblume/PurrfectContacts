@@ -136,7 +136,6 @@ function doRegister() {
                 email = jsonObject.email;
                 profileImage = jsonObject.profilePicPath;
 
-                saveCookie();
                 showLogin();
             }
         };
