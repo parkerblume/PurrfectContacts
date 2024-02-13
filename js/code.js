@@ -128,19 +128,18 @@ function doRegister() {
             }
 
             if (this.status == 200) {
-                registerSuccess = true;
+                if (!registerSuccess)
+                {
+                    window.alert("User account created!");
+                    registerSuccess = true;
+                }
+                showLogin(); 
             }
         };
 
         xhr.send(jsonPayload);
     } catch (err) {
         document.getElementById("signupResult").innerHTML = err.message;
-    }
-
-    if (registerSuccess) 
-    { 
-        window.alert("User account created!");
-        showLogin(); 
     }
 }
 
