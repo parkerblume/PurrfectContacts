@@ -129,7 +129,6 @@ function doRegister() {
 
             if (this.status == 200) {
                 registerSuccess = true;
-                showLogin();
             }
         };
 
@@ -138,7 +137,11 @@ function doRegister() {
         document.getElementById("signupResult").innerHTML = err.message;
     }
 
-    if (registerSuccess) { window.alert("User account created!"); }
+    if (registerSuccess) 
+    { 
+        window.alert("User account created!");
+        showLogin(); 
+    }
 }
 
 function getRandomImage()
