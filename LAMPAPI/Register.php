@@ -32,6 +32,7 @@
 			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password, $profilePicPath);
 			$stmt->execute();
 			$id = $conn->insert_id;
+			returnWithError("");
 			http_response_code(200);
 
 		} else {
