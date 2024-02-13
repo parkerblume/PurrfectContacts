@@ -32,14 +32,15 @@
 			$stmt->bind_param("ssssss", $firstName, $lastName, $email, $username, $password, $profilePicPath);
 			$stmt->execute();
 			$id = $conn->insert_id;
-			$stmt->close();
-			$conn->close();
 			http_response_code(200);
 
 		} else {
 			http_response_code(409);
 			returnWithError("Username taken");
 		}
+
+		$stmt->close();
+		$conn->close();
 	}
 
 	function getRequestInfo()
