@@ -121,10 +121,6 @@ function doRegister() {
 
     try {
         xhr.onreadystatechange = function () {
-            if (this.readyState != 4) {
-                return;
-            }
-
             if (this.status == 409) {
                 document.getElementById("signupResult").innerHTML = "User already exists";
                 return;
@@ -134,14 +130,14 @@ function doRegister() {
 
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
-                document.getElementById("signupResult").innerHTML = "User added";
+                window.alert("User account created!");
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
                 email = jsonObject.email;
                 profileImage = jsonObject.profilePicPath;
 
                 saveCookie();
-                window.location.href = "contacts.html";
+                showLogin();
             }
         };
 
