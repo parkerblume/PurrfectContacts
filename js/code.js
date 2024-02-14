@@ -399,6 +399,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
     else {
         console.log("first name IS VALID");
         fNameErr = false;
+        document.getElementById("firstName").style.border = "";
     }
 
     if (lName == "") {
@@ -407,6 +408,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
     }
     else {
         console.log("LAST name IS VALID");
+        document.getElementById("lastName").style.border = "";
         lNameErr = false;
     }
 
@@ -427,6 +429,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
         else
         {
             console.log("EMAIL IS VALID");
+            document.getElementById("email").style.border = "";
             emailErr = false;
         }
     }
@@ -446,6 +449,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
         else {
 
             console.log("USERNAME IS VALID");
+            document.getElementById("username").style.border = "";
             userErr = false;
         }
     }
@@ -465,6 +469,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
         else {
 
             console.log("PASSWORD IS VALID");
+            document.getElementById("password").style.border = "";
             passErr = false;
         }
     }
