@@ -256,11 +256,13 @@ function showRequiredField()
 {
   document.getElementById("requirements").style.display = "contents";
   document.getElementById("requirements").classList.add("fade-in-image");
+  document.getElementById("field-container").style.height = "700px";
 }
 function hideRequiredField()
 {
   document.getElementById("requirements").style.display = "none";
   document.getElementById("requirements").classList.remove("fade-in-image");
+  document.getElementById("field-container").style.height = "570px";
 }
 
 function showSignup()
@@ -392,6 +394,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
 
     if (fName == "") {
         console.log("FIRST NAME IS BLANK");
+        document.getElementById("firstName").style.border = "3px red solid";
     }
     else {
         console.log("first name IS VALID");
@@ -400,6 +403,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
 
     if (lName == "") {
         console.log("LAST NAME IS BLANK");
+        document.getElementById("lastName").style.border = "3px red solid";
     }
     else {
         console.log("LAST name IS VALID");
@@ -408,6 +412,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
 
     if (email == "")
     {
+        document.getElementById("email").style.border = "3px red solid";
         console.log("EMAIL IS BLANK");
     }
     else
@@ -417,6 +422,7 @@ function validSignUpForm(fName, lName, email, user, pass) {
         if (!regex.test(email)) 
         {
             console.log("EMAIL IS NOT VALID");
+            document.getElementById("email").style.border = "3px red solid";
         }
         else
         {
@@ -427,12 +433,14 @@ function validSignUpForm(fName, lName, email, user, pass) {
 
     if (user == "") {
         console.log("USERNAME IS BLANK");
+        document.getElementById("username").style.border = "3px red solid";
     }
     else {
         var regex = /(?=.*[a-zA-Z])([a-zA-Z0-9-_]).{3,18}$/;
 
         if (regex.test(user) == false) {
             console.log("USERNAME IS NOT VALID");
+            document.getElementById("username").style.border = "3px red solid";
         }
 
         else {
@@ -444,12 +452,14 @@ function validSignUpForm(fName, lName, email, user, pass) {
 
     if (pass == "") {
         console.log("PASSWORD IS BLANK");
+        document.getElementById("password").style.border = "3px red solid";
     }
     else {
         var regex = /(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}/;
 
         if (regex.test(pass) == false) {
             console.log("PASSWORD IS NOT VALID");
+            document.getElementById("password").style.border = "3px red solid";
         }
 
         else {

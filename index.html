@@ -56,6 +56,21 @@
                     pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" required
                     title="Must be between 8-32 characters and must contain at least one number and one special character" />
               <i class="toggle-password-register far fa-eye" onclick="togglePasswordVisibility('register')"></i>
+              <div id="requirements" class="pass-requirements">
+                <h3>Password must contain the following:</h3>
+                <p id="passLen" class="invalid">
+                  8 to 32 characters
+                </p>
+                <p id="passLett" class="invalid">
+                  At least one letter
+                </p>
+                <p id="passNum" class="invalid">
+                  At least one number
+                </p>
+                <p id="passSpec" class="invalid">
+                  At least one special character
+                </p>
+              </div>
               <button type="button" class="button" id="signupButton" onclick="doRegister();"> Register! </button>
               <span id="signupResult"></span>
             </form>
