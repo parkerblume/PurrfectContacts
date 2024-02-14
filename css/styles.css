@@ -97,8 +97,12 @@ header {
 	font-size: 22px;
 	border: none;
 	cursor: pointer;
-	margin-top:-10px;
   }
+
+.pass-requirements {
+	display: none;
+	margin-bottom:5px;
+}
 
 .login,
 .register {
