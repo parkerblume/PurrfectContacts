@@ -118,6 +118,7 @@ function doRegister() {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    let registerSuccess = false;
 
     try {
         xhr.onreadystatechange = function () {
@@ -127,9 +128,12 @@ function doRegister() {
             }
 
             if (this.status == 200) {
-
-                window.alert("User account created!");
-                showLogin();
+                if (!registerSuccess)
+                {
+                    window.alert("User account created!");
+                    registerSuccess = true;
+                }
+                showLogin(); 
             }
         };
 
